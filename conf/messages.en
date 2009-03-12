@@ -1,0 +1,11 @@
+# You can specialize this file for each language.
+# For exemple, for french create a messages.fr file
+#
+
+dashboard_user_join_title=Peleus:::Welcome and Join the community!
+dashboard_user_join_subject=Join the Community Right Now!
+dashboard_user_name=Your Name:
+dashboard_user_email=Your Email:
+dashboard_user_password=Set Password:
+dashboard_user_password_repeat=Repeart Password:
+dashboard_user_join_submit=Join Now

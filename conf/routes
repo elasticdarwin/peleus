@@ -1,0 +1,16 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+GET			/							Application.index
+
+GET         /myspace/user/{action}                  myspace.MySpace.{action}
+
+# Import the default CRUD routes
+GET			/admin						module:crud
+
+# Map static resources from the /app/public folder to the /public path
+GET			/public						staticDir:public
+
+# Catch all
+*			/{controller}/{action}		{controller}.{action}
