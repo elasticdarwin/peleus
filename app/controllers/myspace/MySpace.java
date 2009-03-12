@@ -1,11 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package controller.myspace;
+package controllers.myspace;
 
 import constants.MyConstants;
-import controllers.Application;
+import controllers.*;
 import models.User;
 
 /**
@@ -30,6 +26,6 @@ class MySpace extends Application {
     }
 
     public static void index() {
-        
+        render();
     }
 }
