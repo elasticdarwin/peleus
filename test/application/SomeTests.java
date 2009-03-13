@@ -1,5 +1,6 @@
 package application;
 
+import javax.xml.ws.Response;
 import org.junit.Test;
 import play.test.ApplicationTest;
 import play.mvc.Http.Response;

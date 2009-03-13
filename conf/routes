@@ -6,6 +6,8 @@ GET			/							Application.index
 
 GET         /myspace/{action}           myspace.MySpace.{action}
 
+GET         /myspace/user/{action}      myspace.user.UserFacade.{action}
+
 # Import the default CRUD routes
 # GET			/admin						module:crud
 
