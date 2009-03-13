@@ -1,0 +1,9 @@
+# git ignore list
+
+*.[oa]
+*~
+*.class
+
+tmp/*
+nbproject/*
+logs/*
