@@ -8,7 +8,7 @@ import models.User;
  *
  * @author darwin
  */
-class MySpace extends Application {
+public class MySpace extends Application {
 
     public static void join() {
         render();
