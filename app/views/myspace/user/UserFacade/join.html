@@ -1,15 +1,23 @@
 #{extends 'main.html' /}
 #{set title:'Welcome and Join the community!' /}
 
-<form>
-    <h3>&{'dashboard_user_join_subject'}</h3>
-    <label>&{'dashboard_user_name'}</label>
-    <input type="text"  name="name"/><br />
-    <label>&{'dashboard_user_email'}</label>
-    <input type="text"  name="email"/><br />
-    <label>&{'dashboard_user_password'}</label>
-    <input type="password" name="password"/><br />
-    <label>&{'dashboard_user_password_repeat'}</label>
-    <input type="password" name="repeart_pasword"/><br />
-    <input type="submit" value="&{'dashboard_user_join_submit'}"/>
-</form>
+
+<div id="peleusContent">
+    <form class="centerStyleForm" action="@{myspace.user.UserFacade.register()}" method="post">
+        <h3>&{'myspace.user.join.subject'}</h3>
+        <label>&{'myspace.user.name'}</label>
+        <input type="text"  name="name"/><br />
+        <label>&{'myspace.user.email'}</label>
+        <input type="text"  name="email"/><br />
+        <label>&{'myspace.user.password'}</label>
+        <input type="password" name="password"/><br />
+        <label>&{'myspace.user.password.repeat'}</label>
+        <input type="password" name="repeat_pasword"/><br />
+        <label>&{'myspace.user.lang.preference'}</label>
+        <input type="radio" name="prefered_lang" value="zh" checked="checked"/>&{'myspace.user.lang.simple-chinese'}
+        <input type="radio" name="prefered_lang" value="en" />&{'myspace.user.lang.english'}  <br />
+
+
+        <input type="submit" value="&{'myspace.user.join.submit'}"/>
+    </form>
+</div>

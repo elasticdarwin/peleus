@@ -10,7 +10,7 @@ myspace.user.lang.english=English
 myspace.user.lang.simple-chinese=Simple Chinese
 myspace.user.join.submit=Join Now
 
-myspace.user.register.success=Congratulations! You have registered successfully! <div class="tip">You can login  with your email "%s" and password next time!</div>
+myspace.user.register.success= :( “五一”长假短期内不会恢复! <div class="tip">You can login  with your email "%s" and password next time!</div>
 
 
 common.layout.header.myname=Peleus System
