@@ -1,0 +1,18 @@
+#{extends 'main.html' /}
+#{set title:'Peleus Administration Backyard' /}
+
+<div id="peleusBreadcrumb">
+    <a href="@{backyard.Backyard.index()}">Admin Home</a>
+</div>
+
+<div class="peleusFlash">
+    <div class="flashMenu">
+        <h3> Functions </h3>
+        <ul>
+            <li><a href="@{backyard.Backyard.show_all_users()}">View All Users</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+

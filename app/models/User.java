@@ -37,4 +37,5 @@ public class User extends JPAModel {
         user.save();
         return user;
     }
+    
 }

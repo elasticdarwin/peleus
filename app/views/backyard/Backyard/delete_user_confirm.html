@@ -1,0 +1,21 @@
+
+#{extends 'main.html' /}
+#{set title:'Peleus Administration Backyard:Are you sure to delete the user' /}
+
+<div id="peleusBreadcrumb">
+    <a href="@{backyard.Backyard.index()}">Admin Home</a>>> <a href="@{backyard.Backyard.show_all_users()}">Show all users</a>
+</div>
+
+<div class="peleusFlash">
+    <div class="flashSuccess">
+        <label>Name:</label> ${user.name} <br />
+        <label>Email:</label>${user.email}  <br />
+
+        <h3>Are you sure to delete the user above ? Be caution, the operation cannot be recovered!!!</h3> <br />
+
+        <a href="@{backyard.Backyard.delete_user(user.id)}">Yes</a>     <a href="@{backyard.Backyard.show_all_users()}"> Cancel </a>
+
+    </div>
+</div>
+
+<h2>Are you sure to delete the user</h2>
