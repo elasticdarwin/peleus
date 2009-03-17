@@ -4,6 +4,7 @@
  */
 package models;
 
+import forms.UserForm;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import play.db.jpa.JPAModel;
@@ -16,9 +17,34 @@ import play.db.jpa.JPAModel;
 @Table(name = "users")
 public class User extends JPAModel {
 
-    private String name;
-    private String email;
-    private String password;
+    /**
+     * 
+     * @param userForm
+     * @return
+     */
+    public static User create(UserForm userForm) {
+        User user = build(userForm);
+        user.save();
+
+        return user;
+
+    }
+
+    /**
+     * transfer form object to model object
+     * @param userForm
+     * @return
+     */
+    public static User build(UserForm userForm) {
+        User user = new User();
+        user.name = userForm.name;
+        user.email = userForm.email;
+        user.password = userForm.password;
+        return user;
+    }
+    public String name;
+    public String email;
+    public String password;
 
     public User() {
     }

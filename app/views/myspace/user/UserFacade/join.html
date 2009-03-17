@@ -1,22 +1,34 @@
 #{extends 'main.html' /}
 #{set title:'Welcome and Join the community!' /}
 
-
 <div id="peleusContent">
-    <form class="centerStyleForm" action="@{myspace.user.UserFacade.register()}" method="post">
-        <h3>&{'myspace.user.join.subject'}</h3>
-        <label>&{'myspace.user.name'}</label>
-        <input type="text"  name="name"/><br />
-        <label>&{'myspace.user.email'}</label>
-        <input type="text"  name="email"/><br />
-        <label>&{'myspace.user.password'}</label>
-        <input type="password" name="password"/><br />
-        <label>&{'myspace.user.password.repeat'}</label>
-        <input type="password" name="repeat_pasword"/><br />
-        <label>&{'myspace.user.lang.preference'}</label>
-        <input type="radio" name="prefered_lang" value="zh" checked="checked"/>&{'myspace.user.lang.simple-chinese'}
-        <input type="radio" name="prefered_lang" value="en" />&{'myspace.user.lang.english'}  <br />
 
+    <form class="centerStyleForm" action="@{myspace.user.UserFacade.register()}" method="post">
+
+        <h3>&{'myspace.user.join.subject'}</h3>
+
+
+        <label>&{'myspace.user.name'}</label>
+        <input type="text"  name="userForm.name" value="${flash['userForm.name']}"/>
+        <span class="flashError">#{error 'userForm.name' /}</span>
+        <br />
+
+        <label>&{'myspace.user.email'}</label>
+        <input type="text"  name="userForm.email" value="${flash['userForm.email']}"/>
+        <span class="flashError">#{error 'userForm.email' /}</span><br />
+
+        <label>&{'myspace.user.password'}</label>
+        <input type="password" name="userForm.password" value="${flash['userForm.password']}"/>
+        <span class="flashError">#{error 'userForm.password' /}</span><br />
+
+        <label>&{'myspace.user.password.repeat'}</label>
+        <input type="password" name="userForm.repeat_password" value="${flash['userForm.repeat_password']}"/>
+        <span class="flashError">#{error 'userForm.repeat_password' /}</span><br />
+
+        <label>&{'myspace.user.lang.preference'}</label>
+        <input id="userForm.prefered_lang.zh.id" type="radio" name="userForm.prefered_lang" value="zh" #{if flash['userForm.prefered_lang'] == "zh" }checked="checked" #{/if}/>&{'myspace.user.lang.simple-chinese'}
+        <input id="userForm.prefered_lang.en.id" type="radio" name="userForm.prefered_lang" value="en" #{if flash['userForm.prefered_lang'] == "en" }checked="checked" #{/if}/>&{'myspace.user.lang.english'}
+        <span class="flashError">#{error 'userForm.prefered_lang' /}</span><br />
 
         <input type="submit" value="&{'myspace.user.join.submit'}"/>
     </form>

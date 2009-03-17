@@ -4,7 +4,7 @@ myspace.user.join.subject=Join the Community Right Now!
 myspace.user.name=Your Name:
 myspace.user.email=Your Email:
 myspace.user.password=Set Password:
-myspace.user.password.repeat=Repeart Password:
+myspace.user.password.repeat=Repeat Password:
 myspace.user.lang.preference=Language Your Prefered:
 myspace.user.lang.english=English
 myspace.user.lang.simple-chinese=Simple Chinese
@@ -15,3 +15,10 @@ myspace.user.register.success= :( “五一”长假短期内不会恢复! <div 
 
 common.layout.header.myname=Peleus System
 common.layout.footer.copyright=Copyright %s-%s , Powered by Peleus Virtual Team .
+
+
+validation.required=This field is required
+validation.minSize=<!--%s-->This field is too short, minimal size is %s
+validation.maxSize=<!--%s-->This field is too long, maximal size is %s
+validation.email=Email is invalid
+validation.equals=This field is not equals to the field before短期内不会恢
