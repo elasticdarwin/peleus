@@ -18,7 +18,7 @@ POST         /myspace/user/register      myspace.user.UserFacade.register
 GET         /backyard/                  backyard.Backyard.index
 GET         /backyard/{action}          backyard.Backyard.{action}
 
-
+POST        /backyard/update_user       backyard.Backyard.update_user
 
 # Import the default CRUD routes
 # GET			/admin						module:crud

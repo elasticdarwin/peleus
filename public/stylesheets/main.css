@@ -87,6 +87,17 @@
     font-size: 13px;
 }
 
+.flashDialog {
+    background: #DDAACC;
+    -moz-border-radius-bottomleft:11px;
+    -moz-border-radius-bottomright:11px;
+    -moz-border-radius-topleft:11px;
+    -moz-border-radius-topright:11px;
+    margin: 5px 10px 5px 10px;
+    padding:10px;
+    font-size: 15px;
+}
+
 .flashSuccess .tip {
     font-size: 14px;
 }
