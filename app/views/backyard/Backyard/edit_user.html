@@ -1,0 +1,21 @@
+#{extends 'main.html' /}
+#{set title:'Peleus Administration Backyard:edit user profile' /}
+
+#{peleusBreadcrumb /}
+
+<div id="peleusContent">
+    <form class="centerStyleForm" action="@{backyard.Backyard.update_user()}" method="post">
+        <h3>&{'myspace.user.join.subject'}</h3>
+        <label>&{'myspace.user.name'}</label>
+        <input type="text"  name="name" value="${user.name}"/><br />
+        <label>&{'myspace.user.email'}</label>
+        <input type="text"  name="email" value="${user.email}"/><br />
+        <label>&{'myspace.user.password'}</label>
+        <input type="password" name="password"/><br />
+        <label>&{'myspace.user.password.repeat'}</label>
+        <input type="password" name="repeat_pasword"/><br />
+        <input type="hidden" name="id" value="${user.id}"/>
+
+        <input type="submit" value="&{'myspace.user.join.submit'}"/>
+    </form>
+</div>

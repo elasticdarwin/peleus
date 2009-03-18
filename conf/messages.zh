@@ -16,9 +16,26 @@ myspace.user.register.success= :( “五一”长假短期内不会恢复! <div 
 common.layout.header.myname=Peleus System
 common.layout.footer.copyright=Copyright %s-%s , Powered by Peleus Virtual Team .
 
-
+common.basic.actions.actions = 操作
+common.basic.actions.save = 保存
+common.basic.actions.edit = 编辑
+common.basic.actions.delete = 删除
 validation.required=This field is required
 validation.minSize=<!--%s-->This field is too short, minimal size is %s
 validation.maxSize=<!--%s-->This field is too long, maximal size is %s
 validation.email=Email is invalid
 validation.equals=This field is not equals to the field before短期内不会恢
+
+domain.user.name=姓名
+domain.user.email=邮箱
+domain.user.password=密码
+
+
+backyard.breadcrumb.home = 后台首页
+backyard.breadcrumb.view_all_users = 查看全部用户
+
+backyard.functions.index = 功能导航
+backyard.functions.user.view_all_users = 查看全部用户
+backyard.functions.user.edit_user = 编辑用户信息
+backyard.functions.user.delete_user_confirm = 你确认要删除用户 : "%s" (Emails是 "%s")吗?  <br />  请特别注意, 这个操作执行后是无法恢复的!!! <br />
+

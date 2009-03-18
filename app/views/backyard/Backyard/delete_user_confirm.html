@@ -1,0 +1,15 @@
+
+#{extends 'main.html' /}
+#{set title:'Peleus Administration Backyard:Are you sure to delete the user' /}
+
+#{peleusBreadcrumb /}
+
+<div class="peleusFlash">
+    <div class="flashDialog">
+        &{'backyard.functions.user.delete_user_confirm',user.name,user.email}
+        <br />
+
+        <a href="@{backyard.Backyard.delete_user(user.id)}">Yes</a>     <a href="@{backyard.Backyard.show_all_users()}"> Cancel </a>
+
+    </div>
+</div>

@@ -21,3 +21,24 @@ validation.minSize=<!--%s-->This field is too short, minimal size is %s
 validation.maxSize=<!--%s-->TThis field is too long, maximal size is %s
 validation.email=Email is invalid
 validation.equals=This field is not equals to the field before
+
+common.basic.actions.actions = Actions
+common.basic.actions.save = save
+common.basic.actions.edit = edit
+common.basic.actions.delete = delete
+
+domain.user.name=Name
+domain.user.email=Email
+domain.user.password=Password
+
+
+backyard.breadcrumb.home = Admin Home
+backyard.breadcrumb.view_all_users = View All Users
+
+
+backyard.functions.index = Functions
+backyard.functions.user.view_all_users = View All Users
+backyard.functions.user.edit_user = Edit User Profile
+backyard.functions.user.delete_user_confirm = Are you sure to delete the User : "%s" (with Email "%s")?  <br />  Be caution, the operation cannot be recovered!!! <br />
+
+

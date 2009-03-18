@@ -4,11 +4,21 @@
 
 GET			/							Application.index
 
+
+# MySpace Route Configuration
+
 GET         /myspace/{action}           myspace.MySpace.{action}
 
 GET         /myspace/user/{action}      myspace.user.UserFacade.{action}
 
 POST         /myspace/user/register      myspace.user.UserFacade.register
+
+# Backyard Route Configuration
+
+GET         /backyard/                  backyard.Backyard.index
+GET         /backyard/{action}          backyard.Backyard.{action}
+
+POST        /backyard/update_user       backyard.Backyard.update_user
 
 # Import the default CRUD routes
 # GET			/admin						module:crud
