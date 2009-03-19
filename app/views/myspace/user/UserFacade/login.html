@@ -9,12 +9,12 @@
 
 
         <label>&{'myspace.user.login.email'}</label>
-        <input type="text"  name="userForm.email" value="${flash['userForm.email']}"/>
-        <span class="flashError">#{error 'userForm.email' /}</span><br />
+        <input type="text"  name="email" value="${flash['email']}"/>
+        <span class="flashError">#{error 'email' /}</span><br />
 
         <label>&{'myspace.user.login.password'}</label>
-        <input type="password" name="userForm.password" value="${flash['userForm.password']}"/>
-        <span class="flashError">#{error 'userForm.password' /}</span><br />
+        <input type="password" name="password" value="${flash['password']}"/>
+        <span class="flashError">#{error 'password' /}</span><br />
 
         <input type="submit" value="&{'myspace.user.login.submit'}"/>
     </form>

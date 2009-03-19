@@ -11,7 +11,10 @@ import controllers.myspace.MySpace;
 import forms.UserForm;
 import java.util.List;
 import models.User;
+import org.apache.commons.lang.StringUtils;
+import play.Logger;
 import play.data.validation.Valid;
+import play.i18n.Messages;
 
 /**
  *
@@ -52,23 +55,34 @@ public class UserFacade extends Application {
         String email = params.get("email");
         String password = params.get("password");
 
-        String queryByEmail = "email= ? ";
+        String queryByEmail = "email";
 
         List<User> users = (List) User.findBy(queryByEmail, email);
         User loadedUser = null;
 
+
+        Logger.error("email is <" + email + ">");
+        Logger.error("password is <" + password + ">");
+
+
         if (users.isEmpty() || users.size() > 1) {
+
+
+            params.flash(); // add http parameters to the flash scope
+            validation.keep(); // keep the errors for the next request
+
+
             login();
         } else {
             loadedUser = users.get(0);
             if (validate_member(loadedUser, password)) {
-                System.out.println("validate pass");
                 session.put(MyConstants.HAS_LOGINED, MyConstants.YES);
                 session.put(MyConstants.LOGINED_USER_ID, loadedUser.getId());
                 session.put(MyConstants.REGIST_JUST_A_SECOND_AGO_FLAG, MyConstants.NO);
-                validate_success();
+
+                MySpace.index();
             } else {
-                System.out.println("validate false");
+
                 Backyard.index();
             // login();
             }
@@ -76,23 +90,16 @@ public class UserFacade extends Application {
     }
 
     public static void logout() {
-        session.put(MyConstants.HAS_LOGINED, MyConstants.NO);
-        session.put(MyConstants.LOGINED_USER_ID, "");
-        session.put(MyConstants.REGIST_JUST_A_SECOND_AGO_FLAG, MyConstants.NO);
-        login();
+        session.clear();
+        render();
     }
 
     private static boolean validate_member(User loadedUser, String password) {
-        /*System.out.println(loadedUser.password);
+        Logger.error(loadedUser.password);
         if (StringUtils.equals(loadedUser.password, password)) {
-        return true;
+            return true;
         } else {
-        return false;
-        }*/
-        return true;
-    }
-
-    public static void validate_success() {
-        render();
+            return false;
+        }
     }
 }

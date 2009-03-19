@@ -1,0 +1,11 @@
+#{extends 'main.html' /}
+#{set title:messages.get('myspace.user.logout.notification') /}
+
+<div class="peleusFlash">
+    <div class="flashSuccess">
+        &{'myspace.user.logout.notification'}
+        <br />
+        <a href="@{myspace.user.UserFacade.login()}">Switch to another user</a>
+
+    </div>
+</div>

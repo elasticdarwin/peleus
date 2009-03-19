@@ -9,10 +9,12 @@ myspace.user.lang.preference=Language Your Prefered:
 myspace.user.lang.english=English
 myspace.user.lang.simple-chinese=Simple Chinese
 myspace.user.join.submit=Join Now
+
 myspace.user.login.subject=Login Peleus System
 myspace.user.login.submit=Login Now
 myspace.user.login.email=Your Email
 myspace.user.login.password=Enter your Login Password
+myspace.user.logout.notification = You have just logged out from Peleus System!
 
 myspace.user.register.success=Congratulations! You have registered successfully! <div class="tip">You can login  with your email "%s" and password next time!</div>
 

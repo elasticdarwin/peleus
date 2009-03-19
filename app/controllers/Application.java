@@ -16,5 +16,6 @@ public class Application extends Controller {
         if (StringUtils.isNotBlank(prefered_lang)) {
             Lang.change(prefered_lang);
         }
+
     }
 }
