@@ -1,0 +1,21 @@
+#{extends 'main.html' /}
+#{set title:'Login Into the Peleus System!' /}
+
+<div id="peleusContent">
+
+    <form class="centerStyleForm" action="@{myspace.user.UserFacade.login_validate()}" method="post">
+
+        <h3>&{'myspace.user.login.subject'}</h3>
+
+
+        <label>&{'myspace.user.login.email'}</label>
+        <input type="text"  name="userForm.email" value="${flash['userForm.email']}"/>
+        <span class="flashError">#{error 'userForm.email' /}</span><br />
+
+        <label>&{'myspace.user.login.password'}</label>
+        <input type="password" name="userForm.password" value="${flash['userForm.password']}"/>
+        <span class="flashError">#{error 'userForm.password' /}</span><br />
+
+        <input type="submit" value="&{'myspace.user.login.submit'}"/>
+    </form>
+</div>
