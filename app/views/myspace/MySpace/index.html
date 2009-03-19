@@ -7,6 +7,10 @@
 </div>
 
 
+<div class="peleusFlash">
+    <div class="flashMenu"><a href="@{myspace.user.UserFacade.logout()}">Logout</a>
+</div>
+
 #{if is_new_user}
 <div class="peleusFlash">
     <div class="flashSuccess">&{'myspace.user.register.success', user.email } </div>

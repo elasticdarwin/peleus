@@ -2,6 +2,7 @@ package controllers.myspace;
 
 import constants.MyConstants;
 import controllers.*;
+import controllers.myspace.user.UserFacade;
 import models.User;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
@@ -12,21 +13,28 @@ import org.apache.commons.lang.math.NumberUtils;
  */
 public class MySpace extends Application {
 
-
     public static void index() {
 
-        String user_id = session.get(MyConstants.LOGINED_USER_ID);
+        String has_logined_flag = session.get(MyConstants.HAS_LOGINED);
 
-        // TODO catch the number parsing exception
-        User user = User.findById(NumberUtils.toLong(user_id));
-
-
-        boolean is_new_user = false;
-
-        if (StringUtils.equalsIgnoreCase(MyConstants.YES, session.get(MyConstants.REGIST_JUST_A_SECOND_AGO_FLAG))) {
-            is_new_user = true;
+        if (StringUtils.isEmpty(has_logined_flag)) {
+            return;
         }
 
-        render(user, is_new_user);
+        if (!has_logined_flag.equalsIgnoreCase(MyConstants.YES)) {
+            UserFacade.login();
+        } else {
+            String user_id = session.get(MyConstants.LOGINED_USER_ID);
+            // TODO catch the number parsing exception
+            User user = User.findById(NumberUtils.toLong(user_id));
+
+            boolean is_new_user = false;
+
+            if (StringUtils.equalsIgnoreCase(MyConstants.YES, session.get(MyConstants.REGIST_JUST_A_SECOND_AGO_FLAG))) {
+                is_new_user = true;
+            }
+
+            render(user, is_new_user);
+        }
     }
 }
