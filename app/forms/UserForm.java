@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package forms;
 
 import play.data.validation.Email;
@@ -30,7 +26,7 @@ public class UserForm {
     @MinSize(6)
     public String password;
     @Required
-    @Equals(value="password")
+    @Equals(value = "password")
     @MaxSize(20)
     @MinSize(6)
     public String repeat_password;

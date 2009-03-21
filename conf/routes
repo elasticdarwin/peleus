@@ -2,20 +2,28 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-GET			/							Application.index
+GET			/							dashboard.Dashboard.index
+
+
+# Dashboard Route Configuration
+
+GET         /dashboard/                     dashboard.Dashboard.index
+
+GET         /dashboard/{action}             dashboard.Dashboard.{action}
 
 
 # MySpace Route Configuration
 
-GET         /myspace/                   myspace.MySpace.index
+GET         /myspace/                       myspace.MySpace.index
 
-GET         /myspace/{action}           myspace.MySpace.{action}
+GET         /myspace/{action}               myspace.MySpace.{action}
 
-GET         /myspace/user/{action}      myspace.user.UserFacade.{action}
+GET         /myspace/user/{action}          myspace.user.UserFacade.{action}
 
-POST         /myspace/user/register      myspace.user.UserFacade.register
+POST         /myspace/user/register         myspace.user.UserFacade.register
 
-POST        /myspace/user/login_validate myspace.user.UserFacade.login_validate
+
+POST        /myspace/user/login_validate    myspace.user.UserFacade.login_validate
 
 # Backyard Route Configuration
 

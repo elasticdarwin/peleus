@@ -3,6 +3,7 @@
 
 <div id="peleusContent">
 
+
     <form class="centerStyleForm" action="@{myspace.user.UserFacade.register()}" method="post">
 
         <h3>&{'myspace.user.join.subject'}</h3>
@@ -27,9 +28,12 @@
 
         <label>&{'myspace.user.lang.preference'}</label>
         <input id="userForm.prefered_lang.zh.id" type="radio" name="userForm.prefered_lang" value="zh" #{if flash['userForm.prefered_lang'] == "zh" }checked="checked" #{/if}/>&{'myspace.user.lang.simple-chinese'}
-        <input id="userForm.prefered_lang.en.id" type="radio" name="userForm.prefered_lang" value="en" #{if flash['userForm.prefered_lang'] == "en" }checked="checked" #{/if}/>&{'myspace.user.lang.english'}
-        <span class="flashError">#{error 'userForm.prefered_lang' /}</span><br />
+               <input id="userForm.prefered_lang.en.id" type="radio" name="userForm.prefered_lang" value="en" #{if flash['userForm.prefered_lang'] == "en" }checked="checked" #{/if}/>&{'myspace.user.lang.english'}
+               <span class="flashError">#{error 'userForm.prefered_lang' /}</span><br />
 
         <input type="submit" value="&{'myspace.user.join.submit'}"/>
     </form>
+
 </div>
+
+ <a href="@{myspace.user.UserFacade.login()}">Already have an account? Login</a>

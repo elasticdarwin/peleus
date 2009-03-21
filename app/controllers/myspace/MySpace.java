@@ -28,13 +28,7 @@ public class MySpace extends Application {
             // TODO catch the number parsing exception
             User user = User.findById(NumberUtils.toLong(user_id));
 
-            boolean is_new_user = false;
-
-            if (StringUtils.equalsIgnoreCase(MyConstants.YES, session.get(MyConstants.REGIST_JUST_A_SECOND_AGO_FLAG))) {
-                is_new_user = true;
-            }
-
-            render(user, is_new_user);
+            render(user);
         }
     }
 }

@@ -3,12 +3,12 @@
 
 
 <div id="peleusBreadcrumb">
-    <a href="@{myspace.MySpace.index()}">Home</a>
+    <a href="@{dashboard.Dashboard.index()}">Dahsboard</a> | <a href="@{myspace.MySpace.index()}">Myspace Home</a>
 </div>
 
 
 <div class="peleusFlash">
-    <div class="flashMenu"><a href="@{myspace.user.UserFacade.logout()}">Logout</a>
+<div class="flashMenu"><a href="@{myspace.user.UserFacade.logout()}">Logout</a>
 </div>
 
 #{if is_new_user}
@@ -17,4 +17,6 @@
 </div>
 
 #{/if}
+
+
 
