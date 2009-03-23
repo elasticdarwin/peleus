@@ -14,7 +14,7 @@ GET         /dashboard/{action}             dashboard.Dashboard.{action}
 
 # MySpace Route Configuration
 
-GET         /myspace/                       myspace.MySpace.index
+GET         /myspace                       myspace.MySpace.index
 
 GET         /myspace/{action}               myspace.MySpace.{action}
 

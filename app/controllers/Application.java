@@ -1,21 +1,39 @@
 package controllers;
 
 import constants.MyConstants;
+import models.User;
 import org.apache.commons.lang.StringUtils;
-import play.i18n.Lang;
+import org.apache.commons.lang.math.NumberUtils;
 import play.mvc.*;
-
 
 public class Application extends Controller {
 
-    @Before
-    static void set_language() {
+//    @Before
+//    static void set_language() {
+//
+//        String prefered_lang = session.get(MyConstants.PREFERED_LANG);
+//
+//        if (StringUtils.isNotBlank(prefered_lang)) {
+//            Lang.change(prefered_lang);
+//        }
+//
+//    }
+    protected static boolean has_logined() {
+        String logined_user_id = session.get(MyConstants.LOGINED_USER_ID);
+        return StringUtils.isNotBlank(logined_user_id);
+    }
 
-        String prefered_lang = session.get(MyConstants.PREFERED_LANG);
+    protected static User fetch_user() {
+        String user_id = session.get(MyConstants.LOGINED_USER_ID);
+        User user = User.findById(NumberUtils.toLong(user_id, -1));
 
-        if (StringUtils.isNotBlank(prefered_lang)) {
-            Lang.change(prefered_lang);
+        forbiddenIfNull(user);
+        return user;
+    }
+
+    protected static void forbiddenIfNull(Object obj) {
+        if (obj == null) {
+            forbidden("You are forbidden to access this page.");
         }
-
     }
 }

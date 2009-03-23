@@ -29,7 +29,7 @@ public class UserFacade extends Application {
             join();
         }
 
-        record_session_for_login(user);
+        record_session(user);
         register_success();
     }
 
@@ -38,10 +38,8 @@ public class UserFacade extends Application {
             login();
         }
 
-        String user_id = session.get(MyConstants.LOGINED_USER_ID);
-        User user = User.findById(NumberUtils.toLong(user_id));
+        User user = fetch_user();
 
-        notFoundIfNull(user);
         render(user);
     }
 
@@ -65,7 +63,7 @@ public class UserFacade extends Application {
         } else {
             loadedUser = users.get(0);
             if (validate_member(loadedUser, password)) {
-                record_session_for_login(loadedUser);
+                record_session(loadedUser);
                 MySpace.index();
             } else {
                 login();
@@ -86,12 +84,9 @@ public class UserFacade extends Application {
         render();
     }
 
-    private static void record_session_for_login(User user) {
+    private static void record_session(User user) {
         session.put(MyConstants.LOGINED_USER_ID, user.getId());
     }
 
-    private static boolean has_logined() {
-        String logined_user_id = session.get(MyConstants.LOGINED_USER_ID);
-        return StringUtils.isNotBlank(logined_user_id);
-    }
+
 }

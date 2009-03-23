@@ -7,10 +7,9 @@
 ## To-Do Items List
 
 * Refactoring
-* Load fixtures when app startup
+* Load fixtures when app startup(, with custom command tool)
 * Add password md5 encrypt
 * Use Macro to make the Validation Message more friendly
-
 
 
 

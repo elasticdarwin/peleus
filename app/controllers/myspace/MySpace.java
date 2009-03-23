@@ -1,32 +1,22 @@
 package controllers.myspace;
 
-import constants.MyConstants;
-import controllers.*;
+
+import controllers.Application;
 import controllers.myspace.user.UserFacade;
 import models.User;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.math.NumberUtils;
 
 
 public class MySpace extends Application {
 
     public static void index() {
 
-        String has_logined_flag = session.get(MyConstants.HAS_LOGINED);
+        if (!has_logined()) {
 
-
-        if (StringUtils.isEmpty(has_logined_flag)) {
-            return;
-        }
-
-        if (!has_logined_flag.equalsIgnoreCase(MyConstants.YES)) {
             UserFacade.login();
         } else {
-            String user_id = session.get(MyConstants.LOGINED_USER_ID);
-            // TODO catch the number parsing exception
-            User user = User.findById(NumberUtils.toLong(user_id));
-
+            User user = fetch_user();
             render(user);
         }
     }
+
 }
