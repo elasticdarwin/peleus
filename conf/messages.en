@@ -1,6 +1,36 @@
+## Common Layout Message Area
 
-myspace.user.join.title=Peleus:::Welcome and Join the community!
-myspace.user.join.subject=Join the Community Right Now!
+common.layout.header.myname=Peleus System
+common.layout.footer.copyright=Copyright %s-%s , Powered by Peleus Virtual Team .
+
+## Common Action Message Area
+
+common.basic.actions.actions = Actions
+common.basic.actions.save = save
+common.basic.actions.edit = edit
+common.basic.actions.delete = delete
+
+
+
+## Domain::User Message Area
+
+domain.user.name=Name
+domain.user.email=Email
+domain.user.password=Password
+
+## Domain::Department Message Area
+
+
+## Domain::VirtualTeam Message Area
+
+
+
+## Dashboard Message Area
+dashboard.title.homepage = Dashboard :: Peleus Portal Homepage
+
+
+## MySpace User Message Area
+
 myspace.user.name=Your Name:
 myspace.user.email=Your Email:
 myspace.user.password=Set Password:
@@ -8,7 +38,11 @@ myspace.user.password.repeat=Repeat Password:
 myspace.user.lang.preference=Language Your Prefered:
 myspace.user.lang.english=English
 myspace.user.lang.simple-chinese=Simple Chinese
+
+myspace.user.join.title=Peleus:::Welcome and Join the community!
+myspace.user.join.subject=Join the Community Right Now!
 myspace.user.join.submit=Join Now
+myspace.user.register.success=Congratulations! You have registered successfully! <div class="tip">You can login  with your email "%s" and password next time!</div>
 
 myspace.user.login.subject=Login Peleus System
 myspace.user.login.submit=Login Now
@@ -16,11 +50,8 @@ myspace.user.login.email=Your Email
 myspace.user.login.password=Enter your Login Password
 myspace.user.logout.notification = You have just logged out from Peleus System!
 
-myspace.user.register.success=Congratulations! You have registered successfully! <div class="tip">You can login  with your email "%s" and password next time!</div>
 
-
-common.layout.header.myname=Peleus System
-common.layout.footer.copyright=Copyright %s-%s , Powered by Peleus Virtual Team .
+## Validation Message Area
 
 validation.required=This field is required
 validation.minSize=<!--%s-->This field is too short, minimal size is %s
@@ -28,23 +59,16 @@ validation.maxSize=<!--%s-->TThis field is too long, maximal size is %s
 validation.email=Email is invalid
 validation.equals=This field is not equals to the field before
 
-common.basic.actions.actions = Actions
-common.basic.actions.save = save
-common.basic.actions.edit = edit
-common.basic.actions.delete = delete
 
-domain.user.name=Name
-domain.user.email=Email
-domain.user.password=Password
+## Backyard Message Area
 
+backyard.breadcrumb.home=Admin Home
+backyard.breadcrumb.view_all_users=View All Users
 
-backyard.breadcrumb.home = Admin Home
-backyard.breadcrumb.view_all_users = View All Users
-
-
-backyard.functions.index = Functions
+backyard.functions.index=Functions
 backyard.functions.user.view_all_users = View All Users
 backyard.functions.user.edit_user = Edit User Profile
 backyard.functions.user.delete_user_confirm = Are you sure to delete the User : "%s" (with Email "%s")?  <br />  Be caution, the operation cannot be recovered!!! <br />
+
 
 

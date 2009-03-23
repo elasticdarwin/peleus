@@ -1,11 +1,11 @@
 #{extends 'main.html' /}
-#{set title:'Dashboard :: Peleus Portal Homepage' /}
+#{set title:messages.get('dashboard.title.homepage') /}
 
 <h1>Dashboard</h1>
 
 
 #{if has_loggined}
-<h3>hello, ${user_name} !</h3> <br \>
+<h3>hello, ${user_name} !</h3> <br />
 
   <a href="@{myspace.MySpace.index()}">Myspace</a> | 
   <a href="@{myspace.user.UserFacade.logout()}">logout</a>
@@ -13,7 +13,7 @@
 #{/if}
 
 #{else}
-    <a href="@{myspace.user.UserFacade.login()}">Login</a>
+    <a href="@{myspace.user.UserFacade.login()}">login</a>
     | <a href="@{myspace.user.UserFacade.join()}">Not have an account yet?</a>
 #{/else}
 

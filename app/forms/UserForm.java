@@ -6,10 +6,7 @@ import play.data.validation.MaxSize;
 import play.data.validation.MinSize;
 import play.data.validation.Required;
 
-/**
- *
- * @author darwin
- */
+
 public class UserForm {
 
     @Required

@@ -5,10 +5,7 @@ import java.util.List;
 import models.User;
 import org.apache.commons.lang.math.NumberUtils;
 
-/**
- *
- * @author zd
- */
+
 public class Backyard extends Application {
 
     public static void index() {

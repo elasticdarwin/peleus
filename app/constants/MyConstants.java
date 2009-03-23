@@ -1,11 +1,7 @@
 package constants;
 
-/**
- *
- * @author darwin
- */
-public class MyConstants {
 
+public class MyConstants {
     public static final String HAS_LOGINED = "has_logined";
     public static final String LOGINED_USER_ID = "logined_user_id";
     public static final String YES = "yes";

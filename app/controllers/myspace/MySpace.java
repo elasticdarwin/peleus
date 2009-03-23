@@ -7,10 +7,7 @@ import models.User;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 
-/**
- *
- * @author darwin
- */
+
 public class MySpace extends Application {
 
     public static void index() {

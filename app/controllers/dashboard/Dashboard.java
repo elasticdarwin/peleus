@@ -4,10 +4,7 @@ import constants.MyConstants;
 import controllers.*;
 import org.apache.commons.lang.StringUtils;
 
-/**
- *
- * @author darwin
- */
+
 public class Dashboard extends Application {
 
     public static void index() {

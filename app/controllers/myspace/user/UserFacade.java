@@ -10,10 +10,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 import play.data.validation.Valid;
 
-/**
- *
- * @author arthur
- */
+
 public class UserFacade extends Application {
 
     public static void join() {

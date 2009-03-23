@@ -5,10 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import play.db.jpa.JPAModel;
 
-/**
- *
- * @author darwin
- */
+
 @Entity
 @Table(name = "users")
 public class User extends JPAModel {
