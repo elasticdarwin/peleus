@@ -10,28 +10,28 @@
 
 
         <label>&{'myspace.user.name'}</label>
-        <input type="text"  name="user_form.name" value="${flash['user_form.name']}"/>
-        <span class="flashError">#{error 'user_form.name' /}</span>
+        <input type="text"  name="register_form.name" value="${flash['register_form.name']}"/>
+        <span class="flashError">#{error 'register_form.name' /}</span>
         <br />
 
         <label>&{'myspace.user.email'}</label>
-        <input type="text"  name="user_form.email" value="${flash['user_form.email']}"/>
-        <span class="flashError">#{error 'user_form.email' /}</span><br />
+        <input type="text"  name="register_form.email" value="${flash['register_form.email']}"/>
+        <span class="flashError">#{error 'register_form.email' /}</span><br />
 
         <label>&{'myspace.user.password'}</label>
-        <input type="password" name="user_form.password" value="${flash['user_form.password']}"/>
-        <span class="flashError">#{error 'user_form.password' /}</span><br />
+        <input type="password" name="register_form.password" value="${flash['register_form.password']}"/>
+        <span class="flashError">#{error 'register_form.password' /}</span><br />
 
         <label>&{'myspace.user.password.repeat'}</label>
-        <input type="password" name="user_form.repeat_password" value="${flash['user_form.repeat_password']}"/>
-        <span class="flashError">#{error 'user_form.repeat_password' /}</span><br />
+        <input type="password" name="register_form.repeat_password" value="${flash['register_form.repeat_password']}"/>
+        <span class="flashError">#{error 'register_form.repeat_password' /}</span><br />
 
         <label>&{'myspace.user.lang.preference'}</label>
-        <input id="user_form.prefered_lang.en.id" type="radio" name="user_form.prefered_lang" value="en" #{if flash['user_form.prefered_lang'] == "en" || flash['user_form.prefered_lang'] == null}checked="checked" #{/if} />
+        <input id="register_form.prefered_lang.en.id" type="radio" name="register_form.prefered_lang" value="en" #{if flash['register_form.prefered_lang'] == "en" || flash['register_form.prefered_lang'] == null}checked="checked" #{/if} />
                &{'myspace.user.lang.english'}
-               <input id="user_form.prefered_lang.zh.id" type="radio" name="user_form.prefered_lang" value="zh" #{if flash['user_form.prefered_lang'] == "zh" }checked="checked" #{/if} />
+               <input id="register_form.prefered_lang.zh.id" type="radio" name="register_form.prefered_lang" value="zh" #{if flash['register_form.prefered_lang'] == "zh" }checked="checked" #{/if} />
                &{'myspace.user.lang.simple-chinese'}
-               <span class="flashError">#{error 'user_form.prefered_lang' /}</span><br />
+               <span class="flashError">#{error 'register_form.prefered_lang' /}</span><br />
 
         <input type="submit" value="&{'myspace.user.join.submit'}"/>
     </form>

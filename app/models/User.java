@@ -1,8 +1,10 @@
 package models;
 
-import forms.UserForm;
+import forms.LoginForm;
+import forms.RegisterForm;
 import java.util.List;
 import javax.persistence.*;
+import org.apache.commons.lang.StringUtils;
 import play.data.validation.Validation;
 import play.db.jpa.JPAModel;
 import play.i18n.Messages;
@@ -19,7 +21,15 @@ public class User extends JPAModel {
     public User() {
     }
 
-    public static User create(UserForm userForm, Validation validation) {
+    public static User build(RegisterForm userForm) {
+        User user = new User();
+        user.name = userForm.name;
+        user.email = userForm.email;
+        user.password = userForm.password;
+        return user;
+    }
+
+    public static User create(RegisterForm userForm, Validation validation) {
         User user = build(userForm);
 
         user.validate(validation);
@@ -36,17 +46,21 @@ public class User extends JPAModel {
         return user;
     }
 
-    /**
-     * transfer form object to model object
-     * @param userForm
-     * @return
-     */
-    public static User build(UserForm userForm) {
-        User user = new User();
-        user.name = userForm.name;
-        user.email = userForm.email;
-        user.password = userForm.password;
-        return user;
+    public static User login(String email, String password, Validation validation) {
+
+        List<User> foundUsers = findBy("email", email);
+
+        if (foundUsers.size() != 1 || !check_password(foundUsers.get(0), password)) {
+
+            validation.addError(LoginForm.EMAIL, Messages.get("validation.email.notexist"));
+            return null;
+        }
+
+        return foundUsers.get(0);
+    }
+
+    private static boolean check_password(User user, String password) {
+        return StringUtils.equals(user.password, password);
     }
 
     public boolean validate(Validation validation) {
@@ -61,7 +75,7 @@ public class User extends JPAModel {
             return true;
         }
 
-        validation.addError(UserForm.EMAIL, Messages.get("validation.email.occupied"));
+        validation.addError(RegisterForm.EMAIL, Messages.get("validation.email.occupied"));
 
         return false;
     }

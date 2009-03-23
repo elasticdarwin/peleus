@@ -3,11 +3,9 @@ package controllers.myspace.user;
 import constants.MyConstants;
 import controllers.Application;
 import controllers.myspace.MySpace;
-import forms.UserForm;
-import java.util.List;
+import forms.LoginForm;
+import forms.RegisterForm;
 import models.User;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.math.NumberUtils;
 import play.data.validation.Valid;
 
 public class UserFacade extends Application {
@@ -20,8 +18,8 @@ public class UserFacade extends Application {
         render();
     }
 
-    public static void register(@Valid UserForm user_form) {
-        User user = User.create(user_form, validation);
+    public static void register(@Valid RegisterForm register_form) {
+        User user = User.create(register_form, validation);
 
         if (user == null) {
             params.flash();
@@ -47,38 +45,22 @@ public class UserFacade extends Application {
         render();
     }
 
-    public static void login_validate() {
-        String email = params.get("email");
-        String password = params.get("password");
+    public static void login_validate(@Valid LoginForm login_form) {
 
-        String queryByEmail = "email";
+        User user = User.login(login_form.email, login_form.password, validation);
 
-        List<User> users = (List) User.findBy(queryByEmail, email);
-        User loadedUser = null;
-
-        if (users.isEmpty() || users.size() > 1) {
+        if (user == null) {
             params.flash();
             validation.keep();
+
             login();
-        } else {
-            loadedUser = users.get(0);
-            if (validate_member(loadedUser, password)) {
-                record_session(loadedUser);
-                MySpace.index();
-            } else {
-                login();
-            }
         }
+
+        record_session(user);
+        MySpace.index();
     }
 
-    private static boolean validate_member(User loadedUser, String password) {
-        if (StringUtils.equals(loadedUser.password, password)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
+    
     public static void logout() {
         session.clear();
         render();

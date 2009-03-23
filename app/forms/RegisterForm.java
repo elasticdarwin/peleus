@@ -2,9 +2,9 @@ package forms;
 
 import play.data.validation.*;
 
-public class UserForm {
+public class RegisterForm {
 
-    public static final String EMAIL  = "user_form.email";
+    public static final String EMAIL  = "register_form.email";
     
     @Required
     @MaxSize(20)
