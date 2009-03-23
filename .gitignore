@@ -7,3 +7,5 @@
 tmp/*
 nbproject/*
 logs/*
+
+conf/application.conf
