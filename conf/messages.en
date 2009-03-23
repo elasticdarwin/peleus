@@ -39,6 +39,8 @@ myspace.user.lang.preference=Language Your Prefered:
 myspace.user.lang.english=English
 myspace.user.lang.simple-chinese=Simple Chinese
 
+
+
 myspace.user.join.title=Peleus:::Welcome and Join the community!
 myspace.user.join.subject=Join the Community Right Now!
 myspace.user.join.submit=Join Now
@@ -56,9 +58,9 @@ myspace.user.logout.notification = You have just logged out from Peleus System!
 validation.required=This field is required
 validation.minSize=<!--%s-->This field is too short, minimal size is %s
 validation.maxSize=<!--%s-->TThis field is too long, maximal size is %s
-validation.email=Email is invalid
 validation.equals=This field is not equals to the field before
-
+validation.email.invalid=Email is invalid
+validation.email.occupied=Email already occupied!
 
 ## Backyard Message Area
 

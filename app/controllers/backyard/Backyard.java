@@ -5,7 +5,6 @@ import java.util.List;
 import models.User;
 import org.apache.commons.lang.math.NumberUtils;
 
-
 public class Backyard extends Application {
 
     public static void index() {
@@ -43,10 +42,12 @@ public class Backyard extends Application {
 
         User user = new User();
         user.id = id;
-        user.setEmail(email);
-        user.setName(name);
-        user.setPassword(password);
+        user.email = email;
+        user.name = name;
+        user.password = password;
+        
         User.udpate_user(user);
+        
         show_all_users();
     }
 }

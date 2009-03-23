@@ -1,0 +1,19 @@
+
+## Has finished Items
+* User Register Password Validation;
+* User Register Email Uniqueness Validation ;
+
+
+## To-Do Items List
+
+* Refactoring
+* Load fixtures when app startup
+* Add password md5 encrypt
+* Use Macro to make the Validation Message more friendly
+
+
+
+
+
+
+

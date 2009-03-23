@@ -1,13 +1,15 @@
 package models;
 
 import forms.UserForm;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import java.util.List;
+import javax.persistence.*;
+import play.data.validation.Validation;
 import play.db.jpa.JPAModel;
-
+import play.i18n.Messages;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users",
+uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
 public class User extends JPAModel {
 
     public String name;
@@ -17,30 +19,14 @@ public class User extends JPAModel {
     public User() {
     }
 
-    private User(Long id, String name, String email, String password) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
+    public static User create(UserForm userForm, Validation validation) {
+        User user = build(userForm);
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+        user.validate(validation);
+        if (validation.hasErrors()) {
+            return null;
+        }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public static User create_user(String name, String email, String password) {
-
-        //TODO add validate password repeated
-        //TODO add password md5 encrypt
-        User user = new User(null, name, email, password);
         user.save();
         return user;
     }
@@ -48,19 +34,6 @@ public class User extends JPAModel {
     public static User udpate_user(User user) {
         user.merge();
         return user;
-    }
-
-    /**
-     *
-     * @param userForm
-     * @return
-     */
-    public static User create(UserForm userForm) {
-        User user = build(userForm);
-        user.save();
-
-        return user;
-
     }
 
     /**
@@ -74,5 +47,22 @@ public class User extends JPAModel {
         user.email = userForm.email;
         user.password = userForm.password;
         return user;
+    }
+
+    public boolean validate(Validation validation) {
+
+        return validate_email(validation);
+    }
+
+    private boolean validate_email(Validation validation) {
+        List<User> found_users = findBy("email", email);
+
+        if (found_users.size() == 0) {
+            return true;
+        }
+
+        validation.addError(UserForm.EMAIL, Messages.get("validation.email.occupied"));
+
+        return false;
     }
 }

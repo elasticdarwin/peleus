@@ -10,34 +10,39 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 import play.data.validation.Valid;
 
-
 public class UserFacade extends Application {
 
     public static void join() {
+        if (has_logined()) {
+            session.clear();
+        }
+        
         render();
     }
 
-    public static void register(@Valid UserForm userForm) {
-        if (userForm == null) {
+    public static void register(@Valid UserForm user_form) {
+        User user = User.create(user_form, validation);
+
+        if (user == null) {
+            params.flash();
+            validation.keep();
             join();
         }
 
-//        String prefered_lang = params.get("prefered_lang");
-        if (validation.hasErrors()) {
-            params.flash(); // add http parameters to the flash scope
-            validation.keep(); // keep the errors for the next request
-            join();
-        }
-//        User user = User.create_user(name, email, password, repeat_password);
-
-        User user = User.create(userForm);
-
-        session.put(MyConstants.HAS_LOGINED, MyConstants.YES);
-        session.put(MyConstants.LOGINED_USER_ID, user.getId());
-        session.put(MyConstants.LOGINED_USER_NAME, user.name);
-
-        // session.put(MyConstants.PREFERED_LANG, userForm.prefered_lang);
+        record_session_for_login(user);
         register_success();
+    }
+
+    public static void register_success() {
+        if (!has_logined()) {
+            login();
+        }
+
+        String user_id = session.get(MyConstants.LOGINED_USER_ID);
+        User user = User.findById(NumberUtils.toLong(user_id));
+
+        notFoundIfNull(user);
+        render(user);
     }
 
     public static void login() {
@@ -54,39 +59,18 @@ public class UserFacade extends Application {
         User loadedUser = null;
 
         if (users.isEmpty() || users.size() > 1) {
-            params.flash(); // add http parameters to the flash scope
-            validation.keep(); // keep the errors for the next request
-
+            params.flash();
+            validation.keep();
             login();
         } else {
             loadedUser = users.get(0);
             if (validate_member(loadedUser, password)) {
-                session.put(MyConstants.HAS_LOGINED, MyConstants.YES);
-                session.put(MyConstants.LOGINED_USER_ID, loadedUser.getId());
-
+                record_session_for_login(loadedUser);
                 MySpace.index();
             } else {
                 login();
             }
         }
-    }
-
-    public static void logout() {
-        session.clear();
-        render();
-    }
-
-    public static void register_success() {
-
-        String user_id = session.get(MyConstants.LOGINED_USER_ID);
-
-        if (StringUtils.isBlank(user_id)) {
-            login();
-        }
-
-        User user = User.findById(NumberUtils.toLong(user_id));
-
-        render(user);
     }
 
     private static boolean validate_member(User loadedUser, String password) {
@@ -95,5 +79,19 @@ public class UserFacade extends Application {
         } else {
             return false;
         }
+    }
+
+    public static void logout() {
+        session.clear();
+        render();
+    }
+
+    private static void record_session_for_login(User user) {
+        session.put(MyConstants.LOGINED_USER_ID, user.getId());
+    }
+
+    private static boolean has_logined() {
+        String logined_user_id = session.get(MyConstants.LOGINED_USER_ID);
+        return StringUtils.isNotBlank(logined_user_id);
     }
 }

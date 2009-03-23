@@ -1,14 +1,11 @@
 package forms;
 
-import play.data.validation.Email;
-import play.data.validation.Equals;
-import play.data.validation.MaxSize;
-import play.data.validation.MinSize;
-import play.data.validation.Required;
-
+import play.data.validation.*;
 
 public class UserForm {
 
+    public static final String EMAIL  = "user_form.email";
+    
     @Required
     @MaxSize(20)
     @MinSize(2)
@@ -16,7 +13,7 @@ public class UserForm {
     @Required
     @MaxSize(20)
     @MinSize(6)
-    @Email
+    @Email(message = "validation.email.invalid")
     public String email;
     @Required
     @MaxSize(20)

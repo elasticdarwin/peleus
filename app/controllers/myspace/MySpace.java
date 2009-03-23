@@ -14,6 +14,7 @@ public class MySpace extends Application {
 
         String has_logined_flag = session.get(MyConstants.HAS_LOGINED);
 
+
         if (StringUtils.isEmpty(has_logined_flag)) {
             return;
         }

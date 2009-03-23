@@ -17,7 +17,7 @@ public class Dashboard extends Application {
         if (StringUtils.isNotEmpty(has_logined_flag_in_session)) {
             if (has_logined_flag_in_session.equalsIgnoreCase(MyConstants.YES)) {
                 has_loggined = true;
-                user_name = session.get(MyConstants.LOGINED_USER_NAME);
+                user_name = "hard code user name";
             }
         }
 

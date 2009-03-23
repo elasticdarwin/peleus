@@ -63,7 +63,13 @@
 }
 
 .flashError {
-    background: #c00;
+    background: #E1D129;
+    -moz-border-radius-bottomleft:5px;
+    -moz-border-radius-bottomright:5px;
+    -moz-border-radius-topleft:5px;
+    -moz-border-radius-topright:5px;
+    margin: 5px;
+    padding: 3px 12px 3px 12px;
 }
 
 .flashSuccess {
@@ -183,6 +189,7 @@ form {
 input, textarea, select {
     font-family: 'Helvetica', 'Arial', 'Sans';
     font-size: 12px;
+    margin: 4px;
 }
 
 textarea {
