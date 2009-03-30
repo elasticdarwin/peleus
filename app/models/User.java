@@ -1,7 +1,7 @@
 package models;
 
-import forms.LoginForm;
-import forms.RegisterForm;
+import forms.myspace.user.LoginForm;
+import forms.myspace.user.RegisterForm;
 import java.util.List;
 import javax.persistence.*;
 import org.apache.commons.lang.StringUtils;

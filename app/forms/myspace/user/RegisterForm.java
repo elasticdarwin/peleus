@@ -1,4 +1,4 @@
-package forms;
+package forms.myspace.user;
 
 import play.data.validation.*;
 

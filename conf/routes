@@ -27,10 +27,28 @@ POST        /myspace/user/login_validate    myspace.user.UserFacade.login_valida
 
 # Backyard Route Configuration
 
+
+## Backyard::User
+
+POST        /backyard/update_user       backyard.Backyard.update_user
+
+## Backyard::Department
+
+GET         /backyard/department              backyard.DepartmentController.index
+GET         /backyard/department/create        backyard.DepartmentController.create_form
+
+GET         /backyard/department/{action}              backyard.DepartmentController.{action}
+
+POST        /backyard/department/create                backyard.DepartmentController.create
+
+
+## Backyard::Index
+
+
 GET         /backyard/                  backyard.Backyard.index
 GET         /backyard/{action}          backyard.Backyard.{action}
 
-POST        /backyard/update_user       backyard.Backyard.update_user
+
 
 # Import the default CRUD routes
 # GET			/admin						module:crud

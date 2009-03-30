@@ -3,8 +3,8 @@ package controllers.myspace.user;
 import constants.MyConstants;
 import controllers.Application;
 import controllers.myspace.MySpace;
-import forms.LoginForm;
-import forms.RegisterForm;
+import forms.myspace.user.LoginForm;
+import forms.myspace.user.RegisterForm;
 import models.User;
 import play.data.validation.Valid;
 

@@ -1,0 +1,27 @@
+#{extends 'main.html' /}
+#{set title:'Peleus Administration Backyard' /}
+
+
+<h2>&{'backyard.functions.department.view_all'}</h2>
+<a href="@{backyard.DepartmentController.create_form()}">&{'backyard.functions.department.create'}</a>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>&{'domain.department.name'}</th>
+
+            <th>&{'domain.department.description'}</th>
+        </tr>
+    </thead>
+    <tbody>
+        #{list items:all_departments, as:'department'}
+        <tr>
+            <td>${department.id}</td>
+            <td><a href="@{backyard.DepartmentController.show(department.id)}">${department.name}</a></td>
+            <td>${department.description}</td>
+            <td> <a href="@{backyard.DepartmentController.edit(department.id)}">&{'common.basic.actions.edit'}</a> | <a href="@{backyard.DepartmentController.delete_confirm(department.id)}">&{'common.basic.actions.delete'}</a> </td>
+        </tr>
+        #{/list}
+    </tbody>
+</table>
+

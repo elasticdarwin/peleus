@@ -1,0 +1,18 @@
+#{extends 'main.html' /}
+#{set title:'Peleus Administration Department:create department' /}
+
+
+<div id="peleusContent">
+    <form class="centerStyleForm" action="@{backyard.DepartmentController.create()}" method="post">
+        <h3>&{'backyard.department.create.subject'}</h3>
+        <label>&{'domain.department.name'}</label>
+        <input type="text"  name="department_form.name" value="${flash['department_form.name']}"/>
+        <span class="flashError">#{error 'department_form.name' /}</span><br />
+
+        <label>&{'domain.department.description'}</label>
+        <input type="text"  name="department_form.description" value="${flash['department_form.description']}"/>
+        <span class="flashError">#{error 'department_form.description' /}</span><br />
+
+        <input type="submit" value="&{'backyard.department.create.submit'}"/>
+    </form>
+</div>

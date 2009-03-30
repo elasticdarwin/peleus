@@ -20,6 +20,9 @@ domain.user.password=Password
 
 ## Domain::Department Message Area
 
+domain.department.name=Name
+domain.department.description=Description
+
 
 ## Domain::VirtualTeam Message Area
 
@@ -67,11 +70,20 @@ validation.email.notexist=Not account associated with this email.
 
 backyard.breadcrumb.home=Admin Home
 backyard.breadcrumb.view_all_users=View All Users
-
 backyard.functions.index=Functions
+
+## Backyard::User Message Area
+
 backyard.functions.user.view_all_users = View All Users
 backyard.functions.user.edit_user = Edit User Profile
 backyard.functions.user.delete_user_confirm = Are you sure to delete the User : "%s" (with Email "%s")?  <br />  Be caution, the operation cannot be recovered!!! <br />
 
 
+## Backyard::Department Message Area
 
+backyard.functions.department.view_all=View All Departments
+backyard.functions.department.create=Create New Department
+
+
+backyard.department.create.subject=Create Department
+backyard.department.create.submit=Create

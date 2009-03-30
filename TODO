@@ -6,6 +6,11 @@
 
 ## To-Do Items List
 
+* Add Department Management @backyard ( create , delete , show list , detail ) ;
+* Assign Member to Department , or @backyard  should can assign a department for
+* mv controllers.backyard.Backyard to controllers.backyard.UserController
+* mv controllers.myspace.user.UserFacade to controllers.myspace.UserController
+
 * Refactoring
 * Load fixtures when app startup(, with custom command tool)
 * Add password md5 encrypt
