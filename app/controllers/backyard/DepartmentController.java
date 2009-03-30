@@ -20,24 +20,54 @@ public class DepartmentController extends Application {
         render();
     }
 
-    public static void show(int id) {
+    public static void show(Long id) {
 
+        Department department = Department.findById(id);
+
+        forbiddenIfNull(department);
+
+        render(department);
+    }
+
+    public static void update(@Valid DepartmentForm department_form) {
+
+        Department department = Department.findById(department_form.id);
+
+        department.name = department_form.name;
+        department.description = department_form.description;
+
+
+        if (department.validate_name(validation)) {
+            params.flash();
+            validation.keep();
+            edit(department_form.id);
+        }
+
+        department.save();
+
+        index();
+    }
+
+    public static void edit(Long id) {
+
+        Department department = Department.findById(id);
+
+        forbiddenIfNull(department);
+
+        flash.put("department_form.name", department.name);
+        flash.put("department_form.description", department.description);
+        flash.put("department_form.id", department.id);
         render();
     }
 
-    public static void edit(int id) {
-
-        render();
-    }
-
-    public static void delete_confirm(int id) {
+    public static void delete_confirm(Long id) {
 
         render();
     }
 
     public static void create(@Valid DepartmentForm department_form) {
 
-        Department department = Department.create(department_form);
+        Department department = Department.create(department_form, validation);
 
         if (department == null) {
             params.flash();
@@ -45,8 +75,6 @@ public class DepartmentController extends Application {
             create_form();
         }
 
-        //create_success();
-
-        renderText("Success!");
+        index();
     }
 }

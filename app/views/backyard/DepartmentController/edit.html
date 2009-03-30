@@ -1,0 +1,17 @@
+<form class="centerStyleForm" action="@{backyard.DepartmentController.update()}" method="post">
+
+    <h3>&{'backyard.department.edit.subject'}</h3>
+
+
+    <label>&{'domain.department.name'}</label>
+    <input type="text"  name="department_form.name" value="${flash['department_form.name']}"/><br />
+    <span class="flashError">#{error 'department_form.name' /}</span><br />
+
+    <label>&{'domain.department.description'}</label>
+    <textarea name="department_form.description">${flash['department_form.description']}</textarea>
+    <span class="flashError">#{error 'department_form.description' /}</span><br />
+
+    <input type="hidden" name="department_form.id" value="${flash['department_form.id']}"/>
+
+    <input type="submit" value="Update"/>
+</form>

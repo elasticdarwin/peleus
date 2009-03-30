@@ -86,4 +86,10 @@ backyard.functions.department.create=Create New Department
 
 
 backyard.department.create.subject=Create Department
+backyard.department.edit.subject=Edit Department
+
 backyard.department.create.submit=Create
+
+validation.backyard.department.name_existed=Name Existed!
+
+

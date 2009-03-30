@@ -6,7 +6,9 @@
 
 ## To-Do Items List
 
-* Add Department Management @backyard ( create , delete , show list , detail ) ;
+
+* Check Name Uniqueness when update
+* Add Department Management @backyard ( create , delete , show list , detail , update  ) ;
 * Assign Member to Department , or @backyard  should can assign a department for
 * mv controllers.backyard.Backyard to controllers.backyard.UserController
 * mv controllers.myspace.user.UserFacade to controllers.myspace.UserController

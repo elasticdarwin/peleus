@@ -1,12 +1,17 @@
 package models;
 
 import forms.backyard.department.DepartmentForm;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import play.data.validation.Validation;
 import play.db.jpa.JPAModel;
+import play.i18n.Messages;
 
 @Entity
-@Table(name = "departments")
+@Table(name = "departments",
+uniqueConstraints = {@UniqueConstraint(columnNames = {"description"})})
 public class Department extends JPAModel {
 
     public String name;
@@ -19,11 +24,32 @@ public class Department extends JPAModel {
         return department;
     }
 
-    public static Department create(DepartmentForm department_form) {
+    public static Department create(DepartmentForm department_form, Validation validation) {
         Department department = build(department_form);
+
+        department.validate(validation);
+        if (validation.hasErrors()) {
+            return null;
+        }
 
         department.save();
         return department;
     }
 
+    private void validate(Validation validation) {
+
+        validate_name(validation);
+    }
+
+    public boolean validate_name(Validation validation) {
+        List<Department> found_departments = findBy("name", name);
+
+        if (found_departments.size() == 0) {
+            return true;
+        }
+
+        validation.addError(DepartmentForm.NAME, Messages.get("validation.backyard.department.name_existed"));
+
+        return false;
+    }
 }

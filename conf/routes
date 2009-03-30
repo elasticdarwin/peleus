@@ -41,6 +41,7 @@ GET         /backyard/department/{action}              backyard.DepartmentContro
 
 POST        /backyard/department/create                backyard.DepartmentController.create
 
+POST        /backyard/department/update                backyard.DepartmentController.update
 
 ## Backyard::Index
 

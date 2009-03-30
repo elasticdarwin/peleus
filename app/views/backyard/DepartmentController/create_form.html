@@ -10,7 +10,10 @@
         <span class="flashError">#{error 'department_form.name' /}</span><br />
 
         <label>&{'domain.department.description'}</label>
-        <input type="text"  name="department_form.description" value="${flash['department_form.description']}"/>
+        <textarea name="department_form.description">
+            ${flash['department_form.description']}
+        </textarea>
+        
         <span class="flashError">#{error 'department_form.description' /}</span><br />
 
         <input type="submit" value="&{'backyard.department.create.submit'}"/>
