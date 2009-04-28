@@ -5,17 +5,33 @@
 
 <div id="peleusContent">
     <form class="centerStyleForm" action="@{backyard.Backyard.update_user()}" method="post">
-        <h3>&{'myspace.user.join.subject'}</h3>
-        <label>&{'myspace.user.name'}</label>
-        <input type="text"  name="name" value="${user.name}"/><br />
-        <label>&{'myspace.user.email'}</label>
-        <input type="text"  name="email" value="${user.email}"/><br />
-        <label>&{'myspace.user.password'}</label>
-        <input type="password" name="password"/><br />
-        <label>&{'myspace.user.password.repeat'}</label>
-        <input type="password" name="repeat_pasword"/><br />
-        <input type="hidden" name="id" value="${user.id}"/>
+        <h3>&{'backyard.functions.user.edit'}</h3>
+        <label>&{'domain.user.name'}</label>
 
-        <input type="submit" value="&{'myspace.user.join.submit'}"/>
+        <input type="text"  name="user_form.name" value="${flash['user_form.name']}"/>
+        <span class="flashError">#{error 'user_form.name' /}</span>
+        <br />
+
+
+        <label>&{'domain.user.email'}</label>
+        <input type="text"  name="user_form.email" value="${flash['user_form.email']}"/>
+        <span class="flashError">#{error 'user_form.email' /}</span>
+        <br />
+
+
+        <label>&{'domain.user.password'}</label>
+        <input type="password" name="user_form.password" value="${flash['user_form.password']}"/>
+        <span class="flashError">#{error 'user_form.password' /}</span>
+        <br />
+
+        <label>&{'myspace.user.password.repeat'}</label>
+        <input type="password" name="user_form.repeat_password" value="${flash['user_form.repeat_password']}"/>
+        <span class="flashError">#{error 'user_form.repeat_password' /}</span>
+        <br />
+
+
+        <input type="hidden" name="user_form.id" value="${flash['user_form.id']}"/>
+
+        <input type="submit" value="&{'backyard.functions.user.save'}"/>
     </form>
 </div>

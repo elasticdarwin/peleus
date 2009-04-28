@@ -4,7 +4,7 @@ import constants.MyConstants;
 import controllers.Application;
 import controllers.myspace.MySpace;
 import forms.myspace.user.LoginForm;
-import forms.myspace.user.RegisterForm;
+import forms.myspace.user.UserForm;
 import models.User;
 import play.data.validation.Valid;
 
@@ -18,8 +18,8 @@ public class UserFacade extends Application {
         render();
     }
 
-    public static void register(@Valid RegisterForm register_form) {
-        User user = User.create(register_form, validation);
+    public static void register(@Valid UserForm user_form) {
+        User user = User.create(user_form, validation);
 
         if (user == null) {
             params.flash();

@@ -2,10 +2,12 @@ package forms.myspace.user;
 
 import play.data.validation.*;
 
-public class RegisterForm {
+public class UserForm {
 
-    public static final String EMAIL  = "register_form.email";
-    
+    public static final String EMAIL  = "user_form.email";
+
+    public Long id;
+
     @Required
     @MaxSize(20)
     @MinSize(2)
@@ -24,6 +26,6 @@ public class RegisterForm {
     @MaxSize(20)
     @MinSize(6)
     public String repeat_password;
-    @Required
+//    @Required
     public String prefered_lang;
 }

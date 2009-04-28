@@ -1,10 +1,11 @@
 package models;
 
 import forms.myspace.user.LoginForm;
-import forms.myspace.user.RegisterForm;
+import forms.myspace.user.UserForm;
 import java.util.List;
 import javax.persistence.*;
 import org.apache.commons.lang.StringUtils;
+import play.Logger;
 import play.data.validation.Validation;
 import play.db.jpa.JPAModel;
 import play.i18n.Messages;
@@ -14,6 +15,19 @@ import play.i18n.Messages;
 uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
 public class User extends JPAModel {
 
+    public static User update_user(UserForm user_form, Validation validation) {
+        User user = build(user_form);
+
+        user.validate(validation);
+
+
+        if (validation.hasErrors()) {
+
+            return null;
+        }
+        user.merge();
+        return user;
+    }
     public String name;
     public String email;
     public String password;
@@ -21,15 +35,18 @@ public class User extends JPAModel {
     public User() {
     }
 
-    public static User build(RegisterForm userForm) {
+    public static User build(UserForm userForm) {
         User user = new User();
+        user.id = userForm.id;
+
         user.name = userForm.name;
         user.email = userForm.email;
         user.password = userForm.password;
+
         return user;
     }
 
-    public static User create(RegisterForm userForm, Validation validation) {
+    public static User create(UserForm userForm, Validation validation) {
         User user = build(userForm);
 
         user.validate(validation);
@@ -38,11 +55,6 @@ public class User extends JPAModel {
         }
 
         user.save();
-        return user;
-    }
-
-    public static User udpate_user(User user) {
-        user.merge();
         return user;
     }
 
@@ -75,7 +87,12 @@ public class User extends JPAModel {
             return true;
         }
 
-        validation.addError(RegisterForm.EMAIL, Messages.get("validation.email.occupied"));
+
+        if (found_users.get(0).id.longValue() == getId().longValue()) {
+            return true;
+        }
+
+        validation.addError(UserForm.EMAIL, Messages.get("validation.email.occupied"));
 
         return false;
     }
