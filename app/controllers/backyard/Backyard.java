@@ -4,8 +4,6 @@ import controllers.Application;
 import forms.myspace.user.UserForm;
 import java.util.List;
 import models.User;
-import org.apache.commons.lang.math.NumberUtils;
-import play.Logger;
 import play.data.validation.Valid;
 
 public class Backyard extends Application {
@@ -46,19 +44,10 @@ public class Backyard extends Application {
     }
 
     public static void update_user(@Valid UserForm user_form) {
-
-        validation.hasErrors();// TODO fix bug
         User user = User.update_user(user_form, validation);
 
         if (user == null) {
             params.flash();
-            validation.keep();
-
-
-//            for (play.data.validation.Error e : validation.errors()) {
-//                Logger.info("******************" + e.getKey() + " **** " + e.message());
-//            }
-
 
             renderTemplate("backyard/Backyard/edit_user.html");
         }
