@@ -1,7 +1,7 @@
 #{extends 'main.html' /}
 #{set title:'Peleus Administration Backyard:edit user profile' /}
 
-#{peleusBreadcrumb /}
+#{include 'backyard/Backyard/_peleusBreadcrumb.html' /}
 
 <div id="peleusContent">
     <form class="centerStyleForm" action="@{backyard.Backyard.update_user()}" method="post">
@@ -28,7 +28,6 @@
         <input type="password" name="user_form.repeat_password" value="${flash['user_form.repeat_password']}"/>
         <span class="flashError">#{error 'user_form.repeat_password' /}</span>
         <br />
-
 
         <input type="hidden" name="user_form.id" value="${flash['user_form.id']}"/>
 
