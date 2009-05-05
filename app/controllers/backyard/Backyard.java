@@ -3,6 +3,7 @@ package controllers.backyard;
 import controllers.Application;
 import forms.myspace.user.UserForm;
 import java.util.List;
+import models.Department;
 import models.User;
 import play.data.validation.Valid;
 
@@ -19,15 +20,17 @@ public class Backyard extends Application {
 
     public static void edit_user(Long id) {
         User user = User.findById(id);
+        List<Department> departments = Department.findAll();
 
         flash.put("user_form.id", user.id);
         flash.put("user_form.name", user.name);
         flash.put("user_form.email", user.email);
         flash.put("user_form.password", user.password);
         flash.put("user_form.repeat_password", user.password);
+        flash.put("user_form.department_id", user.department.id);
 
 
-        render();
+        render(departments);
     }
 
     public static void delete_user_confirm(Long id) {

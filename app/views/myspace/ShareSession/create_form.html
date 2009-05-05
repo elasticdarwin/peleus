@@ -1,0 +1,108 @@
+#{extends 'main.html' /}
+#{set title:'Welcome and Join the community!' /}
+
+<div id="peleusContent">
+    <form class="centerStyleForm" action="@{myspace.ShareSession.create()}" method="post">
+
+        <h3>&{'myspace.sharesession.create.title'}</h3>
+
+        <label>&{'myspace.sharesession.department'}</label>
+        <select name="sharesession_form.department_id">
+            <option value="0">&{'myspace.sharesession.select.department'}</option>
+
+            #{list items:departments, as:'department'}
+            #{if flash['sharesession_form.department_id'] == department.id}
+            <option value="${department.id}" selected="selected">${department.name}</option>
+            #{/if}
+            #{else}
+            <option value="${department.id}">${department.name}</option>
+            #{/else}
+            #{/list}
+        </select>
+        <span class="flashError">#{error 'sharesession_form.department_id' /}</span>
+        <br />
+
+
+        <label>&{'myspace.sharesession.subject'}</label>
+        <input type="text"  name="sharesession_form.subject" value="${flash['sharesession_form.subject']}"/>
+        <span class="flashError">#{error 'sharesession_form.subject' /}</span>
+        <br />
+
+
+        <label>&{'myspace.sharesession.audiences'}</label>
+        <input type="text"  name="sharesession_form.audiences" value="${flash['sharesession_form.audiences']}"/>
+        <span class="flashError">#{error 'sharesession_form.audiences' /}</span><br />
+
+
+        <label>&{'myspace.sharesession.start_date'}</label>
+        <input type="text"  name="sharesession_form.start_date" value="${flash['sharesession_form.start_date']}"/>
+        <span class="flashError">#{error 'sharesession_form.start_date' /}</span><br />
+
+
+        <label>&{'myspace.sharesession.end_date'}</label>
+        <input type="text"  name="sharesession_form.end_date" value="${flash['sharesession_form.end_date']}"/>
+        <span class="flashError">#{error 'sharesession_form.end_date' /}</span><br />
+
+        <label>&{'myspace.sharesession.audiences_limit'}</label>
+        <input type="text"  name="sharesession_form.audiences_limit" value="${flash['sharesession_form.audiences_limit']}"/>
+        <span class="flashError">#{error 'sharesession_form.audiences_limit' /}</span><br />
+
+        <label>&{'myspace.sharesession.description'}</label>
+        <textarea name="sharesession_form.description">${flash['sharesession_form.description']}</textarea>
+        <span class="flashError">#{error 'sharesession_form.description' /}</span><br />
+
+
+
+        <label>&{'myspace.sharesession.user_1_id'}</label>
+        <select name="sharesession_form.user_1_id">
+            <option value="0">&{'myspace.sharesession.select.contributor'}</option>
+
+            #{list items:users, as:'user'}
+            #{if flash['sharesession_form.user_1_id'] == user.id}
+            <option value="${user.id}" selected="selected">${user.name}</option>
+            #{/if}
+            #{else}
+            <option value="${user.id}">${user.name}</option>
+            #{/else}
+            #{/list}
+        </select>
+        <span class="flashError">#{error 'sharesession_form.user_1_id' /}</span>
+        <br />
+
+        <label>&{'myspace.sharesession.user_2_id'}</label>
+        <select name="sharesession_form.user_2_id">
+            <option value="0">&{'myspace.sharesession.select.contributor'}</option>
+
+            #{list items:users, as:'user'}
+            #{if flash['sharesession_form.user_2_id'] == user.id}
+            <option value="${user.id}" selected="selected">${user.name}</option>
+            #{/if}
+            #{else}
+            <option value="${user.id}">${user.name}</option>
+            #{/else}
+            #{/list}
+        </select>
+        <span class="flashError">#{error 'sharesession_form.user_2_id' /}</span>
+        <br />
+
+        <label>&{'myspace.sharesession.user_3_id'}</label>
+        <select name="sharesession_form.user_3_id">
+            <option value="0">&{'myspace.sharesession.select.contributor'}</option>
+
+            #{list items:users, as:'user'}
+            #{if flash['sharesession_form.user_3_id'] == user.id}
+            <option value="${user.id}" selected="selected">${user.name}</option>
+            #{/if}
+            #{else}
+            <option value="${user.id}">${user.name}</option>
+            #{/else}
+            #{/list}
+        </select>
+        <span class="flashError">#{error 'sharesession_form.user_3_id' /}</span>
+        <br />
+
+
+
+        <input type="submit" value="&{'myspace.sharesession.post.submit'}"/>
+    </form>
+</div>

@@ -5,6 +5,9 @@ import controllers.Application;
 import controllers.myspace.MySpace;
 import forms.myspace.user.LoginForm;
 import forms.myspace.user.UserForm;
+import java.util.ArrayList;
+import java.util.List;
+import models.Department;
 import models.User;
 import play.data.validation.Valid;
 
@@ -14,8 +17,12 @@ public class UserFacade extends Application {
         if (has_logined()) {
             session.clear();
         }
-        
-        render();
+
+
+        List<Department> departments = Department.findAll();
+
+        render(departments);
+
     }
 
     public static void register(@Valid UserForm user_form) {
@@ -42,6 +49,7 @@ public class UserFacade extends Application {
     }
 
     public static void login() {
+
         render();
     }
 
@@ -60,7 +68,6 @@ public class UserFacade extends Application {
         MySpace.index();
     }
 
-    
     public static void logout() {
         session.clear();
         render();
@@ -69,6 +76,4 @@ public class UserFacade extends Application {
     private static void record_session(User user) {
         session.put(MyConstants.LOGINED_USER_ID, user.getId());
     }
-
-
 }

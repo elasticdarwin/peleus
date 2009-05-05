@@ -17,6 +17,9 @@ public class UserForm {
     @MinSize(6)
     @Email(message = "validation.email.invalid")
     public String email;
+
+    @Required
+    public Long department_id;
     @Required
     @MaxSize(20)
     @MinSize(6)

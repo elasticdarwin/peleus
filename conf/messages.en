@@ -17,6 +17,7 @@ common.basic.actions.delete = delete
 domain.user.name=Name
 domain.user.email=Email
 domain.user.password=Password
+domain.user.department=Department
 
 ## Domain::Department Message Area
 
@@ -35,13 +36,13 @@ dashboard.title.homepage = Dashboard :: Peleus Portal Homepage
 ## MySpace User Message Area
 
 myspace.user.name=Your Name:
+myspace.user.department=Department:
 myspace.user.email=Your Email:
 myspace.user.password=Set Password:
 myspace.user.password.repeat=Repeat Password:
 myspace.user.lang.preference=Language Your Prefered:
 myspace.user.lang.english=English
 myspace.user.lang.simple-chinese=Simple Chinese
-
 
 
 myspace.user.join.title=Peleus:::Welcome and Join the community!
@@ -54,6 +55,25 @@ myspace.user.login.submit=Login Now
 myspace.user.login.email=Your Email
 myspace.user.login.password=Enter your Login Password
 myspace.user.logout.notification = You have just logged out from Peleus System!
+
+
+## MySpace ShareSession Message Area
+
+myspace.sharesession.create.title=Post Share Session
+myspace.sharesession.department=Hosting Department
+myspace.sharesession.subject=Session Subject
+myspace.sharesession.audiences=Target Audiences
+myspace.sharesession.start_date=Start Time
+myspace.sharesession.end_date=End Time
+myspace.sharesession.audiences_limit=Audiences Limit
+myspace.sharesession.description=Description
+myspace.sharesession.post.submit=Post
+myspace.sharesession.user_1_id=Contributor One
+myspace.sharesession.user_2_id=Contributor Two
+myspace.sharesession.user_3_id=Contributor Three
+
+myspace.sharesession.select.department=Select Department
+myspace.sharesession.select.contributor=Select Contributor
 
 
 ## Validation Message Area

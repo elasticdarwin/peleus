@@ -11,6 +11,7 @@
             <th>&{'domain.user.name'}</th>
             <th>&{'domain.user.email'}</th>
             <th>&{'domain.user.password'}</th>
+            <th>&{'domain.user.department'}</th>
             <th>&{'common.basic.actions.actions'}</th>
         </tr>
     </thead>
@@ -21,6 +22,7 @@
             <td>${user.name}</td>
             <td>${user.email}</td>
             <td>${user.password}</td>
+            <td>${user.department.name}</td>
             <td> <a href="@{backyard.Backyard.edit_user(user.id)}">&{'common.basic.actions.edit'}</a> | <a href="@{backyard.Backyard.delete_user_confirm(user.id)}">&{'common.basic.actions.delete'}</a> </td>
         </tr>
         #{/list}

@@ -14,6 +14,21 @@
         <span class="flashError">#{error 'user_form.name' /}</span>
         <br />
 
+        <label>&{'myspace.user.department'}</label>
+        <select name="user_form.department_id">
+        #{list items:departments, as:'department'}
+            #{if flash['user_form.department_id'] == department.id}
+                <option value="${department.id}" selected="selected">${department.name}</option>
+            #{/if}
+            #{else}
+                <option value="${department.id}">${department.name}</option>
+            #{/else}
+        #{/list}
+        </select>
+        <span class="flashError">#{error 'user_form.department_id' /}</span>
+        <br />
+
+
         <label>&{'myspace.user.email'}</label>
         <input type="text"  name="user_form.email" value="${flash['user_form.email']}"/>
         <span class="flashError">#{error 'user_form.email' /}</span><br />

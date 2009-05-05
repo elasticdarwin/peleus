@@ -15,6 +15,13 @@ import play.i18n.Messages;
 uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
 public class User extends JPAModel {
 
+    public String name;
+    public String email;
+    public String password;
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    public Department department;
+
     public static User update_user(UserForm user_form, Validation validation) {
         User user = build(user_form);
 
@@ -28,9 +35,6 @@ public class User extends JPAModel {
         user.merge();
         return user;
     }
-    public String name;
-    public String email;
-    public String password;
 
     public User() {
     }
@@ -43,15 +47,24 @@ public class User extends JPAModel {
         user.email = userForm.email;
         user.password = userForm.password;
 
+        user.department = Department.findById(userForm.department_id);
+
         return user;
+    }
+
+    public static User create(UserForm userForm) {
+        return create(userForm, null);
     }
 
     public static User create(UserForm userForm, Validation validation) {
         User user = build(userForm);
 
-        user.validate(validation);
-        if (validation.hasErrors()) {
-            return null;
+        if (validation != null) {
+            user.validate(validation);
+            if (validation.hasErrors()) {
+                return null;
+            }
+
         }
 
         user.save();

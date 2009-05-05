@@ -36,6 +36,15 @@ public class Department extends JPAModel {
         return department;
     }
 
+    public Department(){
+        
+    }
+
+    public Department(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
     private void validate(Validation validation) {
 
         validate_name(validation);
