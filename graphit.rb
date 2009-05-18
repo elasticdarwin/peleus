@@ -2,7 +2,7 @@ require 'rubygems'
 require 'enumerator'
 require 'git'
 
-total = 0
+total = 365 # count from init project
 g = Git.open(working_dir = '.')
 
 file_set = {}
