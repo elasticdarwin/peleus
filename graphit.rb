@@ -1,0 +1,26 @@
+require 'rubygems'
+require 'enumerator'
+require 'git'
+
+total = 0
+g = Git.open(working_dir = '.')
+
+file_set = {}
+
+g.log.enum_for(:each).to_a.reverse.inject do |last, cur|
+    diff = g.diff(last, cur)
+    total = total + diff.lines
+    diff_files = diff.stats[:files].sort { |a, b| a[0] <=> b[0] }
+    
+    diff_files.each do |file_name, stats|
+        printf("%-60s %6d %6d\n", file_name, stats[:insertions], stats[:deletions])
+    end
+
+    total_stats = diff.stats[:total]
+    puts "From revision <#{diff.from}> to <#{diff.to}>"
+    puts "Total line number is <#{total}>, with <#{total_stats[:insertions]}> insertions and <#{total_stats[:deletions]}> deletions in this interation."
+
+    3.times { puts }
+    cur
+end
+
