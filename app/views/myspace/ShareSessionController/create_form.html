@@ -2,7 +2,7 @@
 #{set title:'Welcome and Join the community!' /}
 
 <div id="peleusContent">
-    <form class="centerStyleForm" action="@{myspace.ShareSession.create()}" method="post">
+    <form class="centerStyleForm" action="@{myspace.ShareSessionController.create()}" method="post">
 
         <h3>&{'myspace.sharesession.create.title'}</h3>
 
@@ -42,6 +42,14 @@
         <label>&{'myspace.sharesession.end_date'}</label>
         <input type="text"  name="sharesession_form.end_date" value="${flash['sharesession_form.end_date']}"/>
         <span class="flashError">#{error 'sharesession_form.end_date' /}</span><br />
+
+
+
+        <label>&{'myspace.sharesession.address'}</label>
+        <input type="text"  name="sharesession_form.address" value="${flash['sharesession_form.address']}"/>
+        <span class="flashError">#{error 'sharesession_form.address' /}</span>
+        <br />
+
 
         <label>&{'myspace.sharesession.audiences_limit'}</label>
         <input type="text"  name="sharesession_form.audiences_limit" value="${flash['sharesession_form.audiences_limit']}"/>

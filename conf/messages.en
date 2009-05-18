@@ -9,6 +9,7 @@ common.basic.actions.actions = Actions
 common.basic.actions.save = save
 common.basic.actions.edit = edit
 common.basic.actions.delete = delete
+common.basic.actions.not_selected_yet = Not selected yet!
 
 
 
@@ -65,6 +66,9 @@ myspace.sharesession.subject=Session Subject
 myspace.sharesession.audiences=Target Audiences
 myspace.sharesession.start_date=Start Time
 myspace.sharesession.end_date=End Time
+
+myspace.sharesession.address=Address
+
 myspace.sharesession.audiences_limit=Audiences Limit
 myspace.sharesession.description=Description
 myspace.sharesession.post.submit=Post

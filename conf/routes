@@ -14,9 +14,7 @@ GET         /dashboard/{action}             dashboard.Dashboard.{action}
 
 # MySpace User Route Configuration
 
-GET         /myspace                       myspace.MySpace.index
 
-GET         /myspace/{action}               myspace.MySpace.{action}
 
 GET         /myspace/user/{action}          myspace.user.UserFacade.{action}
 
@@ -30,9 +28,18 @@ POST        /myspace/user/login_validate    myspace.user.UserFacade.login_valida
 
 # MySpace ShareSession Route Configuration
 
-GET         /myspace/sharesession/{action}          myspace.ShareSession.{action}
+GET         /myspace/sharesession                   myspace.ShareSessionController.index
 
-POST        /myspace/sharesession/create            myspace.ShareSession.create
+GET         /myspace/sharesession/{action}          myspace.ShareSessionController.{action}
+
+POST        /myspace/sharesession/create            myspace.ShareSessionController.create
+
+
+# MySpace Default Route Configuration
+
+GET         /myspace                       myspace.MySpace.index
+
+GET         /myspace/{action}               myspace.MySpace.{action}
 
 # Backyard Route Configuration
 

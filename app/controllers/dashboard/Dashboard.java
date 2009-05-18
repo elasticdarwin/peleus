@@ -2,8 +2,10 @@ package controllers.dashboard;
 
 import constants.MyConstants;
 import controllers.*;
-import org.apache.commons.lang.StringUtils;
-
+import java.util.List;
+import models.ShareSession;
+import models.User;
+import org.apache.commons.lang.math.NumberUtils;
 
 public class Dashboard extends Application {
 
@@ -12,15 +14,19 @@ public class Dashboard extends Application {
         boolean has_loggined = false;
         String user_name = "";
 
-        String has_logined_flag_in_session = session.get(MyConstants.HAS_LOGINED);
+        Long user_id = NumberUtils.toLong(session.get(MyConstants.LOGINED_USER_ID), 0);
 
-        if (StringUtils.isNotEmpty(has_logined_flag_in_session)) {
-            if (has_logined_flag_in_session.equalsIgnoreCase(MyConstants.YES)) {
+        if (user_id != 0) {
+            User user = User.findById(user_id);
+            if (user != null) {
                 has_loggined = true;
-                user_name = "hard code user name";
+                user_name = user.name;
             }
         }
 
-        render(has_loggined, user_name);
+
+        List<ShareSession> share_sessions = ShareSession.findAll();
+
+        render(has_loggined, user_name, share_sessions);
     }
 }
