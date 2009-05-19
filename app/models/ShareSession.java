@@ -34,13 +34,13 @@ public class ShareSession extends JPAModel {
         User user_1 = User.findById(share_session_form.user_1_id);
 
         User user_2 = null;
-        if (share_session_form.user_2_id > 0) {
+        if (share_session_form.user_2_id != null && share_session_form.user_2_id > 0) {
             user_2 = User.findById(share_session_form.user_2_id);
         }
 
 
         User user_3 = null;
-        if (share_session_form.user_2_id > 0) {
+        if (share_session_form.user_3_id != null && share_session_form.user_3_id > 0) {
             user_3 = User.findById(share_session_form.user_3_id);
         }
         share_session.contributors = Arrays.asList(user_1, user_2, user_3);

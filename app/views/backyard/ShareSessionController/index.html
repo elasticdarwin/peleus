@@ -1,0 +1,33 @@
+#{extends 'main.html' /}
+#{set title:'Peleus Administration Backyard' /}
+
+
+<h2>&{'backyard.functions.sharesession.view_all'}</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>&{'domain.sharesession.subject'}</th>
+
+            <th>&{'domain.sharesession.description'}</th>
+
+            <th>&{'common.basic.actions.actions'}</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        #{list items:all_share_sessions, as:'share_session'}
+        <tr>
+            <td>${share_session.id}</td>
+            <td><a href="@{backyard.ShareSessionController.show(share_session.id)}">${share_session.subject}</a></td>
+            <td>${share_session.description}</td>
+            <td> <a href="@{backyard.ShareSessionController.publish(share_session.id)}">&{'common.basic.actions.publish'}</a>
+                | <a href="@{backyard.ShareSessionController.edit(share_session.id)}">&{'common.basic.actions.edit'}</a>
+                | <a href="@{backyard.ShareSessionController.delete_confirm(share_session.id)}">&{'common.basic.actions.delete'}</a>
+            </td>
+        </tr>
+        #{/list}
+    </tbody>
+</table>
+

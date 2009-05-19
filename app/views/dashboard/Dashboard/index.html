@@ -1,49 +1,77 @@
 #{extends 'main.html' /}
 #{set title:messages.get('dashboard.title.homepage') /}
 
-<h1>Dashboard</h1>
+<div>
+    #{if has_loggined}
+    <p>hello, ${user_name} !</p>
 
+    <a href="@{myspace.MySpace.index()}">Myspace</a> |
+    <a href="@{myspace.user.UserFacade.logout()}">logout</a>
 
-#{if has_loggined}
-<h3>hello, ${user_name} !</h3> <br />
+    #{/if}
 
-  <a href="@{myspace.MySpace.index()}">Myspace</a> | 
-  <a href="@{myspace.user.UserFacade.logout()}">logout</a>
-
-#{/if}
-
-#{else}
+    #{else}
     <a href="@{myspace.user.UserFacade.login()}">login</a>
     | <a href="@{myspace.user.UserFacade.join()}">Not have an account yet?</a>
-#{/else}
+    #{/else}
+</div>
+
+<h1>Share Session on coming ...</h1>
+
+<hr/>
 
 
+#{list items:share_sessions, as:'share_session'}
+
+<div class="centerStyleForm">
+    <h2>${share_session.subject}</h2>
+
+    <p>Descrption: <br />
+
+     ${share_session.description}</p>
+
+    <p>Host Department : ${share_session.department.name}</p>
+    <p>Contributors : <br />
+        #{list items:share_session.contributors, as:'contributor'}
+        ${contributor.name} <br />
+    #{/list} </p>
+
+    <p>Audiences : ${share_session.audiences} </p>
+    <p>Audiences Limit : ${share_session.audiences_limit} </p>
+    <p>Date : from ${share_session.start} ~ ${share_session.end} </p>
+    <p>Address : ${share_session.address}</p>
+
+</div>
+
+#{/list}
+
+<!--
 <table border="1">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>&{'domain.user.name'}</th>
-            <th>&{'domain.user.email'}</th>
-            <th>&{'domain.user.password'}</th>
-            <th>&{'domain.user.department'}</th>
-            <th>&{'common.basic.actions.actions'}</th>
-        </tr>
-    </thead>
-    <tbody>
-        #{list items:all_users, as:'user'}
-        <tr>
-            <td>${user.id}</td>
-            <td>${user.name}</td>
-            <td>${user.email}</td>
-            <td>${user.password}</td>
-            <td>${user.department.name}</td>
-            <td> <a href="@{backyard.Backyard.edit_user(user.id)}">&{'common.basic.actions.edit'}</a> | <a href="@{backyard.Backyard.delete_user_confirm(user.id)}">&{'common.basic.actions.delete'}</a> </td>
-        </tr>
-        #{/list}
-    </tbody>
+<thead>
+<tr>
+<th>ID</th>
+<th>&{'domain.user.name'}</th>
+<th>&{'domain.user.email'}</th>
+<th>&{'domain.user.password'}</th>
+<th>&{'domain.user.department'}</th>
+<th>&{'common.basic.actions.actions'}</th>
+</tr>
+</thead>
+<tbody>
+#{list items:all_users, as:'user'}
+<tr>
+<td>${user.id}</td>
+<td>${user.name}</td>
+<td>${user.email}</td>
+<td>${user.password}</td>
+<td>${user.department.name}</td>
+<td> <a href="@{backyard.Backyard.edit_user(user.id)}">&{'common.basic.actions.edit'}</a> | <a href="@{backyard.Backyard.delete_user_confirm(user.id)}">&{'common.basic.actions.delete'}</a> </td>
+</tr>
+#{/list}
+</tbody>
 </table>
 
-
+-->
 
 
 

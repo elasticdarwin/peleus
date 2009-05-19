@@ -10,7 +10,7 @@ common.basic.actions.save = save
 common.basic.actions.edit = edit
 common.basic.actions.delete = delete
 common.basic.actions.not_selected_yet = Not selected yet!
-
+common.basic.actions.publish = publish
 
 
 ## Domain::User Message Area
@@ -27,6 +27,12 @@ domain.department.description=Description
 
 
 ## Domain::VirtualTeam Message Area
+
+
+## Domain::ShareSession Message Area
+domain.sharesession.subject=Subject
+domain.sharesession.description=Description
+
 
 
 
@@ -117,4 +123,8 @@ backyard.department.create.submit=Create
 
 validation.backyard.department.name_existed=Name Existed!
 
+
+## Backyard::ShareSession Message Area
+
+backyard.functions.sharesession.view_all=View All Share Sessions
 
