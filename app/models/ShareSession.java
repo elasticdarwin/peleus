@@ -87,4 +87,12 @@ public class ShareSession extends JPAModel {
     @Column(length = 2048)
     public String description;
     public int audiences_limit;
+
+    public static int deleteAllWithDenpendencies() {
+        List<ShareSession> share_sessions = ShareSession.findAll();
+        for (ShareSession share_session : share_sessions) {
+            share_session.delete();
+        }
+        return share_sessions.size();
+    }
 }
