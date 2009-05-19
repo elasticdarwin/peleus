@@ -101,7 +101,7 @@ public class User extends JPAModel {
         }
 
 
-        if (found_users.get(0).id.longValue() == getId().longValue()) {
+        if (found_users.get(0).id.longValue() == id.longValue()) {
             return true;
         }
 
