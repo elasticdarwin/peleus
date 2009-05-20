@@ -1,6 +1,6 @@
 package controllers;
 
-import constants.MyConstants;
+import utils.MyConstants;
 import models.User;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
@@ -34,6 +34,13 @@ public class Application extends Controller {
     protected static void forbiddenIfNull(Object obj) {
         if (obj == null) {
             forbidden("You are forbidden to access this page.");
+        }
+    }
+
+    protected static void redirectBackIfHasHTTPReferer() {
+        String referer_url = request.headers.get(MyConstants.HTTP_REFERER).value();
+        if (StringUtils.isNotBlank(referer_url)) {
+            redirect(referer_url);
         }
     }
 }

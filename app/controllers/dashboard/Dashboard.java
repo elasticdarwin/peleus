@@ -1,6 +1,6 @@
 package controllers.dashboard;
 
-import constants.MyConstants;
+import utils.MyConstants;
 import controllers.Application;
 import java.util.List;
 import models.ShareSession;

@@ -1,4 +1,4 @@
-package constants;
+package utils;
 
 
 public class MyConstants {
@@ -8,4 +8,8 @@ public class MyConstants {
     public static final String NO = "no";
     public static final String PREFERED_LANG = "prefered_lang";
     public static final String LOGINED_USER_NAME="user_name";
+
+    public static final String HTTP_REFERER = "referer";
+
+
 }

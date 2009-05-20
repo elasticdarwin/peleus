@@ -11,6 +11,7 @@ common.basic.actions.edit = edit
 common.basic.actions.delete = delete
 common.basic.actions.not_selected_yet = Not selected yet!
 common.basic.actions.publish = publish
+common.basic.actions.close = close
 
 
 ## Domain::User Message Area

@@ -1,6 +1,6 @@
 package controllers.myspace.user;
 
-import constants.MyConstants;
+import utils.MyConstants;
 import controllers.Application;
 import controllers.myspace.MySpace;
 import forms.myspace.user.LoginForm;

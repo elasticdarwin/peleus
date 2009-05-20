@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -17,6 +19,37 @@ import play.db.jpa.JPAModel;
 @Entity
 @Table(name = "share_sessions")
 public class ShareSession extends JPAModel {
+
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    public Department department;
+    @ManyToMany
+    @JoinTable(name = "share_session_contributor",
+    joinColumns =
+    @JoinColumn(name = "share_session_id", table = "share_sessions", referencedColumnName = "id"),
+    inverseJoinColumns =
+    @JoinColumn(name = "contributor_id", table = "users", referencedColumnName = "id"))
+    public List<User> contributors;
+    public String subject;
+    public String audiences;
+    public Date start;
+    public Date end;
+    public String address;
+    @Column(length = 2048)
+    public String description;
+    public int audiences_limit;
+
+    public enum ShareSessionStatus {
+
+        CREATED, PUBLISHED, CLOSED, DELETED, EXPIRED, FINISHED;
+    }
+    @Enumerated(value = EnumType.STRING)
+    @Column(length = 16)
+    public ShareSessionStatus status;
+
+    public void setStatus(String string) {
+        status = ShareSessionStatus.valueOf(string);
+    }
 
     public static ShareSession build(ShareSessionForm share_session_form) {
         ShareSession share_session = new ShareSession();
@@ -30,6 +63,8 @@ public class ShareSession extends JPAModel {
 
         share_session.audiences_limit = share_session_form.audiences_limit;
         share_session.description = share_session_form.description;
+        share_session.status = ShareSessionStatus.CREATED;
+
 
         User user_1 = User.findById(share_session_form.user_1_id);
 
@@ -69,24 +104,6 @@ public class ShareSession extends JPAModel {
     private void validate(Validation validation) {
         // Noops
     }
-    @ManyToOne
-    @JoinColumn(name = "department_id")
-    public Department department;
-    @ManyToMany
-    @JoinTable(name = "share_session_contributor",
-    joinColumns =
-    @JoinColumn(name = "share_session_id", table = "share_sessions", referencedColumnName = "id"),
-    inverseJoinColumns =
-    @JoinColumn(name = "contributor_id", table = "users", referencedColumnName = "id"))
-    public List<User> contributors;
-    public String subject;
-    public String audiences;
-    public Date start;
-    public Date end;
-    public String address;
-    @Column(length = 2048)
-    public String description;
-    public int audiences_limit;
 
     public static int deleteAllWithDenpendencies() {
         List<ShareSession> share_sessions = ShareSession.findAll();

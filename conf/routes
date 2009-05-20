@@ -59,6 +59,13 @@ POST        /backyard/department/create                backyard.DepartmentContro
 
 POST        /backyard/department/update                backyard.DepartmentController.update
 
+
+# Backyard ShareSession Route Configuration
+
+GET         /backyard/sharesession                   backyard.ShareSessionController.index
+
+GET         /backyard/sharesession/{action}          backyard.ShareSessionController.{action}
+
 ## Backyard::Index
 
 

@@ -1,0 +1,10 @@
+
+#{if (share_session.status == models.ShareSession.ShareSessionStatus.CREATED || share_session.status == models.ShareSession.ShareSessionStatus.CLOSED)}
+<a href="@{backyard.ShareSessionController.publish(share_session.id)}">&{'common.basic.actions.publish'}</a>
+#{/if}
+#{else}
+<a href="@{backyard.ShareSessionController.close(share_session.id)}">&{'common.basic.actions.close'}</a>
+#{/else}
+| <a href="@{backyard.ShareSessionController.edit(share_session.id)}">&{'common.basic.actions.edit'}</a>
+| <a href="@{backyard.ShareSessionController.delete_confirm(share_session.id)}">&{'common.basic.actions.delete'}</a>
+

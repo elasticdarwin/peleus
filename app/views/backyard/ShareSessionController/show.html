@@ -1,0 +1,29 @@
+#{extends 'main.html' /}
+#{set title:'Peleus Administration Backyard:View ShareSession Detail' /}
+
+
+
+
+<div class="centerStyleForm">
+    <h2>${share_session.subject}</h2>
+
+    <p>Descrption: <br />
+
+    ${share_session.description}</p>
+
+    <p>Host Department : ${share_session.department.name}</p>
+    <p>Contributors : <br />
+        #{list items:share_session.contributors, as:'contributor'}
+        ${contributor.name} <br />
+    #{/list} </p>
+
+    <p>Audiences : ${share_session.audiences} </p>
+    <p>Audiences Limit : ${share_session.audiences_limit} </p>
+    <p>Date : from ${share_session.start} ~ ${share_session.end} </p>
+    <p>Address : ${share_session.address}</p>
+    
+    #{include 'backyard/ShareSessionController/_action_links.html' /}
+
+
+</div>
+
