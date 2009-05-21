@@ -43,7 +43,7 @@ public class UserFacade extends Application {
             login();
         }
 
-        User user = fetch_user();
+        User user = fetch_user_or_redirect_to_login();
 
         render(user);
     }

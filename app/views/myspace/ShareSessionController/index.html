@@ -1,0 +1,42 @@
+#{extends 'main.html' /}
+#{set title:messages.get('dashboard.title.homepage') /}
+
+<div>
+    <p>hello, ${user.name} !</p>
+
+    <a href="@{dashboard.DashBoard.index()}">DashBoard</a> |
+    <a href="@{myspace.user.UserFacade.logout()}">logout</a>
+
+
+</div>
+
+<h2>&{'myspace.sharesession.functions.view_all'}</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>&{'domain.sharesession.subject'}</th>
+
+            <th>&{'domain.sharesession.description'}</th>
+
+            <th>&{'common.basic.actions.actions'}</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        #{list items:my_share_sessions, as:'share_session'}
+        <tr>
+            <td>${share_session.id}</td>
+            <td><a href="@{backyard.ShareSessionController.show(share_session.id)}">${share_session.subject}</a></td>
+            <td>${share_session.description}</td>
+            <td>
+                #{include 'backyard/ShareSessionController/_action_links.html' /}
+            </td>
+        </tr>
+        #{/list}
+    </tbody>
+</table>
+
+
+

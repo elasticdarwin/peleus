@@ -112,4 +112,12 @@ public class ShareSession extends JPAModel {
         }
         return share_sessions.size();
     }
+
+    public static List<ShareSession> findSessionsOnComing() {
+        return ShareSession.findBy("status = ? order by start", ShareSession.ShareSessionStatus.PUBLISHED);
+    }
+
+    public static List<ShareSession> findMyShareSessions() {
+         return ShareSession.findBy("status = ? order by start", ShareSession.ShareSessionStatus.PUBLISHED);
+    }
 }

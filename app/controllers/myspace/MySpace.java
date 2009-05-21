@@ -14,7 +14,7 @@ public class MySpace extends Application {
 
             UserFacade.login();
         } else {
-            User user = fetch_user();
+            User user = fetch_user_or_redirect_to_login();
             render(user);
         }
     }

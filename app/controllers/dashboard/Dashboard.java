@@ -1,32 +1,36 @@
 package controllers.dashboard;
 
-import utils.MyConstants;
 import controllers.Application;
 import java.util.List;
 import models.ShareSession;
 import models.User;
-import org.apache.commons.lang.math.NumberUtils;
 
 public class Dashboard extends Application {
 
     public static void index() {
 
+
+//        String user_name = "";
+
+//        Long user_id = NumberUtils.toLong(session.get(MyConstants.LOGINED_USER_ID), 0);
+//
+//        if (user_id != 0) {
+//            User user = User.findById(user_id);
+//            if (user != null) {
+//                has_loggined = true;
+//                user_name = user.name;
+//            }
+//        }
+
         boolean has_loggined = false;
-        String user_name = "";
+        User user = fetch_user();
 
-        Long user_id = NumberUtils.toLong(session.get(MyConstants.LOGINED_USER_ID), 0);
-
-        if (user_id != 0) {
-            User user = User.findById(user_id);
-            if (user != null) {
-                has_loggined = true;
-                user_name = user.name;
-            }
+        if (user != null) {
+            has_loggined = true;
         }
 
+        List<ShareSession> share_sessions = ShareSession.findSessionsOnComing();
 
-        List<ShareSession> share_sessions = ShareSession.findAll();
-
-        render(has_loggined, user_name, share_sessions);
+        render(has_loggined, user, share_sessions);
     }
 }

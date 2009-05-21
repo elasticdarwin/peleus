@@ -3,7 +3,7 @@
 
 <div>
     #{if has_loggined}
-    <p>hello, ${user_name} !</p>
+    <p>hello, ${user.name} !</p>
 
     <a href="@{myspace.MySpace.index()}">Myspace</a> |
     <a href="@{myspace.user.UserFacade.logout()}">logout</a>

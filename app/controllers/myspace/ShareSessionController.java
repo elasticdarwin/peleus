@@ -1,7 +1,6 @@
 package controllers.myspace;
 
 import controllers.Application;
-import controllers.dashboard.Dashboard;
 import forms.myspace.ShareSessionForm;
 import java.util.List;
 import models.Department;
@@ -33,6 +32,10 @@ public class ShareSessionController extends Application {
     }
 
     public static void index() {
-        Dashboard.index();
+
+        User user = fetch_user_or_redirect_to_login();
+        List<ShareSession> my_share_sessions = ShareSession.findMyShareSessions();
+
+        render(user, my_share_sessions);
     }
 }

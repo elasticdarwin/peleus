@@ -41,6 +41,10 @@ domain.sharesession.description=Description
 dashboard.title.homepage = Dashboard :: Peleus Portal Homepage
 
 
+## MySpace Function
+
+myspace.functions.index=MySpace Control Panel
+
 ## MySpace User Message Area
 
 myspace.user.name=Your Name:
@@ -66,6 +70,8 @@ myspace.user.logout.notification = You have just logged out from Peleus System!
 
 
 ## MySpace ShareSession Message Area
+
+myspace.sharesession.functions.view_all=Manage My Post ShareSessions
 
 myspace.sharesession.create.title=Post Share Session
 myspace.sharesession.department=Hosting Department

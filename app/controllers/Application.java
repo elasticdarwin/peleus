@@ -1,5 +1,6 @@
 package controllers;
 
+import controllers.myspace.user.UserFacade;
 import utils.MyConstants;
 import models.User;
 import org.apache.commons.lang.StringUtils;
@@ -23,17 +24,30 @@ public class Application extends Controller {
         return StringUtils.isNotBlank(logined_user_id);
     }
 
-    protected static User fetch_user() {
-        String user_id = session.get(MyConstants.LOGINED_USER_ID);
-        User user = User.findById(NumberUtils.toLong(user_id, -1));
+    protected static User fetch_user_or_redirect_to_login() {
+
+        User user = fetch_user();
 
         forbiddenIfNull(user);
+
+        return user;
+    }
+
+    protected static User fetch_user() {
+        Long user_id = NumberUtils.toLong(session.get(MyConstants.LOGINED_USER_ID), 0);
+
+        User user = null;
+        if (user_id != 0) {
+            user = User.findById(user_id);
+        }
+
         return user;
     }
 
     protected static void forbiddenIfNull(Object obj) {
         if (obj == null) {
-            forbidden("You are forbidden to access this page.");
+//            forbidden("You are forbidden to access this page.");
+            UserFacade.login();
         }
     }
 
