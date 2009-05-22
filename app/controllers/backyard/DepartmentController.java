@@ -24,7 +24,7 @@ public class DepartmentController extends Application {
 
         Department department = Department.findById(id);
 
-        forbiddenIfNull(department);
+        redirectToLoginIfNull(department);
 
         render(department);
     }
@@ -52,7 +52,7 @@ public class DepartmentController extends Application {
 
         Department department = Department.findById(id);
 
-        forbiddenIfNull(department);
+        redirectToLoginIfNull(department);
 
         flash.put("department_form.name", department.name);
         flash.put("department_form.description", department.description);

@@ -10,7 +10,10 @@
 
 </div>
 
-<h2>&{'myspace.sharesession.functions.view_all'}</h2>
+
+
+
+<h2>&{'myspace.sharesession.functions.view_all'} <a href="@{myspace.ShareSessionController.create_form()}"> or Create a new one?</a> </h2>
 
 <table border="1">
     <thead>
@@ -31,7 +34,7 @@
             <td><a href="@{backyard.ShareSessionController.show(share_session.id)}">${share_session.subject}</a></td>
             <td>${share_session.description}</td>
             <td>
-                #{include 'backyard/ShareSessionController/_action_links.html' /}
+                #{include 'myspace/ShareSessionController/_action_links.html' /}
             </td>
         </tr>
         #{/list}

@@ -10,6 +10,8 @@
             <th>ID</th>
             <th>&{'domain.sharesession.subject'}</th>
 
+            <th>Posted by</th>
+
             <th>&{'domain.sharesession.description'}</th>
 
             <th>&{'common.basic.actions.actions'}</th>
@@ -21,6 +23,9 @@
         <tr>
             <td>${share_session.id}</td>
             <td><a href="@{backyard.ShareSessionController.show(share_session.id)}">${share_session.subject}</a></td>
+            
+            <td>${share_session.creator.name}</td>
+
             <td>${share_session.description}</td>
             <td>
                 #{include 'backyard/ShareSessionController/_action_links.html' /}

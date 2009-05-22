@@ -28,7 +28,7 @@ public class Application extends Controller {
 
         User user = fetch_user();
 
-        forbiddenIfNull(user);
+        redirectToLoginIfNull(user);
 
         return user;
     }
@@ -44,10 +44,16 @@ public class Application extends Controller {
         return user;
     }
 
+    protected static void redirectToLoginIfNull(Object obj) {
+        if (obj == null) {
+
+            UserFacade.login();
+        }
+    }
+
     protected static void forbiddenIfNull(Object obj) {
         if (obj == null) {
-//            forbidden("You are forbidden to access this page.");
-            UserFacade.login();
+            forbidden("Target is missing!");
         }
     }
 

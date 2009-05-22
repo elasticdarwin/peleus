@@ -23,7 +23,7 @@ public class ShareSessionController extends Application {
         ShareSession share_session = ShareSession.findById(id);
 
 
-        forbiddenIfNull(share_session);
+        redirectToLoginIfNull(share_session);
 
         render(share_session);
 
@@ -34,7 +34,7 @@ public class ShareSessionController extends Application {
 
     public static void publish(Long id) {
         ShareSession share_session = ShareSession.findById(id);
-        forbiddenIfNull(share_session);
+        redirectToLoginIfNull(share_session);
 
         if (share_session.status == ShareSessionStatus.CREATED || share_session.status == ShareSessionStatus.CLOSED) {
             share_session.status = ShareSessionStatus.PUBLISHED;
@@ -48,7 +48,7 @@ public class ShareSessionController extends Application {
 
     public static void close(Long id) {
         ShareSession share_session = ShareSession.findById(id);
-        forbiddenIfNull(share_session);
+        redirectToLoginIfNull(share_session);
 
         if (share_session.status == ShareSessionStatus.PUBLISHED) {
             share_session.status = ShareSessionStatus.CLOSED;

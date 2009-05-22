@@ -6,7 +6,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import models.Department;
 import models.ShareSession;
-import models.ShareSession.ShareSessionStatus;
 import models.User;
 import org.junit.*;
 import play.test.FunctionalTest;
@@ -51,12 +50,15 @@ public class LoadFixtures extends FunctionalTest {
         }
 
         rubySession.subject = "Ruby Meta Programming";
-        rubySession.user_1_id = ((User)User.findOneBy("name", "Arthur")).id;
+        User arthur = User.findOneBy("name", "Arthur");
+        User darwin = User.findOneBy("name", "Darwin");
+        
+        rubySession.user_1_id = arthur.id;
+        rubySession.user_2_id = darwin.id;
 
-        rubySession.user_2_id = ((User)User.findOneBy("name", "Darwin")).id;
 
 
-        ShareSession.create(rubySession);
+        ShareSession.create(rubySession,arthur);
 
         ShareSessionForm designSession = new ShareSessionForm();
 
@@ -76,7 +78,7 @@ public class LoadFixtures extends FunctionalTest {
         designSession.user_1_id = ((User)User.findOneBy("name", "Darwin")).id;
         designSession.user_2_id = ((User)User.findOneBy("name", "Arthur")).id;
 
-        ShareSession.create(designSession);
+        ShareSession.create(designSession,darwin);
 
         assertEquals(2L, ShareSession.count());
 

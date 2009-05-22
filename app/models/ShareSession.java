@@ -38,6 +38,9 @@ public class ShareSession extends JPAModel {
     @Column(length = 2048)
     public String description;
     public int audiences_limit;
+    @ManyToOne
+    @JoinColumn(name = "creator_id")
+    public User creator;
 
     public enum ShareSessionStatus {
 
@@ -51,8 +54,10 @@ public class ShareSession extends JPAModel {
         status = ShareSessionStatus.valueOf(string);
     }
 
-    public static ShareSession build(ShareSessionForm share_session_form) {
+    public static ShareSession build(ShareSessionForm share_session_form,User creator) {
         ShareSession share_session = new ShareSession();
+
+        share_session.creator = creator;
 
         share_session.department = Department.findById(share_session_form.department_id);
         share_session.subject = share_session_form.subject;
@@ -83,12 +88,12 @@ public class ShareSession extends JPAModel {
         return share_session;
     }
 
-    public static ShareSession create(ShareSessionForm userForm) {
-        return create(userForm, null);
+    public static ShareSession create(ShareSessionForm userForm,User creator) {
+        return create(userForm,creator, null);
     }
 
-    public static ShareSession create(ShareSessionForm share_session_form, Validation validation) {
-        ShareSession share_session = build(share_session_form);
+    public static ShareSession create(ShareSessionForm share_session_form, User creator,Validation validation) {
+        ShareSession share_session = build(share_session_form,creator);
 
         if (validation != null) {
             share_session.validate(validation);
@@ -117,7 +122,7 @@ public class ShareSession extends JPAModel {
         return ShareSession.findBy("status = ? order by start", ShareSession.ShareSessionStatus.PUBLISHED);
     }
 
-    public static List<ShareSession> findMyShareSessions() {
-         return ShareSession.findBy("status = ? order by start", ShareSession.ShareSessionStatus.PUBLISHED);
+    public static List<ShareSession> findMyShareSessions(User creator) {
+        return ShareSession.findBy("status != ? and creator = ? order by start", ShareSession.ShareSessionStatus.DELETED, creator);
     }
 }
