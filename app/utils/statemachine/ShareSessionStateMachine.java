@@ -1,5 +1,5 @@
-// line 1 "ShareSessionStateMachine.rl"
-package utils;
+// line 1 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
+package utils.statemachine;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,11 +15,11 @@ public class ShareSessionStateMachine {
     }
 
 
-    // line 153 "ShareSessionStateMachine.rl"
+    // line 153 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
 
 
     
-// line 23 "./../app/utils/ShareSessionStateMachine.java"
+// line 23 "./script/../app/utils/statemachine/ShareSessionStateMachine.java"
 private static byte[] init__share_session_actions_0()
 {
 	return new byte [] {
@@ -125,7 +125,7 @@ static final int share_session_en_main_ShareSession_finished = 3;
 static final int share_session_en_main_ShareSession_closed = 5;
 static final int share_session_en_main_ShareSession_expired = 3;
 
-// line 156 "ShareSessionStateMachine.rl"
+// line 156 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
 
     private static boolean run(ShareSessionContext context, Character[] data, boolean isJustACheck) throws StateMachineException {
 
@@ -143,11 +143,11 @@ static final int share_session_en_main_ShareSession_expired = 3;
 
         if (context.currentStatus == null) {
             
-// line 147 "./../app/utils/ShareSessionStateMachine.java"
+// line 147 "./script/../app/utils/statemachine/ShareSessionStateMachine.java"
 	{
 	cs = share_session_start;
 	}
-// line 173 "ShareSessionStateMachine.rl"
+// line 173 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
         } else {
             cs = context.currentStatus.state;
         }
@@ -157,7 +157,7 @@ static final int share_session_en_main_ShareSession_expired = 3;
         try {
 
             
-// line 161 "./../app/utils/ShareSessionStateMachine.java"
+// line 161 "./script/../app/utils/statemachine/ShareSessionStateMachine.java"
 	{
 	int _klen, _ps;
 	int _trans = 0;
@@ -238,7 +238,7 @@ case 1:
 			switch ( _share_session_actions[_acts++] )
 			{
 	case 0:
-// line 20 "ShareSessionStateMachine.rl"
+// line 20 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
 	{ 
             if (isJustACheck) {
                 {cs = ((_ps)); _goto_targ = 2; if (true) continue _goto;}
@@ -258,7 +258,7 @@ case 1:
         }
 	break;
 	case 1:
-// line 37 "ShareSessionStateMachine.rl"
+// line 37 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
 	{ 
             if (isJustACheck) {
                 {cs = ((_ps)); _goto_targ = 2; if (true) continue _goto;}
@@ -270,7 +270,7 @@ case 1:
         }
 	break;
 	case 2:
-// line 47 "ShareSessionStateMachine.rl"
+// line 47 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
 	{ 
             if (isJustACheck) {
                 {cs = ((_ps)); _goto_targ = 2; if (true) continue _goto;}
@@ -282,7 +282,7 @@ case 1:
         }
 	break;
 	case 3:
-// line 56 "ShareSessionStateMachine.rl"
+// line 56 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
 	{ 
             if (isJustACheck) {
                 {cs = ((_ps)); _goto_targ = 2; if (true) continue _goto;}
@@ -294,7 +294,7 @@ case 1:
         }
 	break;
 	case 4:
-// line 65 "ShareSessionStateMachine.rl"
+// line 65 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
 	{
             if (isJustACheck) {
                 {cs = ((_ps)); _goto_targ = 2; if (true) continue _goto;}
@@ -306,7 +306,7 @@ case 1:
         }
 	break;
 	case 5:
-// line 74 "ShareSessionStateMachine.rl"
+// line 74 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
 	{ 
             if (isJustACheck) {
                 {cs = ((_ps)); _goto_targ = 2; if (true) continue _goto;}
@@ -318,7 +318,7 @@ case 1:
         }
 	break;
 	case 6:
-// line 84 "ShareSessionStateMachine.rl"
+// line 84 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
 	{
 
             if (isJustACheck) {
@@ -335,7 +335,7 @@ case 1:
             }
         }
 	break;
-// line 339 "./../app/utils/ShareSessionStateMachine.java"
+// line 339 "./script/../app/utils/statemachine/ShareSessionStateMachine.java"
 			}
 		}
 	}
@@ -357,7 +357,7 @@ case 4:
 	while ( __nacts-- > 0 ) {
 		switch ( _share_session_actions[__acts++] ) {
 	case 6:
-// line 84 "ShareSessionStateMachine.rl"
+// line 84 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
 	{
 
             if (isJustACheck) {
@@ -375,13 +375,13 @@ case 4:
         }
 	break;
 	case 7:
-// line 101 "ShareSessionStateMachine.rl"
+// line 101 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
 	{
 //          System.out.println("EOF");
             { p += 1; _goto_targ = 5; if (true)  continue _goto;}
         }
 	break;
-// line 385 "./../app/utils/ShareSessionStateMachine.java"
+// line 385 "./script/../app/utils/statemachine/ShareSessionStateMachine.java"
 		}
 	}
 	}
@@ -390,7 +390,7 @@ case 5:
 	}
 	break; }
 	}
-// line 182 "ShareSessionStateMachine.rl"
+// line 182 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
         } catch (StateMachineException e) {
 
             System.out.println("Rollbacking changes...");
