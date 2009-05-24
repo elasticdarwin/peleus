@@ -3,6 +3,7 @@
 *.[oa]
 *~
 *.class
+*.swp
 
 tmp/*
 nbproject/*

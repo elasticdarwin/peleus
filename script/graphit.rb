@@ -3,7 +3,7 @@ require 'enumerator'
 require 'git'
 
 total = 365 # count from init project
-g = Git.open(working_dir = '.')
+g = Git.open(working_dir = File.join(File.dirname(__FILE__), '..'))
 
 file_set = {}
 
