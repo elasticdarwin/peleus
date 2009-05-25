@@ -3,7 +3,10 @@ package controllers.backyard;
 import controllers.Application;
 import java.util.List;
 import models.ShareSession;
-import models.ShareSession.ShareSessionStatus;
+
+import utils.statemachine.ShareSessionStateMachine;
+import utils.statemachine.ShareSessionTransition;
+import utils.statemachine.StateMachineException;
 
 public class ShareSessionController extends Application {
 
@@ -32,12 +35,14 @@ public class ShareSessionController extends Application {
     public static void delete_confirm(Long id) {
     }
 
-    public static void publish(Long id) {
+    public static void publish(Long id) throws StateMachineException {
         ShareSession share_session = ShareSession.findById(id);
         redirectToLoginIfNull(share_session);
 
-        if (share_session.status == ShareSessionStatus.CREATED || share_session.status == ShareSessionStatus.CLOSED) {
-            share_session.status = ShareSessionStatus.PUBLISHED;
+        if (ShareSessionStateMachine.couldAccept(share_session, ShareSessionTransition.PUBLISH)) {
+
+            ShareSessionStateMachine.transit(share_session, ShareSessionTransition.PUBLISH);
+
             share_session.save();
         }
 
@@ -46,12 +51,14 @@ public class ShareSessionController extends Application {
         show(id);
     }
 
-    public static void close(Long id) {
+    public static void close(Long id) throws StateMachineException {
         ShareSession share_session = ShareSession.findById(id);
         redirectToLoginIfNull(share_session);
 
-        if (share_session.status == ShareSessionStatus.PUBLISHED) {
-            share_session.status = ShareSessionStatus.CLOSED;
+        if (ShareSessionStateMachine.couldAccept(share_session, ShareSessionTransition.CLOSE)) {
+
+            ShareSessionStateMachine.transit(share_session, ShareSessionTransition.CLOSE);
+
             share_session.save();
         }
 

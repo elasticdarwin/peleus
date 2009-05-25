@@ -13,13 +13,14 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import play.Logger;
 import play.data.validation.Validation;
 import play.db.jpa.JPAModel;
+import utils.statemachine.ShareSessionContext;
+import utils.statemachine.ShareSessionStateMachine.ShareSessionStatus;
 
 @Entity
 @Table(name = "share_sessions")
-public class ShareSession extends JPAModel {
+public class ShareSession extends JPAModel implements ShareSessionContext {
 
     @ManyToOne
     @JoinColumn(name = "department_id")
@@ -42,11 +43,6 @@ public class ShareSession extends JPAModel {
     @ManyToOne
     @JoinColumn(name = "creator_id")
     public User creator;
-
-    public enum ShareSessionStatus {
-
-        CREATED, PUBLISHED, CLOSED, DELETED, EXPIRED, FINISHED;
-    }
     @Enumerated(value = EnumType.STRING)
     @Column(length = 16)
     public ShareSessionStatus status;
@@ -59,7 +55,7 @@ public class ShareSession extends JPAModel {
 
         ShareSession share_session = ShareSession.findById(share_session_form.id);
 
-        share_session =  build(share_session, share_session_form, creator);
+        share_session = build(share_session, share_session_form, creator);
 
         share_session.save();
 
@@ -137,10 +133,18 @@ public class ShareSession extends JPAModel {
     }
 
     public static List<ShareSession> findSessionsOnComing() {
-        return ShareSession.findBy("status = ? order by start", ShareSession.ShareSessionStatus.PUBLISHED);
+        return ShareSession.findBy("status = ? order by start", ShareSessionStatus.PUBLISHED);
     }
 
     public static List<ShareSession> findMyShareSessions(User creator) {
-        return ShareSession.findBy("status != ? and creator = ? order by start", ShareSession.ShareSessionStatus.DELETED, creator);
+        return ShareSession.findBy("status != ? and creator = ? order by start", ShareSessionStatus.DELETED, creator);
+    }
+
+    public void setCurrentStatus(ShareSessionStatus currentStatus) {
+        status = currentStatus;
+    }
+
+    public ShareSessionStatus getCurrentStatus() {
+        return status;
     }
 }

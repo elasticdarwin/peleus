@@ -1,6 +1,7 @@
 package utils.statemachine;
 import java.util.ArrayList;
 import java.util.List;
+import play.Logger;
 
 
 public class ShareSessionStateMachine {
@@ -10,7 +11,7 @@ public class ShareSessionStateMachine {
         
         CREATED, DELETED, EXPIRED, CLOSED, PUBLISHED, FINISHED;
 
-        private int state;
+        private int stateCode;
     }
 
 
@@ -22,16 +23,16 @@ public class ShareSessionStateMachine {
                 fgoto *fcurs;
             } else {
 
-                ShareSessionStatus.CREATED.state = fentry(created); 
-                ShareSessionStatus.DELETED.state = fentry(deleted); 
-                ShareSessionStatus.EXPIRED.state = fentry(expired); 
-                ShareSessionStatus.CLOSED.state = fentry(closed); 
-                ShareSessionStatus.PUBLISHED.state = fentry(published); 
-                ShareSessionStatus.FINISHED.state = fentry(finished); 
+                ShareSessionStatus.CREATED.stateCode = fentry(created); 
+                ShareSessionStatus.DELETED.stateCode = fentry(deleted); 
+                ShareSessionStatus.EXPIRED.stateCode = fentry(expired); 
+                ShareSessionStatus.CLOSED.stateCode = fentry(closed); 
+                ShareSessionStatus.PUBLISHED.stateCode = fentry(published); 
+                ShareSessionStatus.FINISHED.stateCode = fentry(finished); 
 
                 context.setCurrentStatus(ShareSessionStatus.CREATED);
 
-                System.out.println("INIT");
+                Logger.info("INIT");
             }
         }
         action do_delete { 
@@ -40,7 +41,7 @@ public class ShareSessionStateMachine {
             } else {
 
                 context.setCurrentStatus(ShareSessionStatus.DELETED);
-                System.out.println("DELETE");
+                Logger.info("DELETE");
             }
         }
 
@@ -50,7 +51,7 @@ public class ShareSessionStateMachine {
             } else {
 
                 context.setCurrentStatus(ShareSessionStatus.PUBLISHED);
-                System.out.println("PUBLISH");
+                Logger.info("PUBLISH");
             }
         }
         action do_expire { 
@@ -59,7 +60,7 @@ public class ShareSessionStateMachine {
             } else {
 
                 context.setCurrentStatus(ShareSessionStatus.EXPIRED);
-                System.out.println("EXPIRE");
+                Logger.info("EXPIRE");
             }
         }
         action do_close {
@@ -68,7 +69,7 @@ public class ShareSessionStateMachine {
             } else {
 
                 context.setCurrentStatus(ShareSessionStatus.CLOSED);
-                System.out.println("CLOSE");
+                Logger.info("CLOSE");
             }
         }
         action do_finish { 
@@ -77,7 +78,7 @@ public class ShareSessionStateMachine {
             } else {
 
                 context.setCurrentStatus(ShareSessionStatus.FINISHED);
-                System.out.println("FINISH");
+                Logger.info("FINISH");
             }
         }
         
@@ -86,20 +87,20 @@ public class ShareSessionStateMachine {
             if (isJustACheck) {
                 if (true) { // just to cheat java compiler, haha~
             
-                    System.out.println("Check failed");
+                    Logger.info("Check failed");
 
                     return false;
                 }
             } else { 
 
-                System.out.println("ERROR");
-                throw new StateMachineException("This transition can not be accepted.\nNote: current state is <" + context.currentStatus + "> and are confronted with transition <" + ShareSessionTransition.valueOf(fc) + ">");
+                Logger.info("ERROR");
+                throw new StateMachineException("This transition can not be accepted.\nNote: current state is <" + context.getCurrentStatus() + "> and are confronted with transition <" + ShareSessionTransition.valueOf(fc) + ">");
             }
         }
 
 
         action do_eof {
-//          System.out.println("EOF");
+//          Logger.info("EOF");
             fbreak;
         }
 
@@ -154,50 +155,52 @@ public class ShareSessionStateMachine {
 
     %% write data;
 
-    private static boolean run(ShareSessionContext context, Character[] data, boolean isJustACheck) throws StateMachineException {
+    private static boolean transit(ShareSessionContext context, Character[] data, boolean isJustACheck) throws StateMachineException {
 
-        System.out.print("Running the state machine with input [");
+        StringBuilder buffer = new StringBuilder();
+        buffer.append("Running the state machine with input [");
         for (char c : data) {
 
-            System.out.print(c + " ");
+            buffer.append(c + " ");
         }
-        System.out.println("]");
+        buffer.append("]");
+        Logger.info(buffer.toString());
         
         int p = 0;
         int pe = data.length;
         int eof = pe;
         int cs;
 
-        if (context.currentStatus == null) {
+        if (context.getCurrentStatus() == null) {
             %% write init;
         } else {
-            cs = context.currentStatus.state;
+            cs = context.getCurrentStatus().stateCode;
         }
         
-        ShareSessionStatus cs_backup_for_rollback = context.currentStatus;
+        ShareSessionStatus cs_backup_for_rollback = context.getCurrentStatus();
         
         try {
 
             %% write exec;
         } catch (StateMachineException e) {
 
-            System.out.println("Rollbacking changes...");
-            context.currentStatus = cs_backup_for_rollback;
+            Logger.info("Rollbacking changes...");
+            context.setCurrentStatus(cs_backup_for_rollback);
             throw e; // resent it
         }
 
         if (!isJustACheck) {
-            System.out.println("Finished. The state of the machine is: " + context.currentStatus);
-            System.out.println("p: " + p + " pe: " + pe);
+            Logger.info("Finished. The state of the machine is: " + context.getCurrentStatus());
+            Logger.info("p: " + p + " pe: " + pe);
         } else {
             
-            System.out.println("Check passed");
+            Logger.info("Check passed");
         }
 
         return true;
     }
 
-    private static boolean run(ShareSessionContext context, ShareSessionTransition[] transitions, boolean isJustACheck) throws StateMachineException {
+    private static boolean transit(ShareSessionContext context, ShareSessionTransition[] transitions, boolean isJustACheck) throws StateMachineException {
 
         List<Character> chars = new ArrayList<Character>(transitions.length);
         
@@ -206,124 +209,25 @@ public class ShareSessionStateMachine {
             if (transition == null) {continue;}
             chars.add(transition.getCode());
         }
-        return run(context, chars.toArray(new Character[0]), isJustACheck);
+        return transit(context, chars.toArray(new Character[0]), isJustACheck);
     }
 
-    public static void run(ShareSessionContext context, ShareSessionTransition[] transitions) throws StateMachineException {
-        run(context, transitions, false);
+    public static void transit(ShareSessionContext context, ShareSessionTransition[] transitions) throws StateMachineException {
+        transit(context, transitions, false);
     }
 
-    public static void run(ShareSessionContext context, ShareSessionTransition transition) throws StateMachineException {
-        run(context, new ShareSessionTransition[] {transition}, false);
-    }
-
-
-    public static boolean check(ShareSessionContext context, ShareSessionTransition[] transitions) throws StateMachineException {
-        return run(context, transitions, true);
-    }
-
-    public static boolean check(ShareSessionContext context, ShareSessionTransition transition) throws StateMachineException {
-        return run(context, new ShareSessionTransition[] {transition}, true);
+    public static void transit(ShareSessionContext context, ShareSessionTransition transition) throws StateMachineException {
+        transit(context, new ShareSessionTransition[] {transition}, false);
     }
 
 
-
-    public static void main(String[] args) throws StateMachineException {
-
-        ShareSessionContext context = ShareSessionStateMachine.initContext();
-
-        ShareSessionStateMachine.run(context, ShareSessionTransition.INIT);
-
-        ShareSessionStateMachine.run(context, new ShareSessionTransition[] {});
-
-        ShareSessionStateMachine.run(context, ShareSessionTransition.PUBLISH);
-
-        try {
-            // should raise a error
-            ShareSessionStateMachine.run(context, new ShareSessionTransition[] {ShareSessionTransition.CLOSE, ShareSessionTransition.PUBLISH, ShareSessionTransition.PUBLISH});
-            throw new RuntimeException("should raise a error");
-        } catch (StateMachineException e) {
-
-            // Noops 
-        }
-
-        boolean success = ShareSessionStateMachine.check(context, ShareSessionTransition.PUBLISH);
-        if (success) {
-
-            throw new RuntimeException("should not pass check");
-        }
-
-        success = ShareSessionStateMachine.check(context, ShareSessionTransition.CLOSE);
-        if (!success) {
-
-            throw new RuntimeException("should pass check");
-        }
-
-        ShareSessionStateMachine.run(context, new ShareSessionTransition[] {ShareSessionTransition.CLOSE, ShareSessionTransition.PUBLISH});
-         
-        ShareSessionStateMachine.run(context, ShareSessionTransition.FINISH);
-
+    public static boolean couldAccept(ShareSessionContext context, ShareSessionTransition[] transitions) throws StateMachineException {
+        return transit(context, transitions, true);
     }
 
-    public static class StateMachineException extends Exception {
-        
-        public StateMachineException(String message) {
-            
-            super(message);
-        }
-    } 
-
-
-    public static ShareSessionContext initContext() {
-        
-        return new ShareSessionContext();
-    }
-    
-
-
-    static class ShareSessionContext {
-        
-        private ShareSessionStatus currentStatus;
-
-        public void setCurrentStatus(ShareSessionStatus currentStatus) {
-            this.currentStatus = currentStatus;
-        }
-
-        public ShareSessionStatus getCurrentStatus() {
-            return currentStatus;
-        }
-        
-        
+    public static boolean couldAccept(ShareSessionContext context, ShareSessionTransition transition) throws StateMachineException {
+        return transit(context, new ShareSessionTransition[] {transition}, true);
     }
 
-
-    public enum ShareSessionTransition {
-        
-        INIT('i'), DELETE('d'), EXPIRE('e'), CLOSE('c'), PUBLISH('p'), FINISH('f');
-        
-        private char code;
-        ShareSessionTransition(char code) {
-            
-            this.code = code;
-        }
-        
-        public char getCode() {
-            
-            return code;
-        }
-        public static ShareSessionTransition valueOf(char code) {
-            
-            for (ShareSessionTransition transition : values()) {
-                
-                if (transition.getCode() == code) {
-                    
-                    return transition;
-                }
-            }
-            return null;
-        }
-        
-        
-    }
 }
 

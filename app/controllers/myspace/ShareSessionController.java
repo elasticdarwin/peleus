@@ -6,10 +6,14 @@ import java.util.Arrays;
 import java.util.List;
 import models.Department;
 import models.ShareSession;
-import models.ShareSession.ShareSessionStatus;
+
 import models.User;
 import play.Logger;
 import play.data.validation.Valid;
+import utils.statemachine.ShareSessionStateMachine;
+import utils.statemachine.ShareSessionStateMachine.ShareSessionStatus;
+import utils.statemachine.ShareSessionTransition;
+import utils.statemachine.StateMachineException;
 
 public class ShareSessionController extends Application {
 
@@ -48,7 +52,7 @@ public class ShareSessionController extends Application {
     public static void delete_confirm(Long id) {
     }
 
-    public static void publish(Long id) {
+    public static void publish(Long id) throws StateMachineException {
         User user = fetch_user_or_redirect_to_login();
         redirectToLoginIfNull(user);
 
@@ -61,8 +65,9 @@ public class ShareSessionController extends Application {
         }
 
 
-        if (share_session.status == ShareSessionStatus.CREATED || share_session.status == ShareSessionStatus.CLOSED) {
-            share_session.status = ShareSessionStatus.PUBLISHED;
+        if (ShareSessionStateMachine.couldAccept(share_session, ShareSessionTransition.PUBLISH)) {
+            ShareSessionStateMachine.transit(share_session, ShareSessionTransition.PUBLISH);
+
             share_session.save();
         }
 
@@ -71,16 +76,19 @@ public class ShareSessionController extends Application {
         show(id);
     }
 
-    public static void close(Long id) {
+    public static void close(Long id) throws StateMachineException {
         // TODO access control
 
         ShareSession share_session = ShareSession.findById(id);
         redirectToLoginIfNull(share_session);
 
-        if (share_session.status == ShareSessionStatus.PUBLISHED) {
-            share_session.status = ShareSessionStatus.CLOSED;
+        if (ShareSessionStateMachine.couldAccept(share_session, ShareSessionTransition.CLOSE)) {
+
+            ShareSessionStateMachine.transit(share_session, ShareSessionTransition.CLOSE);
+
             share_session.save();
         }
+
 
 
         redirectBackIfHasHTTPReferer();
@@ -119,7 +127,7 @@ public class ShareSessionController extends Application {
             flash.put(keys.get(index), contributors.get(index).id);
         }
 
-        for (int index = contributors.size(); index < 3 ; index++) {
+        for (int index = contributors.size(); index < 3; index++) {
             flash.put(keys.get(index), -1L);
         }
 

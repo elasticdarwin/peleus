@@ -1,7 +1,8 @@
-// line 1 "/home/darwin/NetBeansProjects/peleus/script/ShareSessionStateMachine.rl"
+// line 1 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
 package utils.statemachine;
 import java.util.ArrayList;
 import java.util.List;
+import play.Logger;
 
 
 public class ShareSessionStateMachine {
@@ -11,15 +12,15 @@ public class ShareSessionStateMachine {
         
         CREATED, DELETED, EXPIRED, CLOSED, PUBLISHED, FINISHED;
 
-        private int state;
+        private int stateCode;
     }
 
 
-    // line 153 "/home/darwin/NetBeansProjects/peleus/script/ShareSessionStateMachine.rl"
+    // line 154 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
 
 
     
-// line 23 "./script/../app/utils/statemachine/ShareSessionStateMachine.java"
+// line 24 "./script/../app/utils/statemachine/ShareSessionStateMachine.java"
 private static byte[] init__share_session_actions_0()
 {
 	return new byte [] {
@@ -125,39 +126,41 @@ static final int share_session_en_main_ShareSession_finished = 3;
 static final int share_session_en_main_ShareSession_closed = 5;
 static final int share_session_en_main_ShareSession_expired = 3;
 
-// line 156 "/home/darwin/NetBeansProjects/peleus/script/ShareSessionStateMachine.rl"
+// line 157 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
 
-    private static boolean run(ShareSessionContext context, Character[] data, boolean isJustACheck) throws StateMachineException {
+    private static boolean transit(ShareSessionContext context, Character[] data, boolean isJustACheck) throws StateMachineException {
 
-        System.out.print("Running the state machine with input [");
+        StringBuilder buffer = new StringBuilder();
+        buffer.append("Running the state machine with input [");
         for (char c : data) {
 
-            System.out.print(c + " ");
+            buffer.append(c + " ");
         }
-        System.out.println("]");
+        buffer.append("]");
+        Logger.info(buffer.toString());
         
         int p = 0;
         int pe = data.length;
         int eof = pe;
         int cs;
 
-        if (context.currentStatus == null) {
+        if (context.getCurrentStatus() == null) {
             
-// line 147 "./script/../app/utils/statemachine/ShareSessionStateMachine.java"
+// line 150 "./script/../app/utils/statemachine/ShareSessionStateMachine.java"
 	{
 	cs = share_session_start;
 	}
-// line 173 "/home/darwin/NetBeansProjects/peleus/script/ShareSessionStateMachine.rl"
+// line 176 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
         } else {
-            cs = context.currentStatus.state;
+            cs = context.getCurrentStatus().stateCode;
         }
         
-        ShareSessionStatus cs_backup_for_rollback = context.currentStatus;
+        ShareSessionStatus cs_backup_for_rollback = context.getCurrentStatus();
         
         try {
 
             
-// line 161 "./script/../app/utils/statemachine/ShareSessionStateMachine.java"
+// line 164 "./script/../app/utils/statemachine/ShareSessionStateMachine.java"
 	{
 	int _klen, _ps;
 	int _trans = 0;
@@ -238,104 +241,104 @@ case 1:
 			switch ( _share_session_actions[_acts++] )
 			{
 	case 0:
-// line 20 "/home/darwin/NetBeansProjects/peleus/script/ShareSessionStateMachine.rl"
+// line 21 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
 	{ 
             if (isJustACheck) {
                 {cs = ((_ps)); _goto_targ = 2; if (true) continue _goto;}
             } else {
 
-                ShareSessionStatus.CREATED.state = 2; 
-                ShareSessionStatus.DELETED.state = 3; 
-                ShareSessionStatus.EXPIRED.state = 3; 
-                ShareSessionStatus.CLOSED.state = 5; 
-                ShareSessionStatus.PUBLISHED.state = 4; 
-                ShareSessionStatus.FINISHED.state = 3; 
+                ShareSessionStatus.CREATED.stateCode = 2; 
+                ShareSessionStatus.DELETED.stateCode = 3; 
+                ShareSessionStatus.EXPIRED.stateCode = 3; 
+                ShareSessionStatus.CLOSED.stateCode = 5; 
+                ShareSessionStatus.PUBLISHED.stateCode = 4; 
+                ShareSessionStatus.FINISHED.stateCode = 3; 
 
                 context.setCurrentStatus(ShareSessionStatus.CREATED);
 
-                System.out.println("INIT");
+                Logger.info("INIT");
             }
         }
 	break;
 	case 1:
-// line 37 "/home/darwin/NetBeansProjects/peleus/script/ShareSessionStateMachine.rl"
+// line 38 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
 	{ 
             if (isJustACheck) {
                 {cs = ((_ps)); _goto_targ = 2; if (true) continue _goto;}
             } else {
 
                 context.setCurrentStatus(ShareSessionStatus.DELETED);
-                System.out.println("DELETE");
+                Logger.info("DELETE");
             }
         }
 	break;
 	case 2:
-// line 47 "/home/darwin/NetBeansProjects/peleus/script/ShareSessionStateMachine.rl"
+// line 48 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
 	{ 
             if (isJustACheck) {
                 {cs = ((_ps)); _goto_targ = 2; if (true) continue _goto;}
             } else {
 
                 context.setCurrentStatus(ShareSessionStatus.PUBLISHED);
-                System.out.println("PUBLISH");
+                Logger.info("PUBLISH");
             }
         }
 	break;
 	case 3:
-// line 56 "/home/darwin/NetBeansProjects/peleus/script/ShareSessionStateMachine.rl"
+// line 57 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
 	{ 
             if (isJustACheck) {
                 {cs = ((_ps)); _goto_targ = 2; if (true) continue _goto;}
             } else {
 
                 context.setCurrentStatus(ShareSessionStatus.EXPIRED);
-                System.out.println("EXPIRE");
+                Logger.info("EXPIRE");
             }
         }
 	break;
 	case 4:
-// line 65 "/home/darwin/NetBeansProjects/peleus/script/ShareSessionStateMachine.rl"
+// line 66 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
 	{
             if (isJustACheck) {
                 {cs = ((_ps)); _goto_targ = 2; if (true) continue _goto;}
             } else {
 
                 context.setCurrentStatus(ShareSessionStatus.CLOSED);
-                System.out.println("CLOSE");
+                Logger.info("CLOSE");
             }
         }
 	break;
 	case 5:
-// line 74 "/home/darwin/NetBeansProjects/peleus/script/ShareSessionStateMachine.rl"
+// line 75 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
 	{ 
             if (isJustACheck) {
                 {cs = ((_ps)); _goto_targ = 2; if (true) continue _goto;}
             } else {
 
                 context.setCurrentStatus(ShareSessionStatus.FINISHED);
-                System.out.println("FINISH");
+                Logger.info("FINISH");
             }
         }
 	break;
 	case 6:
-// line 84 "/home/darwin/NetBeansProjects/peleus/script/ShareSessionStateMachine.rl"
+// line 85 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
 	{
 
             if (isJustACheck) {
                 if (true) { // just to cheat java compiler, haha~
             
-                    System.out.println("Check failed");
+                    Logger.info("Check failed");
 
                     return false;
                 }
             } else { 
 
-                System.out.println("ERROR");
-                throw new StateMachineException("This transition can not be accepted.\nNote: current state is <" + context.currentStatus + "> and are confronted with transition <" + ShareSessionTransition.valueOf(data[p]) + ">");
+                Logger.info("ERROR");
+                throw new StateMachineException("This transition can not be accepted.\nNote: current state is <" + context.getCurrentStatus() + "> and are confronted with transition <" + ShareSessionTransition.valueOf(data[p]) + ">");
             }
         }
 	break;
-// line 339 "./script/../app/utils/statemachine/ShareSessionStateMachine.java"
+// line 342 "./script/../app/utils/statemachine/ShareSessionStateMachine.java"
 			}
 		}
 	}
@@ -357,31 +360,31 @@ case 4:
 	while ( __nacts-- > 0 ) {
 		switch ( _share_session_actions[__acts++] ) {
 	case 6:
-// line 84 "/home/darwin/NetBeansProjects/peleus/script/ShareSessionStateMachine.rl"
+// line 85 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
 	{
 
             if (isJustACheck) {
                 if (true) { // just to cheat java compiler, haha~
             
-                    System.out.println("Check failed");
+                    Logger.info("Check failed");
 
                     return false;
                 }
             } else { 
 
-                System.out.println("ERROR");
-                throw new StateMachineException("This transition can not be accepted.\nNote: current state is <" + context.currentStatus + "> and are confronted with transition <" + ShareSessionTransition.valueOf(data[p]) + ">");
+                Logger.info("ERROR");
+                throw new StateMachineException("This transition can not be accepted.\nNote: current state is <" + context.getCurrentStatus() + "> and are confronted with transition <" + ShareSessionTransition.valueOf(data[p]) + ">");
             }
         }
 	break;
 	case 7:
-// line 101 "/home/darwin/NetBeansProjects/peleus/script/ShareSessionStateMachine.rl"
+// line 102 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
 	{
-//          System.out.println("EOF");
+//          Logger.info("EOF");
             { p += 1; _goto_targ = 5; if (true)  continue _goto;}
         }
 	break;
-// line 385 "./script/../app/utils/statemachine/ShareSessionStateMachine.java"
+// line 388 "./script/../app/utils/statemachine/ShareSessionStateMachine.java"
 		}
 	}
 	}
@@ -390,26 +393,26 @@ case 5:
 	}
 	break; }
 	}
-// line 182 "/home/darwin/NetBeansProjects/peleus/script/ShareSessionStateMachine.rl"
+// line 185 "/home/darwin/projects/java/peleus/script/ShareSessionStateMachine.rl"
         } catch (StateMachineException e) {
 
-            System.out.println("Rollbacking changes...");
-            context.currentStatus = cs_backup_for_rollback;
+            Logger.info("Rollbacking changes...");
+            context.setCurrentStatus(cs_backup_for_rollback);
             throw e; // resent it
         }
 
         if (!isJustACheck) {
-            System.out.println("Finished. The state of the machine is: " + context.currentStatus);
-            System.out.println("p: " + p + " pe: " + pe);
+            Logger.info("Finished. The state of the machine is: " + context.getCurrentStatus());
+            Logger.info("p: " + p + " pe: " + pe);
         } else {
             
-            System.out.println("Check passed");
+            Logger.info("Check passed");
         }
 
         return true;
     }
 
-    private static boolean run(ShareSessionContext context, ShareSessionTransition[] transitions, boolean isJustACheck) throws StateMachineException {
+    private static boolean transit(ShareSessionContext context, ShareSessionTransition[] transitions, boolean isJustACheck) throws StateMachineException {
 
         List<Character> chars = new ArrayList<Character>(transitions.length);
         
@@ -418,124 +421,25 @@ case 5:
             if (transition == null) {continue;}
             chars.add(transition.getCode());
         }
-        return run(context, chars.toArray(new Character[0]), isJustACheck);
+        return transit(context, chars.toArray(new Character[0]), isJustACheck);
     }
 
-    public static void run(ShareSessionContext context, ShareSessionTransition[] transitions) throws StateMachineException {
-        run(context, transitions, false);
+    public static void transit(ShareSessionContext context, ShareSessionTransition[] transitions) throws StateMachineException {
+        transit(context, transitions, false);
     }
 
-    public static void run(ShareSessionContext context, ShareSessionTransition transition) throws StateMachineException {
-        run(context, new ShareSessionTransition[] {transition}, false);
-    }
-
-
-    public static boolean check(ShareSessionContext context, ShareSessionTransition[] transitions) throws StateMachineException {
-        return run(context, transitions, true);
-    }
-
-    public static boolean check(ShareSessionContext context, ShareSessionTransition transition) throws StateMachineException {
-        return run(context, new ShareSessionTransition[] {transition}, true);
+    public static void transit(ShareSessionContext context, ShareSessionTransition transition) throws StateMachineException {
+        transit(context, new ShareSessionTransition[] {transition}, false);
     }
 
 
-
-    public static void main(String[] args) throws StateMachineException {
-
-        ShareSessionContext context = ShareSessionStateMachine.initContext();
-
-        ShareSessionStateMachine.run(context, ShareSessionTransition.INIT);
-
-        ShareSessionStateMachine.run(context, new ShareSessionTransition[] {});
-
-        ShareSessionStateMachine.run(context, ShareSessionTransition.PUBLISH);
-
-        try {
-            // should raise a error
-            ShareSessionStateMachine.run(context, new ShareSessionTransition[] {ShareSessionTransition.CLOSE, ShareSessionTransition.PUBLISH, ShareSessionTransition.PUBLISH});
-            throw new RuntimeException("should raise a error");
-        } catch (StateMachineException e) {
-
-            // Noops 
-        }
-
-        boolean success = ShareSessionStateMachine.check(context, ShareSessionTransition.PUBLISH);
-        if (success) {
-
-            throw new RuntimeException("should not pass check");
-        }
-
-        success = ShareSessionStateMachine.check(context, ShareSessionTransition.CLOSE);
-        if (!success) {
-
-            throw new RuntimeException("should pass check");
-        }
-
-        ShareSessionStateMachine.run(context, new ShareSessionTransition[] {ShareSessionTransition.CLOSE, ShareSessionTransition.PUBLISH});
-         
-        ShareSessionStateMachine.run(context, ShareSessionTransition.FINISH);
-
+    public static boolean couldAccept(ShareSessionContext context, ShareSessionTransition[] transitions) throws StateMachineException {
+        return transit(context, transitions, true);
     }
 
-    public static class StateMachineException extends Exception {
-        
-        public StateMachineException(String message) {
-            
-            super(message);
-        }
-    } 
-
-
-    public static ShareSessionContext initContext() {
-        
-        return new ShareSessionContext();
-    }
-    
-
-
-    static class ShareSessionContext {
-        
-        private ShareSessionStatus currentStatus;
-
-        public void setCurrentStatus(ShareSessionStatus currentStatus) {
-            this.currentStatus = currentStatus;
-        }
-
-        public ShareSessionStatus getCurrentStatus() {
-            return currentStatus;
-        }
-        
-        
+    public static boolean couldAccept(ShareSessionContext context, ShareSessionTransition transition) throws StateMachineException {
+        return transit(context, new ShareSessionTransition[] {transition}, true);
     }
 
-
-    public enum ShareSessionTransition {
-        
-        INIT('i'), DELETE('d'), EXPIRE('e'), CLOSE('c'), PUBLISH('p'), FINISH('f');
-        
-        private char code;
-        ShareSessionTransition(char code) {
-            
-            this.code = code;
-        }
-        
-        public char getCode() {
-            
-            return code;
-        }
-        public static ShareSessionTransition valueOf(char code) {
-            
-            for (ShareSessionTransition transition : values()) {
-                
-                if (transition.getCode() == code) {
-                    
-                    return transition;
-                }
-            }
-            return null;
-        }
-        
-        
-    }
 }
 
