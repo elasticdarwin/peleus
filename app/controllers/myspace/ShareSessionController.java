@@ -2,11 +2,13 @@ package controllers.myspace;
 
 import controllers.Application;
 import forms.myspace.ShareSessionForm;
+import java.util.Arrays;
 import java.util.List;
 import models.Department;
 import models.ShareSession;
 import models.ShareSession.ShareSessionStatus;
 import models.User;
+import play.Logger;
 import play.data.validation.Valid;
 
 public class ShareSessionController extends Application {
@@ -91,28 +93,63 @@ public class ShareSessionController extends Application {
 
     public static void edit(Long id) {
 
-        throw new UnsupportedOperationException("Not yet implemented");
+        ShareSession share_session = ShareSession.findById(id);
 
+        redirectToLoginIfNull(share_session);
+
+        flash.put("sharesession_form.subject", share_session.subject);
+        flash.put("sharesession_form.description", share_session.description);
+        flash.put("sharesession_form.audiences", share_session.audiences);
+        flash.put("sharesession_form.audiences_limit", share_session.audiences_limit);
+        flash.put("sharesession_form.start_date", share_session.start);
+        flash.put("sharesession_form.end_date", share_session.end);
+        flash.put("sharesession_form.address", share_session.address);
+
+        flash.put("sharesession_form.id", share_session.id);
+
+
+        flash.put("sharesession_form.department_id", share_session.department.id);
+
+
+        List<User> contributors = share_session.contributors;
+
+        List<String> keys = Arrays.asList("sharesession_form.user_1_id", "sharesession_form.user_2_id", "sharesession_form.user_3_id");
+
+        for (int index = 0; index < contributors.size(); index++) {
+            flash.put(keys.get(index), contributors.get(index).id);
+        }
+
+        for (int index = contributors.size(); index < 3 ; index++) {
+            flash.put(keys.get(index), -1L);
+        }
+
+
+
+
+        List<Department> departments = Department.findAll();
+        List<User> users = User.findAll();
+
+
+        render(departments, users);
     }
 
     public static void update(@Valid ShareSessionForm sharesession_form) {
 
-//        Department department = Department.findById(department_form.id);
-//
-//        department.name = department_form.name;
-//        department.description = department_form.description;
-//
-//
-//        if (department.validate_name(validation)) {
-//            params.flash();
-//            validation.keep();
-//            edit(department_form.id);
-//        }
-//
-//        department.save();
+        ShareSession share_session = ShareSession.update(sharesession_form, fetch_user_or_redirect_to_login());
+
+        Logger.info("start is ################################### " + sharesession_form.start_date);
+
+        //
+//        share_session.save();
+
+        index();
+
+
+
+
 
 //        render();
 
-        throw new UnsupportedOperationException("Not yet implemented");
+//        throw new UnsupportedOperationException("Not yet implemented");
     }
 }

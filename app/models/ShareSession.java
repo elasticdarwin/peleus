@@ -13,6 +13,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import play.Logger;
 import play.data.validation.Validation;
 import play.db.jpa.JPAModel;
 
@@ -54,10 +55,27 @@ public class ShareSession extends JPAModel {
         status = ShareSessionStatus.valueOf(string);
     }
 
-    public static ShareSession build(ShareSessionForm share_session_form,User creator) {
-        ShareSession share_session = new ShareSession();
+    public static ShareSession update(ShareSessionForm share_session_form, User creator) {
+
+        ShareSession share_session = ShareSession.findById(share_session_form.id);
+
+        share_session =  build(share_session, share_session_form, creator);
+
+        share_session.save();
+
+        return share_session;
+    }
+
+    public static ShareSession build(ShareSessionForm share_session_form, User creator) {
+
+        return build(new ShareSession(), share_session_form, creator);
+    }
+
+    private static ShareSession build(ShareSession share_session, ShareSessionForm share_session_form, User creator) {
+
 
         share_session.creator = creator;
+
 
         share_session.department = Department.findById(share_session_form.department_id);
         share_session.subject = share_session_form.subject;
@@ -88,12 +106,12 @@ public class ShareSession extends JPAModel {
         return share_session;
     }
 
-    public static ShareSession create(ShareSessionForm userForm,User creator) {
-        return create(userForm,creator, null);
+    public static ShareSession create(ShareSessionForm userForm, User creator) {
+        return create(userForm, creator, null);
     }
 
-    public static ShareSession create(ShareSessionForm share_session_form, User creator,Validation validation) {
-        ShareSession share_session = build(share_session_form,creator);
+    public static ShareSession create(ShareSessionForm share_session_form, User creator, Validation validation) {
+        ShareSession share_session = build(share_session_form, creator);
 
         if (validation != null) {
             share_session.validate(validation);

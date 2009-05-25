@@ -34,6 +34,8 @@ GET         /myspace/sharesession/{action}          myspace.ShareSessionControll
 
 POST        /myspace/sharesession/create            myspace.ShareSessionController.create
 
+POST        /myspace/sharesession/update            myspace.ShareSessionController.update
+
 
 # MySpace Default Route Configuration
 

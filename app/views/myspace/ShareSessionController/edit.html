@@ -6,12 +6,13 @@
 
         <h3>Edit ShareSession</h3>
 
+
         <label>&{'myspace.sharesession.department'}</label>
         <select name="sharesession_form.department_id">
             <option value="0">&{'myspace.sharesession.select.department'}</option>
 
             #{list items:departments, as:'department'}
-            #{if flash['sharesession_form.department_id'] == department.id}
+            #{if flash['sharesession_form.department_id'].toLong() == department.id.toLong()}
             <option value="${department.id}" selected="selected">${department.name}</option>
             #{/if}
             #{else}
@@ -20,7 +21,7 @@
             #{/list}
         </select>
         <span class="flashError">#{error 'sharesession_form.department_id' /}</span>
-        <br />
+        <br /> 
 
 
         <label>&{'myspace.sharesession.subject'}</label>
@@ -66,7 +67,7 @@
             <option value="0">&{'myspace.sharesession.select.contributor'}</option>
 
             #{list items:users, as:'user'}
-            #{if flash['sharesession_form.user_1_id'] == user.id}
+            #{if flash['sharesession_form.user_1_id'].toLong() == user.id.toLong()}
             <option value="${user.id}" selected="selected">${user.name}</option>
             #{/if}
             #{else}
@@ -82,7 +83,7 @@
             <option value="0">&{'myspace.sharesession.select.contributor'}</option>
 
             #{list items:users, as:'user'}
-            #{if flash['sharesession_form.user_2_id'] == user.id}
+            #{if flash['sharesession_form.user_2_id'].toLong() == user.id.toLong()}
             <option value="${user.id}" selected="selected">${user.name}</option>
             #{/if}
             #{else}
@@ -98,7 +99,7 @@
             <option value="0">&{'myspace.sharesession.select.contributor'}</option>
 
             #{list items:users, as:'user'}
-            #{if flash['sharesession_form.user_3_id'] == user.id}
+            #{if flash['sharesession_form.user_3_id'].toLong() == user.id.toLong()}
             <option value="${user.id}" selected="selected">${user.name}</option>
             #{/if}
             #{else}
@@ -111,6 +112,9 @@
 
 
 
-        <input type="submit" value="&{'myspace.sharesession.post.submit'}"/>
+
+        <input type="hidden" name="sharesession_form.id" value="${flash['sharesession_form.id']}"/>
+
+        <input type="submit" value="Update"/>
     </form>
 </div>

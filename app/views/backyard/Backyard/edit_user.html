@@ -16,7 +16,7 @@
 
         <select name="user_form.department_id">
             #{list items:departments, as:'department'}
-                #{if flash['user_form.department_id'] == department.id.toString()}
+                #{if flash['user_form.department_id'].toLong() == department.id.toLong()}
                 <option value="${department.id}" selected="selected">${department.name}</option>
                 #{/if}
                 #{else}

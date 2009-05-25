@@ -5,7 +5,6 @@ import controllers.Application;
 import controllers.myspace.MySpace;
 import forms.myspace.user.LoginForm;
 import forms.myspace.user.UserForm;
-import java.util.ArrayList;
 import java.util.List;
 import models.Department;
 import models.User;

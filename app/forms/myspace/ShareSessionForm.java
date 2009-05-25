@@ -40,4 +40,6 @@ public class ShareSessionForm {
 
 //    @Range(min = 1, message="common.basic.actions.not_selected_yet")
     public Long user_3_id;
+
+    public Long id;
 }

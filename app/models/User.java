@@ -5,7 +5,6 @@ import forms.myspace.user.UserForm;
 import java.util.List;
 import javax.persistence.*;
 import org.apache.commons.lang.StringUtils;
-import play.Logger;
 import play.data.validation.Validation;
 import play.db.jpa.JPAModel;
 import play.i18n.Messages;
