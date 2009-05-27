@@ -85,9 +85,9 @@ myspace.sharesession.address=Address
 myspace.sharesession.audiences_limit=Audiences Limit
 myspace.sharesession.description=Description
 myspace.sharesession.post.submit=Post
-myspace.sharesession.user_1_id=Contributor One
-myspace.sharesession.user_2_id=Contributor Two
-myspace.sharesession.user_3_id=Contributor Three
+myspace.sharesession.contributor_1_id=Contributor One
+myspace.sharesession.contributor_2_id=Contributor Two
+myspace.sharesession.contributor_3_id=Contributor Three
 
 myspace.sharesession.select.department=Select Department
 myspace.sharesession.select.contributor=Select Contributor

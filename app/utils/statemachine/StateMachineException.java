@@ -4,7 +4,7 @@
  */
 package utils.statemachine;
 
-public class StateMachineException extends Exception {
+public class StateMachineException extends RuntimeException {
 
     public StateMachineException(String message) {
 

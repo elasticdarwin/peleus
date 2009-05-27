@@ -59,4 +59,25 @@ public class StateMachineTest extends UnitTest {
         assertEquals(context.getCurrentStatus(), ShareSessionStatus.FINISHED);
 
     }
+
+    @Test
+    public void publish_before_init_it() throws StateMachineException {
+
+        ShareSessionContext context = new ShareSession();
+
+
+
+        try {
+            // should raise a error
+            ShareSessionStateMachine.transit(context, ShareSessionTransition.PUBLISH);
+
+            fail("should raise a error");
+        } catch (StateMachineException e) {
+            assertNull(context.getCurrentStatus());
+        // Noops
+        }
+
+
+
+    }
 }

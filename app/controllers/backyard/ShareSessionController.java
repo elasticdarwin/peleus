@@ -26,7 +26,7 @@ public class ShareSessionController extends Application {
         ShareSession share_session = ShareSession.findById(id);
 
 
-        redirectToLoginIfNull(share_session);
+        redirectToLoginIfNo(share_session);
 
         render(share_session);
 
@@ -37,7 +37,7 @@ public class ShareSessionController extends Application {
 
     public static void publish(Long id) throws StateMachineException {
         ShareSession share_session = ShareSession.findById(id);
-        redirectToLoginIfNull(share_session);
+        redirectToLoginIfNo(share_session);
 
         if (ShareSessionStateMachine.couldAccept(share_session, ShareSessionTransition.PUBLISH)) {
 
@@ -53,7 +53,7 @@ public class ShareSessionController extends Application {
 
     public static void close(Long id) throws StateMachineException {
         ShareSession share_session = ShareSession.findById(id);
-        redirectToLoginIfNull(share_session);
+        redirectToLoginIfNo(share_session);
 
         if (ShareSessionStateMachine.couldAccept(share_session, ShareSessionTransition.CLOSE)) {
 

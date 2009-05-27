@@ -53,8 +53,8 @@ public class LoadFixtures extends FunctionalTest {
         User arthur = User.findOneBy("name", "Arthur");
         User darwin = User.findOneBy("name", "Darwin");
         
-        rubySession.user_1_id = arthur.id;
-        rubySession.user_2_id = darwin.id;
+        rubySession.contributor_1_id = arthur.id;
+        rubySession.contributor_2_id = darwin.id;
 
 
 
@@ -75,8 +75,8 @@ public class LoadFixtures extends FunctionalTest {
         }
 
         designSession.subject = "Gof Design Patterns with Java";
-        designSession.user_1_id = ((User)User.findOneBy("name", "Darwin")).id;
-        designSession.user_2_id = ((User)User.findOneBy("name", "Arthur")).id;
+        designSession.contributor_1_id = ((User)User.findOneBy("name", "Darwin")).id;
+        designSession.contributor_2_id = ((User)User.findOneBy("name", "Arthur")).id;
 
         ShareSession.create(designSession,darwin);
 
@@ -88,7 +88,7 @@ public class LoadFixtures extends FunctionalTest {
 
         UserForm arthurForm = new UserForm();
         arthurForm.name = "Arthur";
-        arthurForm.email = "arthur.zhangxz@alibaba-inc.com";
+        arthurForm.email = "a@b.cn";
         arthurForm.password = "arthur";
         arthurForm.repeat_password = "arthur";
         arthurForm.prefered_lang = "en";
@@ -97,7 +97,7 @@ public class LoadFixtures extends FunctionalTest {
 
         UserForm darwinForm = new UserForm();
         darwinForm.name = "Darwin";
-        darwinForm.email = "darwin.liz@alibaba-inc.com";
+        darwinForm.email = "d@a.cn";
         darwinForm.password = "darwin";
         darwinForm.repeat_password = "darwin";
         darwinForm.prefered_lang = "en";

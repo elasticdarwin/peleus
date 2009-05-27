@@ -11,7 +11,7 @@
             <option value="0">&{'myspace.sharesession.select.department'}</option>
 
             #{list items:departments, as:'department'}
-            #{if flash['sharesession_form.department_id'].toLong() == department.id.toLong()}
+            #{if  flash['sharesession_form.department_id'] != null && flash['sharesession_form.department_id'].toLong() == department.id.toLong()}
             <option value="${department.id}" selected="selected">${department.name}</option>
             #{/if}
             #{else}
@@ -61,12 +61,12 @@
 
 
 
-        <label>&{'myspace.sharesession.user_1_id'}</label>
-        <select name="sharesession_form.user_1_id">
+        <label>&{'myspace.sharesession.contributor_1_id'}</label>
+        <select name="sharesession_form.contributor_1_id">
             <option value="0">&{'myspace.sharesession.select.contributor'}</option>
 
             #{list items:users, as:'user'}
-            #{if flash['sharesession_form.user_1_id'].toLong() == user.id.toLong()}
+            #{if flash['sharesession_form.contributor_1_id'] != null && flash['sharesession_form.contributor_1_id'].toLong() == user.id.toLong()}
             <option value="${user.id}" selected="selected">${user.name}</option>
             #{/if}
             #{else}
@@ -74,15 +74,15 @@
             #{/else}
             #{/list}
         </select>
-        <span class="flashError">#{error 'sharesession_form.user_1_id' /}</span>
+        <span class="flashError">#{error 'sharesession_form.contributor_1_id' /}</span>
         <br />
 
-        <label>&{'myspace.sharesession.user_2_id'}</label>
-        <select name="sharesession_form.user_2_id">
+        <label>&{'myspace.sharesession.contributor_2_id'}</label>
+        <select name="sharesession_form.contributor_2_id">
             <option value="0">&{'myspace.sharesession.select.contributor'}</option>
 
             #{list items:users, as:'user'}
-            #{if flash['sharesession_form.user_2_id'].toLong() == user.id.toLong()}
+            #{if flash['sharesession_form.contributor_2_id'] != null && flash['sharesession_form.contributor_2_id'].toLong() == user.id.toLong()}
             <option value="${user.id}" selected="selected">${user.name}</option>
             #{/if}
             #{else}
@@ -90,15 +90,15 @@
             #{/else}
             #{/list}
         </select>
-        <span class="flashError">#{error 'sharesession_form.user_2_id' /}</span>
+        <span class="flashError">#{error 'sharesession_form.contributor_2_id' /}</span>
         <br />
 
-        <label>&{'myspace.sharesession.user_3_id'}</label>
-        <select name="sharesession_form.user_3_id">
+        <label>&{'myspace.sharesession.contributor_3_id'}</label>
+        <select name="sharesession_form.contributor_3_id">
             <option value="0">&{'myspace.sharesession.select.contributor'}</option>
 
             #{list items:users, as:'user'}
-            #{if flash['sharesession_form.user_3_id'].toLong() == user.id.toLong()}
+            #{if flash['sharesession_form.contributor_3_id'] != null && flash['sharesession_form.contributor_3_id'].toLong() == user.id.toLong()}
             <option value="${user.id}" selected="selected">${user.name}</option>
             #{/if}
             #{else}
@@ -106,7 +106,7 @@
             #{/else}
             #{/list}
         </select>
-        <span class="flashError">#{error 'sharesession_form.user_3_id' /}</span>
+        <span class="flashError">#{error 'sharesession_form.contributor_3_id' /}</span>
         <br />
 
 

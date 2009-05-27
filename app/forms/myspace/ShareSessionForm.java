@@ -33,13 +33,13 @@ public class ShareSessionForm {
     public String description;
     @Required
     @Range(min = 1, message = "common.basic.actions.not_selected_yet")
-    public Long user_1_id;
+    public Long contributor_1_id;
 
 //    @Range(min = 1, message="common.basic.actions.not_selected_yet")
-    public Long user_2_id;
+    public Long contributor_2_id;
 
 //    @Range(min = 1, message="common.basic.actions.not_selected_yet")
-    public Long user_3_id;
+    public Long contributor_3_id;
 
     public Long id;
 }

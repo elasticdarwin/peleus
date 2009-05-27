@@ -8,10 +8,8 @@ import models.Department;
 import models.ShareSession;
 
 import models.User;
-import play.Logger;
 import play.data.validation.Valid;
 import utils.statemachine.ShareSessionStateMachine;
-import utils.statemachine.ShareSessionStateMachine.ShareSessionStatus;
 import utils.statemachine.ShareSessionTransition;
 import utils.statemachine.StateMachineException;
 
@@ -49,27 +47,27 @@ public class ShareSessionController extends Application {
         render(user, my_share_sessions);
     }
 
-    public static void delete_confirm(Long id) {
+    public static void show(Long id) {
+
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 
     public static void publish(Long id) throws StateMachineException {
+        //TODO : refactor with Filter
         User user = fetch_user_or_redirect_to_login();
-        redirectToLoginIfNull(user);
+        redirectToLoginIfNo(user);
 
         ShareSession share_session = ShareSession.findById(id);
-        forbiddenIfNull(share_session);
+        forbiddenIfNo(share_session);
 
-
+        //TODO : consider to handle @ more higher level
         if (share_session.creator != user) {
             forbidden("You don't have permissions to access this page!");
         }
 
+        ShareSessionStateMachine.transit(share_session, ShareSessionTransition.PUBLISH);
 
-        if (ShareSessionStateMachine.couldAccept(share_session, ShareSessionTransition.PUBLISH)) {
-            ShareSessionStateMachine.transit(share_session, ShareSessionTransition.PUBLISH);
-
-            share_session.save();
-        }
+        share_session.save();
 
         redirectBackIfHasHTTPReferer();
 
@@ -77,66 +75,31 @@ public class ShareSessionController extends Application {
     }
 
     public static void close(Long id) throws StateMachineException {
-        // TODO access control
 
         ShareSession share_session = ShareSession.findById(id);
-        redirectToLoginIfNull(share_session);
+        redirectToLoginIfNo(share_session);
 
-        if (ShareSessionStateMachine.couldAccept(share_session, ShareSessionTransition.CLOSE)) {
+        ShareSessionStateMachine.transit(share_session, ShareSessionTransition.CLOSE);
 
-            ShareSessionStateMachine.transit(share_session, ShareSessionTransition.CLOSE);
-
-            share_session.save();
-        }
-
-
+        share_session.save();
 
         redirectBackIfHasHTTPReferer();
         show(id);
     }
 
-    public static void show(Long id) {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public static void delete_confirm(Long id) {
     }
 
     public static void edit(Long id) {
 
         ShareSession share_session = ShareSession.findById(id);
 
-        redirectToLoginIfNull(share_session);
+        redirectToLoginIfNo(share_session);
 
-        flash.put("sharesession_form.subject", share_session.subject);
-        flash.put("sharesession_form.description", share_session.description);
-        flash.put("sharesession_form.audiences", share_session.audiences);
-        flash.put("sharesession_form.audiences_limit", share_session.audiences_limit);
-        flash.put("sharesession_form.start_date", share_session.start);
-        flash.put("sharesession_form.end_date", share_session.end);
-        flash.put("sharesession_form.address", share_session.address);
-
-        flash.put("sharesession_form.id", share_session.id);
-
-
-        flash.put("sharesession_form.department_id", share_session.department.id);
-
-
-        List<User> contributors = share_session.contributors;
-
-        List<String> keys = Arrays.asList("sharesession_form.user_1_id", "sharesession_form.user_2_id", "sharesession_form.user_3_id");
-
-        for (int index = 0; index < contributors.size(); index++) {
-            flash.put(keys.get(index), contributors.get(index).id);
-        }
-
-        for (int index = contributors.size(); index < 3; index++) {
-            flash.put(keys.get(index), -1L);
-        }
-
-
-
+        fetch_for_edit(share_session);
 
         List<Department> departments = Department.findAll();
         List<User> users = User.findAll();
-
 
         render(departments, users);
     }
@@ -145,19 +108,29 @@ public class ShareSessionController extends Application {
 
         ShareSession share_session = ShareSession.update(sharesession_form, fetch_user_or_redirect_to_login());
 
-        Logger.info("start is ################################### " + sharesession_form.start_date);
+        forbiddenIfNo(share_session);
 
-        //
-//        share_session.save();
-
+        //show(share_session.id);
         index();
+    }
 
-
-
-
-
-//        render();
-
-//        throw new UnsupportedOperationException("Not yet implemented");
+    private static void fetch_for_edit(ShareSession share_session) {
+        flash.put("sharesession_form.subject", share_session.subject);
+        flash.put("sharesession_form.description", share_session.description);
+        flash.put("sharesession_form.audiences", share_session.audiences);
+        flash.put("sharesession_form.audiences_limit", share_session.audiences_limit);
+        flash.put("sharesession_form.start_date", share_session.start);
+        flash.put("sharesession_form.end_date", share_session.end);
+        flash.put("sharesession_form.address", share_session.address);
+        flash.put("sharesession_form.id", share_session.id);
+        flash.put("sharesession_form.department_id", share_session.department.id);
+        List<User> contributors = share_session.contributors;
+        List<String> keys = Arrays.asList("sharesession_form.contributor_1_id", "sharesession_form.contributor_2_id", "sharesession_form.contributor_3_id");
+        for (int index = 0; index < contributors.size(); index++) {
+            flash.put(keys.get(index), contributors.get(index).id);
+        }
+        for (int index = contributors.size(); index < 3; index++) {
+            flash.put(keys.get(index), -1L);
+        }
     }
 }

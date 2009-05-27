@@ -28,7 +28,7 @@ public class Application extends Controller {
 
         User user = fetch_user();
 
-        redirectToLoginIfNull(user);
+        redirectToLoginIfNo(user);
 
         return user;
     }
@@ -44,14 +44,14 @@ public class Application extends Controller {
         return user;
     }
 
-    protected static void redirectToLoginIfNull(Object obj) {
+    protected static void redirectToLoginIfNo(Object obj) {
         if (obj == null) {
 
             UserFacade.login();
         }
     }
 
-    protected static void forbiddenIfNull(Object obj) {
+    protected static void forbiddenIfNo(Object obj) {
         if (obj == null) {
             forbidden("Target is missing!");
         }

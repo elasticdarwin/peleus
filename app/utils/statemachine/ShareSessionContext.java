@@ -4,7 +4,6 @@
  */
 package utils.statemachine;
 
-import play.Logger;
 import utils.statemachine.ShareSessionStateMachine.ShareSessionStatus;
 
 public interface ShareSessionContext {

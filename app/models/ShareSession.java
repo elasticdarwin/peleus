@@ -13,10 +13,13 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import play.Logger;
 import play.data.validation.Validation;
 import play.db.jpa.JPAModel;
 import utils.statemachine.ShareSessionContext;
+import utils.statemachine.ShareSessionStateMachine;
 import utils.statemachine.ShareSessionStateMachine.ShareSessionStatus;
+import utils.statemachine.ShareSessionTransition;
 
 @Entity
 @Table(name = "share_sessions")
@@ -48,58 +51,8 @@ public class ShareSession extends JPAModel implements ShareSessionContext {
     public ShareSessionStatus status;
 
     public void setStatus(String string) {
+
         status = ShareSessionStatus.valueOf(string);
-    }
-
-    public static ShareSession update(ShareSessionForm share_session_form, User creator) {
-
-        ShareSession share_session = ShareSession.findById(share_session_form.id);
-
-        share_session = build(share_session, share_session_form, creator);
-
-        share_session.save();
-
-        return share_session;
-    }
-
-    public static ShareSession build(ShareSessionForm share_session_form, User creator) {
-
-        return build(new ShareSession(), share_session_form, creator);
-    }
-
-    private static ShareSession build(ShareSession share_session, ShareSessionForm share_session_form, User creator) {
-
-
-        share_session.creator = creator;
-
-
-        share_session.department = Department.findById(share_session_form.department_id);
-        share_session.subject = share_session_form.subject;
-        share_session.audiences = share_session_form.audiences;
-        share_session.start = share_session_form.start_date;
-        share_session.end = share_session_form.end_date;
-        share_session.address = share_session_form.address;
-
-        share_session.audiences_limit = share_session_form.audiences_limit;
-        share_session.description = share_session_form.description;
-        share_session.status = ShareSessionStatus.CREATED;
-
-
-        User user_1 = User.findById(share_session_form.user_1_id);
-
-        User user_2 = null;
-        if (share_session_form.user_2_id != null && share_session_form.user_2_id > 0) {
-            user_2 = User.findById(share_session_form.user_2_id);
-        }
-
-
-        User user_3 = null;
-        if (share_session_form.user_3_id != null && share_session_form.user_3_id > 0) {
-            user_3 = User.findById(share_session_form.user_3_id);
-        }
-        share_session.contributors = Arrays.asList(user_1, user_2, user_3);
-
-        return share_session;
     }
 
     public static ShareSession create(ShareSessionForm userForm, User creator) {
@@ -120,16 +73,19 @@ public class ShareSession extends JPAModel implements ShareSessionContext {
         return share_session;
     }
 
-    private void validate(Validation validation) {
-        // Noops
-    }
+    public static ShareSession update(ShareSessionForm share_session_form, User creator) {
 
-    public static int deleteAllWithDenpendencies() {
-        List<ShareSession> share_sessions = ShareSession.findAll();
-        for (ShareSession share_session : share_sessions) {
-            share_session.delete();
+        ShareSession share_session = ShareSession.findById(share_session_form.id);
+
+        if (!share_session.creator.equals(creator)) {
+            return null;
         }
-        return share_sessions.size();
+
+        share_session = build(share_session, share_session_form, creator);
+
+        share_session.save();
+
+        return share_session;
     }
 
     public static List<ShareSession> findSessionsOnComing() {
@@ -146,5 +102,59 @@ public class ShareSession extends JPAModel implements ShareSessionContext {
 
     public ShareSessionStatus getCurrentStatus() {
         return status;
+    }
+
+    public static int deleteAllWithDenpendencies() {
+        List<ShareSession> share_sessions = ShareSession.findAll();
+        for (ShareSession share_session : share_sessions) {
+            share_session.delete();
+        }
+        return share_sessions.size();
+    }
+
+    private static ShareSession build(ShareSessionForm share_session_form, User creator) {
+
+        return build(new ShareSession(), share_session_form, creator);
+    }
+
+    private static ShareSession build(ShareSession share_session, ShareSessionForm share_session_form, User creator) {
+
+        share_session.creator = creator;
+
+        share_session.department = Department.findById(share_session_form.department_id);
+        share_session.subject = share_session_form.subject;
+        share_session.audiences = share_session_form.audiences;
+        share_session.start = share_session_form.start_date;
+        share_session.end = share_session_form.end_date;
+        share_session.address = share_session_form.address;
+
+        share_session.audiences_limit = share_session_form.audiences_limit;
+        share_session.description = share_session_form.description;
+
+        if (share_session.status == null) {
+            ShareSessionStateMachine.transit(share_session, ShareSessionTransition.INIT);
+        }
+
+        User contributor_1 = User.findById(share_session_form.contributor_1_id);
+
+        User contributor_2 = null;
+        if (share_session_form.contributor_2_id != null && share_session_form.contributor_2_id > 0) {
+            contributor_2 = User.findById(share_session_form.contributor_2_id);
+        }
+
+
+        User contributor_3 = null;
+        if (share_session_form.contributor_3_id != null && share_session_form.contributor_3_id > 0) {
+            contributor_3 = User.findById(share_session_form.contributor_3_id);
+        }
+
+
+        share_session.contributors = Arrays.asList(contributor_1, contributor_2, contributor_3);
+
+        return share_session;
+    }
+
+    private void validate(Validation validation) {
+        // Noops
     }
 }
