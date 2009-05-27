@@ -19,9 +19,7 @@ public class ShareSessionStateMachine {
         machine share_session;
 
         action do_init { 
-            if (isJustACheck) {
-                fgoto *fcurs;
-            } else {
+            if (!isJustACheck) {
 
                 ShareSessionStatus.CREATED.stateCode = fentry(created); 
                 ShareSessionStatus.DELETED.stateCode = fentry(deleted); 
@@ -36,9 +34,7 @@ public class ShareSessionStateMachine {
             }
         }
         action do_delete { 
-            if (isJustACheck) {
-                fgoto *fcurs;
-            } else {
+            if (!isJustACheck) {
 
                 context.setCurrentStatus(ShareSessionStatus.DELETED);
                 Logger.info("DELETE");
@@ -46,36 +42,28 @@ public class ShareSessionStateMachine {
         }
 
         action do_publish { 
-            if (isJustACheck) {
-                fgoto *fcurs;
-            } else {
+            if (!isJustACheck) {
 
                 context.setCurrentStatus(ShareSessionStatus.PUBLISHED);
                 Logger.info("PUBLISH");
             }
         }
         action do_expire { 
-            if (isJustACheck) {
-                fgoto *fcurs;
-            } else {
+            if (!isJustACheck) {
 
                 context.setCurrentStatus(ShareSessionStatus.EXPIRED);
                 Logger.info("EXPIRE");
             }
         }
         action do_close {
-            if (isJustACheck) {
-                fgoto *fcurs;
-            } else {
+            if (!isJustACheck) {
 
                 context.setCurrentStatus(ShareSessionStatus.CLOSED);
                 Logger.info("CLOSE");
             }
         }
         action do_finish { 
-            if (isJustACheck) {
-                fgoto *fcurs;
-            } else {
+            if (!isJustACheck) {
 
                 context.setCurrentStatus(ShareSessionStatus.FINISHED);
                 Logger.info("FINISH");
@@ -155,7 +143,7 @@ public class ShareSessionStateMachine {
 
     %% write data;
 
-    private static boolean transit(ShareSessionContext context, Character[] data, boolean isJustACheck) throws StateMachineException {
+    private static boolean transit(ShareSessionContext context, Character[] data, boolean isJustACheck) {
 
         StringBuilder buffer = new StringBuilder();
         buffer.append("Running the state machine with input [");
@@ -200,7 +188,7 @@ public class ShareSessionStateMachine {
         return true;
     }
 
-    private static boolean transit(ShareSessionContext context, ShareSessionTransition[] transitions, boolean isJustACheck) throws StateMachineException {
+    private static boolean transit(ShareSessionContext context, ShareSessionTransition[] transitions, boolean isJustACheck) {
 
         List<Character> chars = new ArrayList<Character>(transitions.length);
         
@@ -212,20 +200,20 @@ public class ShareSessionStateMachine {
         return transit(context, chars.toArray(new Character[0]), isJustACheck);
     }
 
-    public static void transit(ShareSessionContext context, ShareSessionTransition[] transitions) throws StateMachineException {
+    public static void transit(ShareSessionContext context, ShareSessionTransition[] transitions) {
         transit(context, transitions, false);
     }
 
-    public static void transit(ShareSessionContext context, ShareSessionTransition transition) throws StateMachineException {
+    public static void transit(ShareSessionContext context, ShareSessionTransition transition) {
         transit(context, new ShareSessionTransition[] {transition}, false);
     }
 
 
-    public static boolean couldAccept(ShareSessionContext context, ShareSessionTransition[] transitions) throws StateMachineException {
+    public static boolean couldAccept(ShareSessionContext context, ShareSessionTransition[] transitions) {
         return transit(context, transitions, true);
     }
 
-    public static boolean couldAccept(ShareSessionContext context, ShareSessionTransition transition) throws StateMachineException {
+    public static boolean couldAccept(ShareSessionContext context, ShareSessionTransition transition) {
         return transit(context, new ShareSessionTransition[] {transition}, true);
     }
 

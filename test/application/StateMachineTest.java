@@ -16,7 +16,7 @@ import utils.statemachine.StateMachineException;
 public class StateMachineTest extends UnitTest {
 
     @Test
-    public void basic() throws StateMachineException {
+    public void basic_flow() throws StateMachineException {
 
         ShareSessionContext context = new ShareSession();
 
@@ -65,8 +65,6 @@ public class StateMachineTest extends UnitTest {
 
         ShareSessionContext context = new ShareSession();
 
-
-
         try {
             // should raise a error
             ShareSessionStateMachine.transit(context, ShareSessionTransition.PUBLISH);
@@ -76,8 +74,68 @@ public class StateMachineTest extends UnitTest {
             assertNull(context.getCurrentStatus());
         // Noops
         }
+    }
+
+    @Test
+    public void could_accept() throws StateMachineException {
+
+        ShareSessionContext context = new ShareSession();
 
 
+        boolean success = ShareSessionStateMachine.couldAccept(context, ShareSessionTransition.INIT);
+
+        assertTrue("should pass couldAccept", success);
+        assertNull(context.getCurrentStatus());
+
+
+        success = ShareSessionStateMachine.couldAccept(context, new ShareSessionTransition[]{ShareSessionTransition.INIT});
+        assertTrue("should pass couldAccept", success);
+        assertNull(context.getCurrentStatus());
+
+
+        success = ShareSessionStateMachine.couldAccept(context, new ShareSessionTransition[]{ShareSessionTransition.INIT, ShareSessionTransition.PUBLISH});
+        assertTrue("should pass couldAccept", success);
+        assertNull(context.getCurrentStatus());
+
+
+
+//        ShareSessionStateMachine.transit(context, ShareSessionTransition.INIT);
+//        assertEquals(context.getCurrentStatus(), ShareSessionStatus.CREATED);
+//
+//        ShareSessionStateMachine.transit(context, new ShareSessionTransition[]{});
+//        assertEquals(context.getCurrentStatus(), ShareSessionStatus.CREATED);
+//
+//
+//        ShareSessionStateMachine.transit(context, ShareSessionTransition.PUBLISH);
+//        assertEquals(context.getCurrentStatus(), ShareSessionStatus.PUBLISHED);
+//
+//        try {
+//            // should raise a error
+//            ShareSessionStateMachine.transit(context, new ShareSessionTransition[]{ShareSessionTransition.CLOSE, ShareSessionTransition.PUBLISH, ShareSessionTransition.PUBLISH});
+//            fail("should raise a error");
+//        } catch (StateMachineException e) {
+//
+//            // Noops
+//        }
+//
+//        boolean success = ShareSessionStateMachine.couldAccept(context, ShareSessionTransition.PUBLISH);
+//
+//        assertFalse("should not pass couldAccept", success);
+//        assertEquals(context.getCurrentStatus(), ShareSessionStatus.PUBLISHED);
+//
+//
+//
+//        success = ShareSessionStateMachine.couldAccept(context, ShareSessionTransition.CLOSE);
+//        assertTrue("should pass couldAccept", success);
+//        assertEquals(context.getCurrentStatus(), ShareSessionStatus.PUBLISHED);
+//
+//
+//        ShareSessionStateMachine.transit(context, new ShareSessionTransition[]{ShareSessionTransition.CLOSE, ShareSessionTransition.PUBLISH});
+//        assertEquals(context.getCurrentStatus(), ShareSessionStatus.PUBLISHED);
+//
+//
+//        ShareSessionStateMachine.transit(context, ShareSessionTransition.FINISH);
+//        assertEquals(context.getCurrentStatus(), ShareSessionStatus.FINISHED);
 
     }
 }
