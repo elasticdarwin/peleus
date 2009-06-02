@@ -1,0 +1,31 @@
+
+#{set local:'http://127.0.0.1:9000' /}
+
+#{selenium 'Test User Login'}
+	clearSession()
+
+    // login successful
+    open(#{get 'local' /})
+    clickAndWait('link=login')
+    type('login_form.email', 'a@b.cn')
+    type('login_form.password', 'arthur')
+    clickAndWait('//input[@value="Login Now"]')
+    assertTextPresent('Logout')
+    clickAndWait('link=Logout')
+    assertTextPresent('You have just logged out from Peleus System!')
+
+
+    // login failed
+    open(#{get 'local' /})
+    clickAndWait('link=login')
+    type('login_form.email', 'a')
+    type('login_form.password', 'arthur')
+    clickAndWait('//input[@value="Login Now"]')
+    assertTextPresent('Not account associated with this email.')
+
+    type('login_form.email', 'a@b.cn')
+    type('login_form.password', 'darwin')
+    assertTextPresent('Not account associated with this email.')
+
+    assertLocation(@@{myspace.user.UserFacade.login()})
+#{/selenium}
