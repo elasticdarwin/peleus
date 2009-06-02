@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 require 'erb'
 
 config = File.read(File.join(File.dirname(__FILE__), '..', '/conf/application.conf.erb'))
