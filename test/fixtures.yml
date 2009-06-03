@@ -1,0 +1,44 @@
+---
+Department(cpm):
+  description: myteam
+  name: cpm
+Department(cpc):
+  description: yourteam
+  name: cpc
+
+
+User(Arthur):
+  department: cpm
+  email: a@b.cn
+  name: Arthur
+  password: arthur
+User(Darwin):
+  department: cpc
+  email: d@a.cn
+  name: Darwin
+  password: darwin
+  
+
+ShareSession(108):
+  address: T2-T3
+  audiences: Java Design Pattern Fans
+  audiences_limit: 200
+  creator: Darwin
+  department: cpm
+  description: This is an advanced design topic on how to apply Gof design patterns with java programming.
+  end: 2009-08-01 21:30:00 +08:00
+  start: 2009-08-01 19:30:00 +08:00
+  status: CREATED
+  subject: Gof Design Patterns with Java
+ShareSession(107):
+  address: Coffee Room @ 7floor
+  audiences: Ruby Fans
+  audiences_limit: 100
+  creator: Arthur
+  department: cpm
+  description: This is an advanced ruby topic on how to make full use of the meta programming paradigm of ruby .
+  end: 2009-07-01 11:30:00 +08:00
+  start: 2009-07-01 09:30:00 +08:00
+  status: CREATED
+  subject: Ruby Meta Programming
+

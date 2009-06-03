@@ -92,6 +92,10 @@ public class User extends JPAModel {
         return validate_email(validation);
     }
 
+    private boolean isCreateMode() {
+        return id == null;
+    }
+
     private boolean validate_email(Validation validation) {
         List<User> found_users = findBy("email", email);
 
@@ -99,6 +103,10 @@ public class User extends JPAModel {
             return true;
         }
 
+        if (isCreateMode()) {
+            validation.addError(UserForm.EMAIL, Messages.get("validation.email.occupied"));
+            return false;
+        }
 
         if (found_users.get(0).id.longValue() == id.longValue()) {
             return true;

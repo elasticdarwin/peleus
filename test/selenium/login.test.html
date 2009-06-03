@@ -1,11 +1,13 @@
 
-#{set local:'http://127.0.0.1:9000' /}
 
-#{selenium 'Test User Login'}
+
+#{fixture delete:'all', load:'fixtures.yml' /}
+
+#{selenium 'MySpace##Test User Login & Logout'}
 	clearSession()
 
     // login successful
-    open(#{get 'local' /})
+    open(@@{dashboard.Dashboard.index()})
     clickAndWait('link=login')
     type('login_form.email', 'a@b.cn')
     type('login_form.password', 'arthur')
@@ -16,7 +18,7 @@
 
 
     // login failed
-    open(#{get 'local' /})
+    open(@@{dashboard.Dashboard.index()})
     clickAndWait('link=login')
     type('login_form.email', 'a')
     type('login_form.password', 'arthur')
@@ -29,3 +31,19 @@
 
     assertLocation(@@{myspace.user.UserFacade.login()})
 #{/selenium}
+
+#{selenium 'MySpace##Test User Join'}
+
+#{/selenium}
+
+#{selenium 'MySpace##Test ShareSession Magnagement'}
+
+#{/selenium}
+
+#{selenium 'MySpace##Test Edit a ShareSession'}
+
+#{/selenium}
+
+
+
+
