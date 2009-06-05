@@ -5,6 +5,7 @@ import play.data.validation.*;
 
 public class ShareSessionForm {
 
+    public static final String CONTRIBUTOR = "sharesession_form.contributor_1_id";
     @Required
     @Range(min = 1, message = "common.basic.actions.not_selected_yet")
     public Long department_id;
@@ -40,6 +41,5 @@ public class ShareSessionForm {
 
 //    @Range(min = 1, message="common.basic.actions.not_selected_yet")
     public Long contributor_3_id;
-
     public Long id;
 }

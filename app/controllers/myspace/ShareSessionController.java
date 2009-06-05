@@ -87,7 +87,26 @@ public class ShareSessionController extends Application {
         show(id);
     }
 
+    public static void delete(Long id) {
+
+
+        ShareSession share_session = ShareSession.findById(id);
+
+        redirectToLoginIfNo(share_session);
+
+        ShareSessionStateMachine.transit(share_session, ShareSessionTransition.DELETE);
+        share_session.save();
+
+        index();
+    }
+
     public static void delete_confirm(Long id) {
+
+        ShareSession share_session = ShareSession.findById(id);
+
+        redirectToLoginIfNo(share_session);
+
+        render(share_session);
     }
 
     public static void edit(Long id) {
@@ -106,9 +125,15 @@ public class ShareSessionController extends Application {
 
     public static void update(@Valid ShareSessionForm sharesession_form) {
 
-        ShareSession share_session = ShareSession.update(sharesession_form, fetch_user_or_redirect_to_login());
+        ShareSession share_session = ShareSession.update(sharesession_form, fetch_user_or_redirect_to_login(), validation);
 
         forbiddenIfNo(share_session);
+
+        if (validation.hasErrors()) {
+            params.flash();
+            validation.keep();
+            edit(share_session.id);
+        }
 
         //show(share_session.id);
         index();

@@ -126,6 +126,7 @@ public class ShareSessionStateMachine {
             ),
 
             closed: (
+                delete @do_delete -> deleted |
                 publish @do_publish -> published | 
                 expire @do_expire -> expired
             ),

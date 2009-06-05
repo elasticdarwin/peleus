@@ -77,6 +77,29 @@ public class StateMachineTest extends UnitTest {
     }
 
     @Test
+    public void could_delete_when_closed() throws StateMachineException {
+
+        ShareSessionContext context = new ShareSession();
+
+        ShareSessionStateMachine.transit(context, ShareSessionTransition.INIT);
+
+        boolean success = ShareSessionStateMachine.couldAccept(context, ShareSessionTransition.DELETE);
+
+        assertTrue("should pass couldAccept", success);
+
+
+        ShareSessionStateMachine.transit(context, ShareSessionTransition.PUBLISH);
+        success = ShareSessionStateMachine.couldAccept(context, ShareSessionTransition.DELETE);
+        assertFalse("should not pass couldAccept", success);
+
+
+        ShareSessionStateMachine.transit(context, ShareSessionTransition.CLOSE);
+        success = ShareSessionStateMachine.couldAccept(context, ShareSessionTransition.DELETE);
+        assertTrue("should pass couldAccept", success);
+
+    }
+
+    @Test
     public void could_accept() throws StateMachineException {
 
         ShareSessionContext context = new ShareSession();

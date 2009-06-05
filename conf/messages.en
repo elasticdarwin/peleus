@@ -92,6 +92,8 @@ myspace.sharesession.contributor_3_id=Contributor Three
 myspace.sharesession.select.department=Select Department
 myspace.sharesession.select.contributor=Select Contributor
 
+myspace.sharesession.delete_confirm = Are you sure to delete the Share Session with Subject <strong>"%s"</strong>?  <br />  Be caution, the operation cannot be recovered!!! <br />
+
 
 ## Validation Message Area
 
@@ -102,6 +104,8 @@ validation.equals=This field is not equals to the field before
 validation.email.invalid=Email is invalid
 validation.email.occupied=Email already occupied!
 validation.email.notexist=Not account associated with this email.
+
+validation.contributor.not.exists=You should specify at least one contributor.
 
 ## Backyard Message Area
 

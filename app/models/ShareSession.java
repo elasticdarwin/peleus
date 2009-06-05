@@ -13,9 +13,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import play.Logger;
 import play.data.validation.Validation;
 import play.db.jpa.JPAModel;
+import play.i18n.Messages;
 import utils.statemachine.ShareSessionContext;
 import utils.statemachine.ShareSessionStateMachine;
 import utils.statemachine.ShareSessionStateMachine.ShareSessionStatus;
@@ -73,7 +73,7 @@ public class ShareSession extends JPAModel implements ShareSessionContext {
         return share_session;
     }
 
-    public static ShareSession update(ShareSessionForm share_session_form, User creator) {
+    public static ShareSession update(ShareSessionForm share_session_form, User creator, Validation validation) {
 
         ShareSession share_session = ShareSession.findById(share_session_form.id);
 
@@ -82,6 +82,13 @@ public class ShareSession extends JPAModel implements ShareSessionContext {
         }
 
         share_session = build(share_session, share_session_form, creator);
+
+        if (validation != null) {
+            share_session.validate(validation);
+            if (validation.hasErrors()) {
+                return share_session;
+            }
+        }
 
         share_session.save();
 
@@ -155,6 +162,18 @@ public class ShareSession extends JPAModel implements ShareSessionContext {
     }
 
     private void validate(Validation validation) {
-        // Noops
+        validate_contributors_exist(validation);
+    }
+
+    private void validate_contributors_exist(Validation validation) {
+
+        for (User user : contributors) {
+
+            if (user != null) {
+
+                return;
+            }
+        }
+        validation.addError(ShareSessionForm.CONTRIBUTOR, Messages.get("validation.contributor.not.exists"));
     }
 }

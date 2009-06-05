@@ -16,7 +16,7 @@ public class ShareSessionStateMachine {
     }
 
 
-    // line 142 "/home/darwin/NetBeansProjects/peleus/script/ShareSessionStateMachine.rl"
+    // line 143 "/home/darwin/NetBeansProjects/peleus/script/ShareSessionStateMachine.rl"
 
 
     
@@ -35,7 +35,7 @@ private static final byte _share_session_actions[] = init__share_session_actions
 private static byte[] init__share_session_key_offsets_0()
 {
 	return new byte [] {
-	    0,    0,    1,    4,    4,    6
+	    0,    0,    1,    4,    4
 	};
 }
 
@@ -45,7 +45,7 @@ private static final byte _share_session_key_offsets[] = init__share_session_key
 private static char[] init__share_session_trans_keys_0()
 {
 	return new char [] {
-	  105,  100,  101,  112,   99,  102,  101,  112,    0
+	  105,  100,  101,  112,   99,  102,    0
 	};
 }
 
@@ -55,7 +55,7 @@ private static final char _share_session_trans_keys[] = init__share_session_tran
 private static byte[] init__share_session_single_lengths_0()
 {
 	return new byte [] {
-	    0,    1,    3,    0,    2,    2
+	    0,    1,    3,    0,    2
 	};
 }
 
@@ -65,7 +65,7 @@ private static final byte _share_session_single_lengths[] = init__share_session_
 private static byte[] init__share_session_range_lengths_0()
 {
 	return new byte [] {
-	    0,    0,    0,    0,    0,    0
+	    0,    0,    0,    0,    0
 	};
 }
 
@@ -75,7 +75,7 @@ private static final byte _share_session_range_lengths[] = init__share_session_r
 private static byte[] init__share_session_index_offsets_0()
 {
 	return new byte [] {
-	    0,    0,    2,    6,    7,   10
+	    0,    0,    2,    6,    7
 	};
 }
 
@@ -85,8 +85,7 @@ private static final byte _share_session_index_offsets[] = init__share_session_i
 private static byte[] init__share_session_trans_targs_0()
 {
 	return new byte [] {
-	    2,    0,    3,    3,    4,    0,    0,    5,    3,    0,    3,    4,
-	    0,    0
+	    2,    0,    3,    3,    4,    0,    0,    2,    3,    0,    0
 	};
 }
 
@@ -96,8 +95,7 @@ private static final byte _share_session_trans_targs[] = init__share_session_tra
 private static byte[] init__share_session_trans_actions_0()
 {
 	return new byte [] {
-	    1,   13,    3,    7,    5,   13,   13,    9,   11,   13,    7,    5,
-	   13,    0
+	    1,   13,    3,    7,    5,   13,   13,    9,   11,   13,    0
 	};
 }
 
@@ -107,7 +105,7 @@ private static final byte _share_session_trans_actions[] = init__share_session_t
 private static byte[] init__share_session_eof_actions_0()
 {
 	return new byte [] {
-	    0,   15,   15,   15,   15,   15
+	    0,   15,   15,   15,   15
 	};
 }
 
@@ -115,7 +113,7 @@ private static final byte _share_session_eof_actions[] = init__share_session_eof
 
 
 static final int share_session_start = 1;
-static final int share_session_first_final = 6;
+static final int share_session_first_final = 5;
 static final int share_session_error = 0;
 
 static final int share_session_en_main = 1;
@@ -123,10 +121,10 @@ static final int share_session_en_main_ShareSession_created = 2;
 static final int share_session_en_main_ShareSession_deleted = 3;
 static final int share_session_en_main_ShareSession_published = 4;
 static final int share_session_en_main_ShareSession_finished = 3;
-static final int share_session_en_main_ShareSession_closed = 5;
+static final int share_session_en_main_ShareSession_closed = 2;
 static final int share_session_en_main_ShareSession_expired = 3;
 
-// line 145 "/home/darwin/NetBeansProjects/peleus/script/ShareSessionStateMachine.rl"
+// line 146 "/home/darwin/NetBeansProjects/peleus/script/ShareSessionStateMachine.rl"
 
     private static boolean transit(ShareSessionContext context, Character[] data, boolean isJustACheck) {
 
@@ -146,11 +144,11 @@ static final int share_session_en_main_ShareSession_expired = 3;
 
         if (context.getCurrentStatus() == null) {
             
-// line 150 "./script/../app/utils/statemachine/ShareSessionStateMachine.java"
+// line 148 "./script/../app/utils/statemachine/ShareSessionStateMachine.java"
 	{
 	cs = share_session_start;
 	}
-// line 164 "/home/darwin/NetBeansProjects/peleus/script/ShareSessionStateMachine.rl"
+// line 165 "/home/darwin/NetBeansProjects/peleus/script/ShareSessionStateMachine.rl"
         } else {
             cs = context.getCurrentStatus().stateCode;
         }
@@ -160,7 +158,7 @@ static final int share_session_en_main_ShareSession_expired = 3;
         try {
 
             
-// line 164 "./script/../app/utils/statemachine/ShareSessionStateMachine.java"
+// line 162 "./script/../app/utils/statemachine/ShareSessionStateMachine.java"
 	{
 	int _klen;
 	int _trans = 0;
@@ -247,7 +245,7 @@ case 1:
                 ShareSessionStatus.CREATED.stateCode = 2; 
                 ShareSessionStatus.DELETED.stateCode = 3; 
                 ShareSessionStatus.EXPIRED.stateCode = 3; 
-                ShareSessionStatus.CLOSED.stateCode = 5; 
+                ShareSessionStatus.CLOSED.stateCode = 2; 
                 ShareSessionStatus.PUBLISHED.stateCode = 4; 
                 ShareSessionStatus.FINISHED.stateCode = 3; 
 
@@ -325,7 +323,7 @@ case 1:
             }
         }
 	break;
-// line 329 "./script/../app/utils/statemachine/ShareSessionStateMachine.java"
+// line 327 "./script/../app/utils/statemachine/ShareSessionStateMachine.java"
 			}
 		}
 	}
@@ -371,7 +369,7 @@ case 4:
             { p += 1; _goto_targ = 5; if (true)  continue _goto;}
         }
 	break;
-// line 375 "./script/../app/utils/statemachine/ShareSessionStateMachine.java"
+// line 373 "./script/../app/utils/statemachine/ShareSessionStateMachine.java"
 		}
 	}
 	}
@@ -380,7 +378,7 @@ case 5:
 	}
 	break; }
 	}
-// line 173 "/home/darwin/NetBeansProjects/peleus/script/ShareSessionStateMachine.rl"
+// line 174 "/home/darwin/NetBeansProjects/peleus/script/ShareSessionStateMachine.rl"
         } catch (StateMachineException e) {
 
             Logger.info("Rollbacking changes...");

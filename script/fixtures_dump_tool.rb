@@ -16,7 +16,7 @@ def generate_fixture(class_name,key)
     puts YAML.dump(result)
 end 
 
-MODELS = {User: 'name',
+MODELS = {:User => 'name',
           ShareSession: 'id',
           Department: 'name'}
 

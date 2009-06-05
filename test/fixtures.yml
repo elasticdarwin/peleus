@@ -30,6 +30,7 @@ ShareSession(108):
   start: 2009-08-01 19:30:00 +08:00
   status: CREATED
   subject: Gof Design Patterns with Java
+  contributors: [Arthur,Darwin]
 ShareSession(107):
   address: Coffee Room @ 7floor
   audiences: Ruby Fans
@@ -41,4 +42,5 @@ ShareSession(107):
   start: 2009-07-01 09:30:00 +08:00
   status: CREATED
   subject: Ruby Meta Programming
+  contributors: [Darwin,Darwin]
 

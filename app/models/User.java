@@ -87,33 +87,32 @@ public class User extends JPAModel {
         return StringUtils.equals(user.password, password);
     }
 
-    public boolean validate(Validation validation) {
+    private void validate(Validation validation) {
 
-        return validate_email(validation);
+        validate_email(validation);
     }
 
     private boolean isCreateMode() {
         return id == null;
     }
 
-    private boolean validate_email(Validation validation) {
+    private void validate_email(Validation validation) {
         List<User> found_users = findBy("email", email);
 
         if (found_users.size() == 0) {
-            return true;
+            return;
         }
 
         if (isCreateMode()) {
             validation.addError(UserForm.EMAIL, Messages.get("validation.email.occupied"));
-            return false;
+            return;
         }
 
         if (found_users.get(0).id.longValue() == id.longValue()) {
-            return true;
+            return;
         }
 
         validation.addError(UserForm.EMAIL, Messages.get("validation.email.occupied"));
 
-        return false;
     }
 }
