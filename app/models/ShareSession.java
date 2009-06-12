@@ -95,6 +95,26 @@ public class ShareSession extends JPAModel implements ShareSessionContext {
         return share_session;
     }
 
+    public static ShareSession update(ShareSessionForm share_session_form, Validation validation) {
+
+        ShareSession share_session = ShareSession.findById(share_session_form.id);
+
+
+        share_session = build(share_session, share_session_form);
+
+        if (validation != null) {
+            share_session.validate(validation);
+            if (validation.hasErrors()) {
+                return share_session;
+            }
+        }
+
+        share_session.save();
+
+        return share_session;
+    }
+
+
     public static List<ShareSession> findSessionsOnComing() {
         return ShareSession.findBy("status = ? order by start", ShareSessionStatus.PUBLISHED);
     }
@@ -124,10 +144,8 @@ public class ShareSession extends JPAModel implements ShareSessionContext {
         return build(new ShareSession(), share_session_form, creator);
     }
 
-    private static ShareSession build(ShareSession share_session, ShareSessionForm share_session_form, User creator) {
-
-        share_session.creator = creator;
-
+    private static ShareSession build(ShareSession share_session, ShareSessionForm share_session_form ){
+        
         share_session.department = Department.findById(share_session_form.department_id);
         share_session.subject = share_session_form.subject;
         share_session.audiences = share_session_form.audiences;
@@ -159,6 +177,13 @@ public class ShareSession extends JPAModel implements ShareSessionContext {
         share_session.contributors = Arrays.asList(contributor_1, contributor_2, contributor_3);
 
         return share_session;
+    }
+
+    private static ShareSession build(ShareSession share_session, ShareSessionForm share_session_form, User creator) {
+
+        share_session.creator = creator;
+
+        return build(share_session,share_session_form);
     }
 
     private void validate(Validation validation) {

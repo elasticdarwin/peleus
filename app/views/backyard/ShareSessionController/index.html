@@ -20,7 +20,7 @@
     </thead>
     <tbody>
         #{list items:all_share_sessions, as:'share_session'}
-        <tr>
+        <tr class="session_${share_session.id}">
             <td>${share_session.id}</td>
             <td><a href="@{backyard.ShareSessionController.show(share_session.id)}">${share_session.subject}</a></td>
             

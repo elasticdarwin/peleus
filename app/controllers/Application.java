@@ -53,7 +53,7 @@ public class Application extends Controller {
 
     protected static void forbiddenIfNo(Object obj) {
         if (obj == null) {
-            forbidden("Target is missing!");
+            forbidden("Got Nil Object ! Target is missing!");
         }
     }
 

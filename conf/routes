@@ -68,6 +68,8 @@ GET         /backyard/sharesession                   backyard.ShareSessionContro
 
 GET         /backyard/sharesession/{action}          backyard.ShareSessionController.{action}
 
+POST        /backyard/sharesession/update            backyard.ShareSessionController.update
+
 ## Backyard::Index
 
 

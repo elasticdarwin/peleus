@@ -2,7 +2,7 @@
 #{set title:'Welcome and Join the community!' /}
 
 <div id="peleusContent">
-        <form class="centerStyleForm" action="@{myspace.ShareSessionController.update()}" method="post">
+        <form class="centerStyleForm" action="@{backyard.ShareSessionController.update()}" method="post">
 
         <h3>Edit ShareSession</h3>
 
@@ -115,6 +115,6 @@
 
         <input type="hidden" name="sharesession_form.id" value="${flash['sharesession_form.id']}"/>
 
-        <input type="submit" value="Update"/>
+        <input type="submit" class="update" value="Update"/>
     </form>
 </div>

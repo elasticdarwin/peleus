@@ -4,6 +4,6 @@
 #{elseif (utils.statemachine.ShareSessionStateMachine.couldAccept(share_session, utils.statemachine.ShareSessionTransition.CLOSE))}
 <a href="@{backyard.ShareSessionController.close(share_session.id)}">&{'common.basic.actions.close'}</a>
 #{/elseif}
-| <a href="@{backyard.ShareSessionController.edit(share_session.id)}">&{'common.basic.actions.edit'}</a>
+| <a href="@{backyard.ShareSessionController.edit(share_session.id)}" class="edit">&{'common.basic.actions.edit'}</a>
 | <a href="@{backyard.ShareSessionController.delete_confirm(share_session.id)}">&{'common.basic.actions.delete'}</a>
 

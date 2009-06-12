@@ -1,0 +1,63 @@
+
+
+#{fixture delete:'all', load:'fixtures.yml' /}
+
+
+#{selenium 'Test The Whole Main Share Session Actions Scenario'}
+clearSession()
+
+open(@@{backyard.ShareSessionController.index()})
+
+assertTextPresent('View All Share Sessions')
+assertTextPresent('Subject')
+assertTextPresent('Gof Design Patterns with Java')
+
+clickAndWait('link=Gof Design Patterns with Java')
+
+assertTextPresent('Gof Design Patterns with Java')
+assertTextPresent('Status: CREATED')
+assertTextPresent('Posted by: Darwin')
+assertTextPresent('This is an advanced design topic on how to apply Gof design patterns with java programming.')
+assertTextPresent('cpm')
+assertTextPresent('Arthur')
+assertTextPresent('Darwin')
+assertTextPresent('Java Design Pattern Fans')
+assertTextPresent('200')
+assertTextPresent('2009-08-01 07:30:00.0')
+assertTextPresent('2009-08-01 09:30:00.0')
+assertTextPresent('T2-T3')
+
+clickAndWait('//a[@class="edit"]')
+
+select('sharesession_form.department_id', 'label=cpc')
+type('sharesession_form.subject', 'Advanced Gof Design Patterns with Java')
+type('sharesession_form.audiences', 'Design Pattern Fans,No matter which lang')
+type('sharesession_form.start_date', '2009-08-02T07:30:00')
+type('sharesession_form.end_date', '2009-08-02T09:30:00')
+type('sharesession_form.address', 'F7-3')
+type('sharesession_form.audiences_limit', '280')
+type('sharesession_form.description', 'This is an advanced design topic on how to apply Gof design patterns.')
+
+select('sharesession_form.contributor_1_id', 'label=Darwin')
+select('sharesession_form.contributor_2_id', 'label=Select Contributor')
+clickAndWait('//input[@class="update"]')
+
+assertTextPresent('Advanced Gof Design Patterns with Java')
+
+clickAndWait('link=Advanced Gof Design Patterns with Java')
+
+assertTextPresent('Advanced Gof Design Patterns with Java')
+assertTextPresent('cpc')
+assertTextPresent('Status: CREATED')
+assertTextPresent('Posted by: Darwin')
+assertTextPresent('Design Pattern Fans,No matter which lang')
+assertTextPresent('2009-08-02 07:30:00.0')
+assertTextPresent('2009-08-02 09:30:00.0')
+assertTextPresent('F7-3')
+assertTextPresent('280')
+assertTextPresent('This is an advanced design topic on how to apply Gof design patterns.')
+assertTextNotPresent('Arthur')
+assertTextPresent('Darwin')
+
+
+#{/selenium}

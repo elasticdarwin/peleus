@@ -68,31 +68,33 @@ myspace.user.login.email=Your Email
 myspace.user.login.password=Enter your Login Password
 myspace.user.logout.notification = You have just logged out from Peleus System!
 
-
 ## MySpace ShareSession Message Area
 
 myspace.sharesession.functions.view_all=Manage My Post ShareSessions
 
-myspace.sharesession.create.title=Post Share Session
-myspace.sharesession.department=Hosting Department
-myspace.sharesession.subject=Session Subject
-myspace.sharesession.audiences=Target Audiences
-myspace.sharesession.start_date=Start Time
-myspace.sharesession.end_date=End Time
+## ShareSession Common Labels
 
-myspace.sharesession.address=Address
 
-myspace.sharesession.audiences_limit=Audiences Limit
-myspace.sharesession.description=Description
-myspace.sharesession.post.submit=Post
-myspace.sharesession.contributor_1_id=Contributor One
-myspace.sharesession.contributor_2_id=Contributor Two
-myspace.sharesession.contributor_3_id=Contributor Three
+common.sharesession.create.title=Post Share Session
+common.sharesession.department=Hosting Department
+common.sharesession.subject=Session Subject
+common.sharesession.audiences=Target Audiences
+common.sharesession.start_date=Start Time
+common.sharesession.end_date=End Time
 
-myspace.sharesession.select.department=Select Department
-myspace.sharesession.select.contributor=Select Contributor
+common.sharesession.address=Address
 
-myspace.sharesession.delete_confirm = Are you sure to delete the Share Session with Subject <strong>"%s"</strong>?  <br />  Be caution, the operation cannot be recovered!!! <br />
+common.sharesession.audiences_limit=Audiences Limit
+common.sharesession.description=Description
+common.sharesession.post.submit=Post
+common.sharesession.contributor_1_id=Contributor One
+common.sharesession.contributor_2_id=Contributor Two
+common.sharesession.contributor_3_id=Contributor Three
+
+common.sharesession.select.department=Select Department
+common.sharesession.select.contributor=Select Contributor
+
+common.sharesession.delete_confirm = Are you sure to delete the Share Session with Subject <strong>"%s"</strong>?  <br />  Be caution, the operation cannot be recovered!!! <br />
 
 
 ## Validation Message Area
