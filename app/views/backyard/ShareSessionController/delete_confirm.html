@@ -1,0 +1,12 @@
+
+#{extends 'main.html' /}
+
+<div class="peleusFlash">
+    <div class="flashDialog">
+        &{'common.sharesession.delete_confirm',share_session.subject}
+        <br />
+
+        <a href="@{backyard.ShareSessionController.delete(share_session.id)}">Yes</a>     <a href="@{backyard.ShareSessionController.index()}"> Cancel </a>
+
+    </div>
+</div>
