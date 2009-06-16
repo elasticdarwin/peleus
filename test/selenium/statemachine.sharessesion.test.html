@@ -5,38 +5,46 @@
 
 
 #{selenium 'Test User Join'}
-    clearSession()
+clearSession()
 
-    open(@@{backyard.ShareSessionController.index()})
-    assertTextPresent('publish')
+open(@@{backyard.ShareSessionController.index()})
+assertElementPresent('//tr[@class="session_1"]//input[@value="publish"]')
 
-    clickAndWait('//tr[@class="session_1"]/td/a[@class="show"]')
-    assertTextPresent('Gof Design Patterns with Java')
-    assertTextPresent('Status: CREATED')
-    
+clickAndWait('//tr[@class="session_1"]/td/a[@class="show"]')
+assertTextPresent('Gof Design Patterns with Java')
+assertTextPresent('Status: CREATED')
 
-    assertTextPresent('publish')
-    clickAndWait('//a[@class="publish"]')
-    assertTextPresent('Status: PUBLISHED')
-    
-    assertTextPresent('close')
-    clickAndWait('link=close')
 
-    open(@@{backyard.ShareSessionController.show(1)})
-    assertTextPresent('Status: CLOSED')
- 
-    assertTextPresent('delete')
-    clickAndWait('link=delete')
-    assertTextPresent('Yes')
-    assertTextPresent('Cancel')
+assertElementPresent('//input[@value="publish"]')
+clickAndWait('//input[@value="publish"]')
+assertLocation(@@{backyard.ShareSessionController.show(1)})
 
-    clickAndWait('link=Cancel')
-    assertTextPresent('Gof Design Patterns with Java')
-    
-    clickAndWait('//tr[@class="session_1"]/td/a[@class="delete"]')
-    assertTextPresent('Yes')
-    assertTextPresent('Cancel')
-    clickAndWait('link=Yes')
-    assertTextNotPresent('Gof Design Patterns with Java')
+assertTextPresent('Status: PUBLISHED')
+
+assertElementPresent('//input[@value="close"]')
+clickAndWait('//input[@value="close"]')
+
+assertLocation(@@{backyard.ShareSessionController.show(1)})
+
+assertTextPresent('Status: CLOSED')
+
+assertTextPresent('delete')
+
+clickAndWait('link=delete')
+assertTextPresent('Yes')
+assertTextPresent('Cancel')
+
+clickAndWait('link=Cancel')
+
+assertLocation(@@{backyard.ShareSessionController.index()})
+
+assertTextPresent('Gof Design Patterns with Java')
+
+
+clickAndWait('//tr[@class="session_1"]//a[@class="delete"]')
+assertTextPresent('Yes')
+assertTextPresent('Cancel')
+clickAndWait('link=Yes')
+assertTextNotPresent('Gof Design Patterns with Java')
 
 #{/selenium}
