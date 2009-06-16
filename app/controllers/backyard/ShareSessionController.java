@@ -19,16 +19,16 @@ public class ShareSessionController extends Application {
     public static void index() {
 
 
-        List<ShareSession> all_share_sessions = ShareSession.findAll();
+        List<ShareSession> all_share_sessions = ShareSession.findActiveShareSessions();
 
         render(all_share_sessions);
     }
 
     public static void update(@Valid ShareSessionForm sharesession_form) {
 
- 
 
-        ShareSession share_session = ShareSession.update(sharesession_form,validation);
+
+        ShareSession share_session = ShareSession.update(sharesession_form, validation);
 
         forbiddenIfNo(share_session);
 
@@ -67,7 +67,26 @@ public class ShareSessionController extends Application {
 
     }
 
+    public static void delete(Long id) {
+
+
+        ShareSession share_session = ShareSession.findById(id);
+
+        redirectToLoginIfNo(share_session);
+
+        ShareSessionStateMachine.transit(share_session, ShareSessionTransition.DELETE);
+        share_session.save();
+
+        index();
+    }
+
     public static void delete_confirm(Long id) {
+
+        ShareSession share_session = ShareSession.findById(id);
+
+        redirectToLoginIfNo(share_session);
+
+        render(share_session);
     }
 
     public static void publish(Long id) throws StateMachineException {

@@ -114,13 +114,16 @@ public class ShareSession extends JPAModel implements ShareSessionContext {
         return share_session;
     }
 
-
     public static List<ShareSession> findSessionsOnComing() {
         return ShareSession.findBy("status = ? order by start", ShareSessionStatus.PUBLISHED);
     }
 
     public static List<ShareSession> findMyShareSessions(User creator) {
         return ShareSession.findBy("status != ? and creator = ? order by start", ShareSessionStatus.DELETED, creator);
+    }
+
+    public static List<ShareSession> findActiveShareSessions() {
+        return ShareSession.findBy("status != ? order by start", ShareSessionStatus.DELETED);
     }
 
     public void setCurrentStatus(ShareSessionStatus currentStatus) {
@@ -144,8 +147,8 @@ public class ShareSession extends JPAModel implements ShareSessionContext {
         return build(new ShareSession(), share_session_form, creator);
     }
 
-    private static ShareSession build(ShareSession share_session, ShareSessionForm share_session_form ){
-        
+    private static ShareSession build(ShareSession share_session, ShareSessionForm share_session_form) {
+
         share_session.department = Department.findById(share_session_form.department_id);
         share_session.subject = share_session_form.subject;
         share_session.audiences = share_session_form.audiences;
@@ -183,7 +186,7 @@ public class ShareSession extends JPAModel implements ShareSessionContext {
 
         share_session.creator = creator;
 
-        return build(share_session,share_session_form);
+        return build(share_session, share_session_form);
     }
 
     private void validate(Validation validation) {

@@ -1,10 +1,12 @@
 #{if (utils.statemachine.ShareSessionStateMachine.couldAccept(share_session, utils.statemachine.ShareSessionTransition.PUBLISH))}
 <a href="@{myspace.ShareSessionController.publish(share_session.id)}">&{'common.basic.actions.publish'}</a>
+| 
 #{/if}
 #{elseif (utils.statemachine.ShareSessionStateMachine.couldAccept(share_session, utils.statemachine.ShareSessionTransition.CLOSE))}
 <a href="@{myspace.ShareSessionController.close(share_session.id)}">&{'common.basic.actions.close'}</a>
+|
 #{/elseif}
-| <a href="@{myspace.ShareSessionController.edit(share_session.id)}">&{'common.basic.actions.edit'}</a>
+<a href="@{myspace.ShareSessionController.edit(share_session.id)}">&{'common.basic.actions.edit'}</a>
 #{if (utils.statemachine.ShareSessionStateMachine.couldAccept(share_session, utils.statemachine.ShareSessionTransition.DELETE))}
 | <a href="@{myspace.ShareSessionController.delete_confirm(share_session.id)}">&{'common.basic.actions.delete'}</a>
 #{/if}
