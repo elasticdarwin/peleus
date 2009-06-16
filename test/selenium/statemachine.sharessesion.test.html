@@ -1,0 +1,42 @@
+
+
+
+#{fixture delete:'all', load:'fixtures.yml' /}
+
+
+#{selenium 'Test User Join'}
+    clearSession()
+
+    open(@@{backyard.ShareSessionController.index()})
+    assertTextPresent('publish')
+
+    clickAndWait('//tr[@class="session_1"]/td/a[@class="show"]')
+    assertTextPresent('Gof Design Patterns with Java')
+    assertTextPresent('Status: CREATED')
+    
+
+    assertTextPresent('publish')
+    clickAndWait('//a[@class="publish"]')
+    assertTextPresent('Status: PUBLISHED')
+    
+    assertTextPresent('close')
+    clickAndWait('link=close')
+
+    open(@@{backyard.ShareSessionController.show(1)})
+    assertTextPresent('Status: CLOSED')
+ 
+    assertTextPresent('delete')
+    clickAndWait('link=delete')
+    assertTextPresent('Yes')
+    assertTextPresent('Cancel')
+
+    clickAndWait('link=Cancel')
+    assertTextPresent('Gof Design Patterns with Java')
+    
+    clickAndWait('//tr[@class="session_1"]/td/a[@class="delete"]')
+    assertTextPresent('Yes')
+    assertTextPresent('Cancel')
+    clickAndWait('link=Yes')
+    assertTextNotPresent('Gof Design Patterns with Java')
+
+#{/selenium}

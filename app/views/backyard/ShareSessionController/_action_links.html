@@ -1,9 +1,9 @@
 #{if (utils.statemachine.ShareSessionStateMachine.couldAccept(share_session, utils.statemachine.ShareSessionTransition.PUBLISH))}
-<a href="@{backyard.ShareSessionController.publish(share_session.id)}">&{'common.basic.actions.publish'}</a>
+<a href="@{backyard.ShareSessionController.publish(share_session.id)}" class="publish">&{'common.basic.actions.publish'}</a>
 |
 #{/if}
 #{elseif (utils.statemachine.ShareSessionStateMachine.couldAccept(share_session, utils.statemachine.ShareSessionTransition.CLOSE))}
-<a href="@{backyard.ShareSessionController.close(share_session.id)}">&{'common.basic.actions.close'}</a>
+<a href="@{backyard.ShareSessionController.close(share_session.id)}" class="close">&{'common.basic.actions.close'}</a>
 |
 #{/elseif}
 <a href="@{backyard.ShareSessionController.edit(share_session.id)}" class="edit">&{'common.basic.actions.edit'}</a>

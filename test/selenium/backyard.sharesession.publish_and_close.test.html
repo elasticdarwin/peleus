@@ -1,0 +1,44 @@
+
+#{fixture delete:'all', load:'fixtures.yml' /}
+
+
+#{selenium 'Test Publish Share Session at Backyard'}
+
+*{
+TODO find out the meaning of clickAndWait and verify***
+}*
+
+clearSession()
+
+open(@@{dashboard.Dashboard.index()})
+assertTextNotPresent('Gof Design Patterns with Java')
+
+open(@@{backyard.ShareSessionController.index()})
+
+assertTextPresent('View All Share Sessions')
+assertTextPresent('Subject')
+assertTextPresent('Gof Design Patterns with Java')
+
+assertTextPresent('publish')
+clickAndWait('//tr[@class="session_1"]/td/a[@class="publish"]')
+
+
+open(@@{backyard.ShareSessionController.index()})
+
+assertTextPresent('close')
+
+open(@@{dashboard.Dashboard.index()})
+assertTextPresent('Gof Design Patterns with Java')
+
+open(@@{backyard.ShareSessionController.index()})
+clickAndWait('//tr[@class="session_1"]/td/a[@class="close"]')
+
+open(@@{backyard.ShareSessionController.index()})
+assertTextPresent('publish')
+
+
+open(@@{dashboard.Dashboard.index()})
+assertTextNotPresent('Gof Design Patterns with Java')
+
+
+#{/selenium}
