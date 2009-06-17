@@ -8,17 +8,9 @@ public class ShareSessionStateMachine {
 
 
     public enum ShareSessionStatus {
-        
-        CREATED(share_session_en_main_ShareSession_created),
-        DELETED(share_session_en_main_ShareSession_deleted),
-        EXPIRED(share_session_en_main_ShareSession_expired),
-        CLOSED(share_session_en_main_ShareSession_closed),
-        PUBLISHED(share_session_en_main_ShareSession_published),
-        FINISHED(share_session_en_main_ShareSession_finished);
 
-        private ShareSessionStatus(int code) {
-            stateCode = code;
-        }
+        CREATED, DELETED, EXPIRED, CLOSED, PUBLISHED, FINISHED;
+
         private int stateCode;
     }
 
@@ -27,16 +19,14 @@ public class ShareSessionStateMachine {
 
 
         action do_initialize {
-            if (false) {
-                ShareSessionStatus.CREATED.stateCode = fentry(created);
-                ShareSessionStatus.DELETED.stateCode = fentry(deleted);
-                ShareSessionStatus.EXPIRED.stateCode = fentry(expired);
-                ShareSessionStatus.CLOSED.stateCode = fentry(closed);
-                ShareSessionStatus.PUBLISHED.stateCode = fentry(published);
-                ShareSessionStatus.FINISHED.stateCode = fentry(finished);
+            ShareSessionStatus.CREATED.stateCode = fentry(created);
+            ShareSessionStatus.DELETED.stateCode = fentry(deleted);
+            ShareSessionStatus.EXPIRED.stateCode = fentry(expired);
+            ShareSessionStatus.CLOSED.stateCode = fentry(closed);
+            ShareSessionStatus.PUBLISHED.stateCode = fentry(published);
+            ShareSessionStatus.FINISHED.stateCode = fentry(finished);
 
-                Logger.info("STATE MACHINE INITIALIZED\t\tjust a cheat~");
-            }
+            Logger.info("STATE MACHINE INITIALIZED\t\tjust a cheat~");
         }
 
         action do_init { 
@@ -106,6 +96,8 @@ public class ShareSessionStateMachine {
         }
 
 
+        initialize = '0';
+
         init = 'i';
         delete = 'd';
         publish = 'p';
@@ -115,7 +107,8 @@ public class ShareSessionStateMachine {
 
         ShareSession = (
             start: (
-                init @do_init -> created
+                init @do_init -> created |
+                initialize @do_initialize -> final
             ),
 
             created: ( 
@@ -148,7 +141,7 @@ public class ShareSessionStateMachine {
                 null 
             )
 
-        ) >do_initialize $/do_eof $!do_error;
+        ) $/do_eof $!do_error;
 
 
         main := ShareSession;
@@ -176,6 +169,7 @@ public class ShareSessionStateMachine {
         if (context.getCurrentStatus() == null) {
             %% write init;
         } else {
+
             cs = context.getCurrentStatus().stateCode;
         }
         
@@ -229,6 +223,17 @@ public class ShareSessionStateMachine {
 
     public static boolean couldAccept(ShareSessionContext context, ShareSessionTransition transition) {
         return transit(context, new ShareSessionTransition[] {transition}, true);
+    }
+
+
+
+    static {
+
+        transit(new ShareSessionContext() {
+            public void setCurrentStatus(ShareSessionStatus currentStatus) {}
+
+            public ShareSessionStatus getCurrentStatus() {return null;}
+        }, new Character[]{'0'}, false);
     }
 
 }
