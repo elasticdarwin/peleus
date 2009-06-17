@@ -11,3 +11,4 @@ test-result/*
 logs/*
 
 conf/application.conf
+public/attachments/*

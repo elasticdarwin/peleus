@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import play.data.validation.Validation;
 import play.db.jpa.JPAModel;
@@ -49,6 +50,8 @@ public class ShareSession extends JPAModel implements ShareSessionContext {
     @Enumerated(value = EnumType.STRING)
     @Column(length = 16)
     public ShareSessionStatus status;
+    @OneToMany(mappedBy="share_session")
+    public List<Attachment> attachments;
 
     public void setStatus(String string) {
 

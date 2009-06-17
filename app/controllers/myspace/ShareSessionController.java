@@ -49,7 +49,13 @@ public class ShareSessionController extends Application {
 
     public static void show(Long id) {
 
-        throw new UnsupportedOperationException("Not yet implemented");
+        ShareSession share_session = ShareSession.findById(id);
+
+
+        redirectToLoginIfNo(share_session);
+
+        render(share_session);
+
     }
 
     public static void publish(Long id) throws StateMachineException {

@@ -1,4 +1,9 @@
 
+## Known bugs
+* State machine uninitialized, there are no response when "publish" button clicked.
+
+
+
 ## Has finished Items
 * User Register Password Validation;
 * User Register Email Uniqueness Validation ;

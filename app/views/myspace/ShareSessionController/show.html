@@ -1,0 +1,49 @@
+#{extends 'main.html' /}
+#{set title:'Peleus::MySpace:View ShareSession Detail' /}
+
+
+
+<div class="centerStyleForm">
+    <div style="float:right">
+        <p>Attachment List</p>
+        <ul>
+            #{list items:share_session.attachments, as:'attachment'}
+            <li>
+                <a href="${attachment.path}">${attachment.fileName}</a>
+            </li>
+            #{/list}
+        </ul>
+
+        <form action="@{myspace.AttachmentController.upload}" method="post" enctype="multipart/form-data">
+
+            <input type="file" name="attachment"></input>
+            <input type="hidden" name="id" value="${share_session.id}"></input>
+
+            <input type="submit" value="Upload"></input>
+        </form>
+    </div>
+
+    <h2>${share_session.subject}</h2>
+
+    <p>Status:<strong> ${share_session.status}</strong></p>
+
+    <p>Posted by: ${share_session.creator.name}</p>
+
+    <p>Descrption: <br />
+
+    ${share_session.description}</p>
+
+    <p>Host Department : ${share_session.department.name}</p>
+    <p>Contributors : <br />
+        #{list items:share_session.contributors, as:'contributor'}
+        ${contributor.name} <br />
+    #{/list} </p>
+
+    <p>Audiences : ${share_session.audiences} </p>
+    <p>Audiences Limit : ${share_session.audiences_limit} </p>
+    <p>Date : from ${share_session.start} ~ ${share_session.end} </p>
+    <p>Address : ${share_session.address}</p>
+
+    #{include 'myspace/ShareSessionController/_action_links.html' /}
+
+</div>

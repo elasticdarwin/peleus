@@ -78,6 +78,9 @@ POST        /backyard/sharesession/publish            backyard.ShareSessionContr
 POST        /backyard/sharesession/close            backyard.ShareSessionController.close
 
 
+## Myspace::Attachment
+
+POST        /myspace/attachment/upload      myspace.AttachmentController.upload
 
 
 ## Backyard::Index

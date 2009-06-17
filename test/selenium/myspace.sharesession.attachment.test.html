@@ -1,0 +1,32 @@
+
+#{fixture delete:'all', load:'fixtures.yml' /}
+
+
+#{selenium 'Test Attachemnt Manage for ShareSession at MySpace'}
+
+clearSession()
+
+// login successful
+open(@@{dashboard.Dashboard.index()})
+clickAndWait('link=login')
+type('login_form.email', 'a@b.cn')
+type('login_form.password', 'arthur')
+clickAndWait('//input[@value="Login Now"]')
+
+open(@@{myspace.ShareSessionController.index()})
+assertTextPresent('Subject')
+assertTextPresent('Ruby Meta Programming')
+
+clickAndWait('link=Ruby Meta Programming')
+assertLocation(@@{myspace.ShareSessionController.show(2)})
+assertTextPresent('Ruby Meta Programming')
+assertTextPresent('Status: CREATED')
+
+
+assertTextPresent('Attachment List')
+
+assertElementPresent('//input[@value="Upload"]')
+
+
+
+#{/selenium}
