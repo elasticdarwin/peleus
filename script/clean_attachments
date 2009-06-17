@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+
+require 'fileutils'
+
+path = File.absolute_path(File.join(File.dirname(__FILE__), '..', 'public', 'attachments', '*'))
+file_list = Dir.glob(path)
+unless file_list.empty?
+    puts "following files (in path<#{path}>) will be removed:"
+    puts file_list
+
+    FileUtils.rm(file_list)
+else
+
+    puts "no file (in path<#{path}>) will be removed."
+end
