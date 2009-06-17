@@ -9,27 +9,40 @@ public class ShareSessionStateMachine {
 
     public enum ShareSessionStatus {
         
-        CREATED, DELETED, EXPIRED, CLOSED, PUBLISHED, FINISHED;
+        CREATED(share_session_en_main_ShareSession_created),
+        DELETED(share_session_en_main_ShareSession_deleted),
+        EXPIRED(share_session_en_main_ShareSession_expired),
+        CLOSED(share_session_en_main_ShareSession_closed),
+        PUBLISHED(share_session_en_main_ShareSession_published),
+        FINISHED(share_session_en_main_ShareSession_finished);
 
+        private ShareSessionStatus(int code) {
+            stateCode = code;
+        }
         private int stateCode;
     }
-
 
     %%{
         machine share_session;
 
+
+        action do_initialize {
+            if (false) {
+                ShareSessionStatus.CREATED.stateCode = fentry(created);
+                ShareSessionStatus.DELETED.stateCode = fentry(deleted);
+                ShareSessionStatus.EXPIRED.stateCode = fentry(expired);
+                ShareSessionStatus.CLOSED.stateCode = fentry(closed);
+                ShareSessionStatus.PUBLISHED.stateCode = fentry(published);
+                ShareSessionStatus.FINISHED.stateCode = fentry(finished);
+
+                Logger.info("STATE MACHINE INITIALIZED\t\tjust a cheat~");
+            }
+        }
+
         action do_init { 
             if (!isJustACheck) {
 
-                ShareSessionStatus.CREATED.stateCode = fentry(created); 
-                ShareSessionStatus.DELETED.stateCode = fentry(deleted); 
-                ShareSessionStatus.EXPIRED.stateCode = fentry(expired); 
-                ShareSessionStatus.CLOSED.stateCode = fentry(closed); 
-                ShareSessionStatus.PUBLISHED.stateCode = fentry(published); 
-                ShareSessionStatus.FINISHED.stateCode = fentry(finished); 
-
                 context.setCurrentStatus(ShareSessionStatus.CREATED);
-
                 Logger.info("INIT");
             }
         }
@@ -135,7 +148,7 @@ public class ShareSessionStateMachine {
                 null 
             )
 
-        ) $/do_eof $!do_error;
+        ) >do_initialize $/do_eof $!do_error;
 
 
         main := ShareSession;
