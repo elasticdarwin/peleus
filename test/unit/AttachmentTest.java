@@ -22,26 +22,6 @@ public class AttachmentTest extends UnitTest {
     }
 
     @Test
-    public void test() {
-
-        Long id = 2L;
-        ShareSession host = ShareSession.findById(id);
-
-        File attachment_root = Play.getFile(new File("attachments").getPath());
-
-        File dest = new File(attachment_root, Codec.UUID());
-
-        assertEquals("", getRelativePath(dest));
-        Attachment dest_attachment = new Attachment(host, getRelativePath(dest), "hello.js");
-        assertNotNull(dest_attachment);
-    }
-
-    private static String getRelativePath(File dest) {
-
-        return dest.getAbsolutePath().replace(Play.applicationPath.getAbsolutePath(), "");
-    }
-
-    @Test
     public void testSaveAttachment() {
 
         ShareSession session = ShareSession.findById(2L);
