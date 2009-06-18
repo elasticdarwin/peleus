@@ -10,8 +10,9 @@
 /** Header **/
 
 #peleus #peleusHeader {
-    background: #111111;
+    background: #ddeeff;
     padding: 10px 20px;
+    height:90px;
 }
 
 #peleus #peleusHeader h1 {

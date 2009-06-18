@@ -4,11 +4,11 @@
 <div id="peleusContent">
     <form class="centerStyleForm" action="@{myspace.ShareSessionController.create()}" method="post">
 
-        <h3>&{'myspace.sharesession.create.title'}</h3>
+        <h3>&{'common.sharesession.create.title'}</h3>
 
-        <label>&{'myspace.sharesession.department'}</label>
+        <label>&{'common.sharesession.department'}</label>
         <select name="sharesession_form.department_id">
-            <option value="0">&{'myspace.sharesession.select.department'}</option>
+            <option value="0">&{'common.sharesession.select.department'}</option>
 
             #{list items:departments, as:'department'}
             #{if  flash['sharesession_form.department_id'] != null && flash['sharesession_form.department_id'].toLong() == department.id.toLong()}
@@ -23,47 +23,47 @@
         <br />
 
 
-        <label>&{'myspace.sharesession.subject'}</label>
+        <label>&{'common.sharesession.subject'}</label>
         <input type="text"  name="sharesession_form.subject" value="${flash['sharesession_form.subject']}"/>
         <span class="flashError">#{error 'sharesession_form.subject' /}</span>
         <br />
 
 
-        <label>&{'myspace.sharesession.audiences'}</label>
+        <label>&{'common.sharesession.audiences'}</label>
         <input type="text"  name="sharesession_form.audiences" value="${flash['sharesession_form.audiences']}"/>
         <span class="flashError">#{error 'sharesession_form.audiences' /}</span><br />
 
 
-        <label>&{'myspace.sharesession.start_date'}</label>
+        <label>&{'common.sharesession.start_date'}</label>
         <input type="text"  name="sharesession_form.start_date" value="${flash['sharesession_form.start_date']}"/>
         <span class="flashError">#{error 'sharesession_form.start_date' /}</span><br />
 
 
-        <label>&{'myspace.sharesession.end_date'}</label>
+        <label>&{'common.sharesession.end_date'}</label>
         <input type="text"  name="sharesession_form.end_date" value="${flash['sharesession_form.end_date']}"/>
         <span class="flashError">#{error 'sharesession_form.end_date' /}</span><br />
 
 
 
-        <label>&{'myspace.sharesession.address'}</label>
+        <label>&{'common.sharesession.address'}</label>
         <input type="text"  name="sharesession_form.address" value="${flash['sharesession_form.address']}"/>
         <span class="flashError">#{error 'sharesession_form.address' /}</span>
         <br />
 
 
-        <label>&{'myspace.sharesession.audiences_limit'}</label>
+        <label>&{'common.sharesession.audiences_limit'}</label>
         <input type="text"  name="sharesession_form.audiences_limit" value="${flash['sharesession_form.audiences_limit']}"/>
         <span class="flashError">#{error 'sharesession_form.audiences_limit' /}</span><br />
 
-        <label>&{'myspace.sharesession.description'}</label>
+        <label>&{'common.sharesession.description'}</label>
         <textarea name="sharesession_form.description">${flash['sharesession_form.description']}</textarea>
         <span class="flashError">#{error 'sharesession_form.description' /}</span><br />
 
 
 
-        <label>&{'myspace.sharesession.contributor_1_id'}</label>
+        <label>&{'common.sharesession.contributor_1_id'}</label>
         <select name="sharesession_form.contributor_1_id">
-            <option value="0">&{'myspace.sharesession.select.contributor'}</option>
+            <option value="0">&{'common.sharesession.select.contributor'}</option>
 
             #{list items:users, as:'user'}
             #{if flash['sharesession_form.contributor_1_id'] != null && flash['sharesession_form.contributor_1_id'].toLong() == user.id.toLong()}
@@ -77,9 +77,9 @@
         <span class="flashError">#{error 'sharesession_form.contributor_1_id' /}</span>
         <br />
 
-        <label>&{'myspace.sharesession.contributor_2_id'}</label>
+        <label>&{'common.sharesession.contributor_2_id'}</label>
         <select name="sharesession_form.contributor_2_id">
-            <option value="0">&{'myspace.sharesession.select.contributor'}</option>
+            <option value="0">&{'common.sharesession.select.contributor'}</option>
 
             #{list items:users, as:'user'}
             #{if flash['sharesession_form.contributor_2_id'] != null && flash['sharesession_form.contributor_2_id'].toLong() == user.id.toLong()}
@@ -93,9 +93,9 @@
         <span class="flashError">#{error 'sharesession_form.contributor_2_id' /}</span>
         <br />
 
-        <label>&{'myspace.sharesession.contributor_3_id'}</label>
+        <label>&{'common.sharesession.contributor_3_id'}</label>
         <select name="sharesession_form.contributor_3_id">
-            <option value="0">&{'myspace.sharesession.select.contributor'}</option>
+            <option value="0">&{'common.sharesession.select.contributor'}</option>
 
             #{list items:users, as:'user'}
             #{if flash['sharesession_form.contributor_3_id'] != null && flash['sharesession_form.contributor_3_id'].toLong() == user.id.toLong()}
@@ -111,6 +111,6 @@
 
 
 
-        <input type="submit" value="&{'myspace.sharesession.post.submit'}"/>
+        <input type="submit" value="&{'common.sharesession.post.submit'}"/>
     </form>
 </div>
