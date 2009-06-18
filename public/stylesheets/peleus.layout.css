@@ -1,0 +1,64 @@
+/** Global **/
+
+#peleus {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica', 'Arial', 'Sans';
+    font-size: 90%;
+    color: #111;
+}
+
+
+/** Header **/
+
+#peleus #peleusHeader {
+    background: #eeffaa;
+    padding: 10px 20px;
+    height:90px;
+}
+
+#peleus #peleusHeader h1 {
+    margin: 0;
+    font-weight: normal;
+    color:orange;
+}
+
+#peleus #peleusHeader h1 a {
+    color: orange;
+    text-decoration: none;
+}
+
+
+/** Content **/
+
+#peleus #peleusContent {
+    padding: 10px 20px;
+}
+
+#peleus #peleusContent h2 {
+    color: #333;
+    font-weight: normal;
+    margin-top: 10px;
+}
+
+#peleus #peleusContent a {
+    color: #444;
+}
+
+/** Footer **/
+
+#peleus #peleusFooter {
+    background-color:orange;
+    font-size: 80%;
+    font-weight:bold;
+    color: #aaa;
+    padding: 10px 20px;
+    border-top: 1px dashed #ccc;
+    border-bottom: 1px dashed #ccc;
+    margin-top: 50px;
+    text-align: center;
+}
+
+#peleus #peleusFooter a {
+    color: #333;
+}

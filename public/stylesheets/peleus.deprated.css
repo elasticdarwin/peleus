@@ -1,0 +1,101 @@
+.peleusNew {
+    text-align: right !important;
+}
+
+.peleusNew a {
+    background: #54BD06;
+    padding: 2px 10px;
+    font-size: 90%;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    color: #fff !important;
+    text-decoration: none;
+}
+
+.peleusNew a:hover {
+    opacity: .8;
+}
+
+/** List **/
+
+#peleusList {
+    position: relative;
+}
+
+#peleusListAdd a {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #54BD06;
+    padding: 3px 10px;
+    font-size: 90%;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    color: #fff !important;
+    text-decoration: none;
+}
+
+#peleusListAdd a:hover {
+    opacity: .8;
+}
+
+#peleusListSearch {
+    padding: 4px 5px;
+    border: 1px solid #ddd;
+    background: #efefef;
+}
+
+#peleusListSearch input[type=text] {
+    width: 40%;
+}
+
+#peleusListSearch a {
+    color: #111 !important;
+    font-size: 90%;
+}
+
+#peleusListPagination {
+    padding: 4px 5px;
+    border: 1px solid #ddd;
+    background: #efefef;
+    border-top: 0;
+    font-size: 90%;
+    position: relative;
+}
+
+#peleusListPagination .peleusCount {
+    margin: 0;
+}
+
+#peleusListPagination .peleusPages {
+    margin: 0;
+    position: absolute;
+    right: 5px;
+    top: 4px;
+}
+
+/** Show **/
+
+#peleusShow {
+    position: relative;
+}
+
+.peleusDelete input {
+    color: #fff;
+    border: none;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #c00;
+    padding: 2px 10px;
+    font-size: 90%;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    cursor: pointer;
+}
+
+.peleusDelete input:hover {
+    opacity: .7;
+}

@@ -1,0 +1,25 @@
+
+#peleusBreadcrumb {
+    padding: 5px 20px;
+    font-size:14px;
+    border-bottom: 1px solid #ddd;
+}
+
+#peleusBreadcrumb ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#peleusBreadcrumb li {
+    display: inline;
+}
+
+#peleusBreadcrumb a {
+    color: #333;
+}
+
+#peleusBreadcrumb li:last-child a {
+    color: #888;
+    text-decoration: none;
+}
