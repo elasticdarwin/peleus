@@ -80,8 +80,8 @@ POST        /backyard/sharesession/close            backyard.ShareSessionControl
 
 ## Myspace::Attachment
 
-POST        /myspace/attachment/upload      myspace.AttachmentController.upload
-
+POST        /myspace/attachment/upload              myspace.AttachmentController.upload
+GET         /attachments/{path}                     myspace.AttachmentController.download
 
 ## Backyard::Index
 

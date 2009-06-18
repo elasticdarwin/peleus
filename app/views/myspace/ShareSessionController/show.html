@@ -9,16 +9,19 @@
         <ul>
             #{list items:share_session.attachments, as:'attachment'}
             <li>
-                <a href="${attachment.path}">${attachment.fileName}</a>
+                <a href="${attachment.path}">${attachment.file_name}</a>
             </li>
             #{/list}
         </ul>
 
-        <form action="@{myspace.AttachmentController.upload}" method="post" enctype="multipart/form-data">
+        #{if flash.get('attachment_error') }
+        <span class="flashError">${flash.get('attachment_error')}</span>
+        #{/if}
 
+        <form action="@{myspace.AttachmentController.upload}" method="post" enctype="multipart/form-data">
+            
             <input type="file" name="attachment"></input>
             <input type="hidden" name="id" value="${share_session.id}"></input>
-
             <input type="submit" value="Upload"></input>
         </form>
     </div>

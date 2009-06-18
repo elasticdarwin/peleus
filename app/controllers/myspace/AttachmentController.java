@@ -8,25 +8,55 @@ import models.ShareSession;
 import org.apache.commons.io.FileUtils;
 import play.Play;
 import play.data.validation.Required;
+import play.libs.Codec;
 
 public class AttachmentController extends Application {
 
-    public static void upload(@Required File attachment, @Required Long id) throws IOException {
+    public static void upload(File attachment, Long id) throws IOException {
 
-        File attachment_root = Play.getFile(new File("public", "attachments").getPath());
+        forbiddenIfNo(id);
 
-        FileUtils.copyFileToDirectory(attachment, attachment_root);
+        if (attachment == null) {
 
-        File dest = new File(attachment_root, attachment.getName());
+            flash.put("attachment_error", "Attachment file can not be empty!");
+            ShareSessionController.show(id);
+        }
 
         ShareSession host = ShareSession.findById(id);
-
         forbiddenIfNo(host);
 
-        Attachment dest_attachment = new Attachment(host, getRelativePath(dest));
+
+        File attachment_root = Play.getFile(new File("attachments").getPath());
+
+        File dest = new File(attachment_root, Codec.UUID());
+
+        Attachment dest_attachment = new Attachment(host, getRelativePath(dest), attachment.getName());
         dest_attachment.save();
 
+        FileUtils.copyFile(attachment, dest);
+
+
+
+
         ShareSessionController.show(id);
+    }
+
+    public static void download(String path) {
+
+        File attachment_root = Play.getFile(new File("attachments").getPath());
+
+        File dest = new File(attachment_root, path);
+
+
+        Attachment attachment = Attachment.findOneBy("path = ?", getRelativePath(dest));
+
+
+
+        //        response.contentType = "application/octet-stream";
+
+//        response.setHeader("Content-disposition", "attachment; filename=" + attachment.file_name + "");
+//        renderText("attachment; filename=" + attachment.file_name + "");
+        renderBinary(dest, attachment.file_name);
     }
 
     private static String getRelativePath(File dest) {

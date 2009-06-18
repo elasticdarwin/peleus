@@ -1,11 +1,14 @@
 package unit;
 
+import java.io.File;
 import java.util.List;
 import models.Attachment;
 import models.ShareSession;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import play.Play;
+import play.libs.Codec;
 import play.test.Fixtures;
 import play.test.UnitTest;
 
@@ -19,6 +22,26 @@ public class AttachmentTest extends UnitTest {
     }
 
     @Test
+    public void test() {
+
+        Long id = 2L;
+        ShareSession host = ShareSession.findById(id);
+
+        File attachment_root = Play.getFile(new File("attachments").getPath());
+
+        File dest = new File(attachment_root, Codec.UUID());
+
+        assertEquals("", getRelativePath(dest));
+        Attachment dest_attachment = new Attachment(host, getRelativePath(dest), "hello.js");
+        assertNotNull(dest_attachment);
+    }
+
+    private static String getRelativePath(File dest) {
+
+        return dest.getAbsolutePath().replace(Play.applicationPath.getAbsolutePath(), "");
+    }
+
+    @Test
     public void testSaveAttachment() {
 
         ShareSession session = ShareSession.findById(2L);
@@ -26,8 +49,8 @@ public class AttachmentTest extends UnitTest {
         assertNotNull(session);
         final String path1 = "/public/attachments/hello.rb";
         final String path2 = "/public/attachments/world.rb";
-        Attachment attachment1 = new Attachment(session, path1);
-        Attachment attachment2 = new Attachment(session, path2);
+        Attachment attachment1 = new Attachment(session, path1, "hello.rb");
+        Attachment attachment2 = new Attachment(session, path2, "world.rb");
 
         attachment1.save();
         attachment2.save();
@@ -47,8 +70,8 @@ public class AttachmentTest extends UnitTest {
 
         assertEquals(path1, session.attachments.get(0).path);
         assertEquals(path2, session.attachments.get(1).path);
-        assertEquals("hello.rb", session.attachments.get(0).getFileName());
-        assertEquals("world.rb", session.attachments.get(1).getFileName());
+        assertEquals("hello.rb", session.attachments.get(0).file_name);
+        assertEquals("world.rb", session.attachments.get(1).file_name);
 
     }
 }

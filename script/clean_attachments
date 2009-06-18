@@ -3,7 +3,7 @@
 
 require 'fileutils'
 
-path = File.absolute_path(File.join(File.dirname(__FILE__), '..', 'public', 'attachments', '*'))
+path = File.absolute_path(File.join(File.dirname(__FILE__), '..', 'attachments', '*'))
 file_list = Dir.glob(path)
 unless file_list.empty?
     puts "following files (in path<#{path}>) will be removed:"
