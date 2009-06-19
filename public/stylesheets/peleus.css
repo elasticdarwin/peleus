@@ -1,9 +1,79 @@
+/*** Layout ***/
+
+/**Layout - Global **/
+
+#peleus {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica', 'Arial', 'Sans';
+    font-size: 90%;
+    color: #111;
+}
+
+
+/**Layout - Header **/
+
+#peleus #peleusHeader {
+    background: #eeffaa;
+    padding: 10px 20px;
+    height:90px;
+}
+
+#peleus #peleusHeader h1 {
+    margin: 0;
+    font-weight: normal;
+    color:orange;
+}
+
+#peleus #peleusHeader h1 a {
+    color: orange;
+    text-decoration: none;
+}
+
+
+/**Layout -  Content **/
+
+#peleus #peleusContent {
+    padding: 10px 20px;
+}
+
+#peleus #peleusContent h2 {
+    color: #333;
+    font-weight: normal;
+    margin-top: 10px;
+}
+
+#peleus #peleusContent a {
+    color: #444;
+}
+
+/**Layout -  Footer **/
+
+#peleus #peleusFooter {
+    background-color:orange;
+    font-size: 80%;
+    font-weight:bold;
+    color: #aaa;
+    padding: 10px 20px;
+    border-top: 1px dashed #ccc;
+    border-bottom: 1px dashed #ccc;
+    margin-top: 50px;
+    text-align: center;
+}
+
+#peleus #peleusFooter a {
+    color: #333;
+}
+
+/*** Menu ***/
+
+
+
+
 @import url(peleus.breadcrumb.css);
 @import url(peleus.control.css);
 @import url(peleus.control.ext.css);
-@import url(peleus.elements.css);
 @import url(peleus.flash.css);
 @import url(peleus.form.css);
 @import url(peleus.layout.css);
-@import url(peleus.menu.css);
 @import url(peleus.table.css);
