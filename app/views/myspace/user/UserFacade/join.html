@@ -6,15 +6,15 @@
 
     <form class="centerStyleForm" action="@{myspace.user.UserFacade.register()}" method="post">
 
-        <h3>&{'myspace.user.join.subject'}</h3>
+        <h3>加入学习社群</h3>
 
 
-        <label>&{'myspace.user.name'}</label>
+        <label>用户名</label>
         <input type="text"  name="user_form.name" value="${flash['user_form.name']}"/>
         <span class="flashError">#{error 'user_form.name' /}</span>
         <br />
 
-        <label>&{'myspace.user.department'}</label>
+        <label>我的部门</label>
         <select name="user_form.department_id">
         #{list items:departments, as:'department'}
             #{if flash['user_form.department_id'] == department.id}
@@ -29,28 +29,28 @@
         <br />
 
 
-        <label>&{'myspace.user.email'}</label>
+        <label>Email</label>
         <input type="text"  name="user_form.email" value="${flash['user_form.email']}"/>
         <span class="flashError">#{error 'user_form.email' /}</span><br />
 
-        <label>&{'myspace.user.password'}</label>
+        <label>设置密码</label>
         <input type="password" name="user_form.password" value="${flash['user_form.password']}"/>
         <span class="flashError">#{error 'user_form.password' /}</span><br />
 
-        <label>&{'myspace.user.password.repeat'}</label>
+        <label>再输一遍密码</label>
         <input type="password" name="user_form.repeat_password" value="${flash['user_form.repeat_password']}"/>
         <span class="flashError">#{error 'user_form.repeat_password' /}</span><br />
 
-        <label>&{'myspace.user.lang.preference'}</label>
+        <label>语言偏好</label>
         <input id="user_form.prefered_lang.en.id" type="radio" name="user_form.prefered_lang" value="en" #{if flash['user_form.prefered_lang'] == "en" || flash['user_form.prefered_lang'] == null}checked="checked" #{/if} />
-               &{'myspace.user.lang.english'}
+               英语
                <input id="user_form.prefered_lang.zh.id" type="radio" name="user_form.prefered_lang" value="zh" #{if flash['user_form.prefered_lang'] == "zh" }checked="checked" #{/if} />
-               &{'myspace.user.lang.simple-chinese'}
+               简体中文
                <span class="flashError">#{error 'user_form.prefered_lang' /}</span><br />
 
-        <input type="submit" value="&{'myspace.user.join.submit'}"/>
+        <input type="submit" value="创建我的帐号"/>
     </form>
 
 </div>
 
-<a href="@{myspace.user.UserFacade.login()}">Already have an account? Login</a>
+<a href="@{myspace.user.UserFacade.login()}">已经有帐号？那请点这里登录！</a>

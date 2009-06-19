@@ -1,19 +1,17 @@
 #{extends 'main.html' /}
 #{set title:'Peleus Administration Backyard' /}
 
+#{include 'backyard/DepartmentController/_departmentBreadcrumb.html' /}
 
-<h2>&{'backyard.functions.department.view_all'}</h2>
-<a href="@{backyard.DepartmentController.create_form()}">&{'backyard.functions.department.create'}</a>
+<h2>管理部门</h2>
+<a href="@{backyard.DepartmentController.create_form()}">增加一个新部门</a>
 <table border="1">
     <thead>
         <tr>
             <th>ID</th>
-            <th>&{'domain.department.name'}</th>
-
-            <th>&{'domain.department.description'}</th>
-
-
-            <th>&{'common.basic.actions.actions'}</th>
+            <th>部门名称</th>
+            <th>部门描述</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -22,7 +20,7 @@
             <td>${department.id}</td>
             <td><a href="@{backyard.DepartmentController.show(department.id)}">${department.name}</a></td>
             <td>${department.description}</td>
-            <td> <a href="@{backyard.DepartmentController.edit(department.id)}">&{'common.basic.actions.edit'}</a> | <a href="@{backyard.DepartmentController.delete_confirm(department.id)}">&{'common.basic.actions.delete'}</a> </td>
+            <td> <a href="@{backyard.DepartmentController.edit(department.id)}">编辑</a> | <a href="@{backyard.DepartmentController.delete_confirm(department.id)}">删除</a> </td>
         </tr>
         #{/list}
     </tbody>

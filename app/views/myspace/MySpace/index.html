@@ -3,26 +3,28 @@
 
 
 <div id="peleusBreadcrumb">
-    <a href="@{dashboard.Dashboard.index()}">Dahsboard</a> | <a href="@{myspace.MySpace.index()}">Myspace Home</a>
+    <a href="@{dashboard.Dashboard.index()}">首页</a> | <a href="@{myspace.MySpace.index()}">MySpace首页</a>
 </div>
 
 
-<div class="peleusFlash">
-<div class="flashMenu"><a href="@{myspace.user.UserFacade.logout()}">Logout</a>
+<div class="flashMenu"><a href="@{myspace.user.UserFacade.logout()}">登出系统</a>
 </div>
 
 #{if is_new_user}
 <div class="peleusFlash">
-    <div class="flashSuccess">&{'myspace.user.register.success', user.email } </div>
+    <div class="flashSuccess">
+    Congratulations! 你已经成功注册并创建了帐号!
+    <div class="tip">你可以在下次使用email${user.email}和密码登录!</div>
+    </div>
 </div>
 
 #{/if}
 
 <div class="peleusFlash">
     <div class="flashMenu">
-        <h3> &{'myspace.functions.index'} </h3>
+        <h3>MySpace 管理面板</h3>
         <ul>
-            <li><a href="@{myspace.ShareSessionController.index()}">&{'myspace.sharesession.functions.view_all'}</a></li>
+            <li><a href="@{myspace.ShareSessionController.index()}">我的分享学习活动</a></li>
         </ul>
     </div>
 </div>

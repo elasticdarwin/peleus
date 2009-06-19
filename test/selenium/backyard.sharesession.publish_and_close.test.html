@@ -15,16 +15,15 @@ assertTextNotPresent('Gof Design Patterns with Java')
 
 open(@@{backyard.ShareSessionController.index()})
 
-assertTextPresent('View All Share Sessions')
-assertTextPresent('Subject')
+assertTextPresent('分享活动管理')
+assertTextPresent('分享活动主题')
 assertTextPresent('Gof Design Patterns with Java')
 
-assertElementPresent('//tr[@class="session_1"]//input[@value="publish"]')
-clickAndWait('//tr[@class="session_1"]//input[@value="publish"]')
+clickAndWait('//tr[@class="session_1"]//input[@value="发布"]')
 
 assertLocation(@@{backyard.ShareSessionController.index()})
 
-assertElementPresent('//tr[@class="session_1"]//input[@value="close"]')
+assertElementPresent('//tr[@class="session_1"]//input[@value="关闭"]')
 
 open(@@{dashboard.Dashboard.index()})
 assertTextPresent('Gof Design Patterns with Java')
@@ -34,7 +33,7 @@ clickAndWait('//tr[@class="session_1"]//input[@class="close"]')
 
 assertLocation(@@{backyard.ShareSessionController.index()})
 
-assertElementPresent('//tr[@class="session_1"]//input[@value="publish"]')
+assertElementPresent('//tr[@class="session_1"]//input[@value="发布"]')
 
 open(@@{dashboard.Dashboard.index()})
 assertTextNotPresent('Gof Design Patterns with Java')

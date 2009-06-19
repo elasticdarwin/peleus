@@ -3,16 +3,16 @@
 
 #{include 'backyard/Backyard/_peleusBreadcrumb.html' /}
 
-<h2>&{'backyard.functions.user.view_all_users'}</h2>
+<h2>查看全部用户</h2>
 <table border="1">
     <thead>
         <tr>
             <th>ID</th>
-            <th>&{'domain.user.name'}</th>
-            <th>&{'domain.user.email'}</th>
-            <th>&{'domain.user.password'}</th>
-            <th>&{'domain.user.department'}</th>
-            <th>&{'common.basic.actions.actions'}</th>
+            <th>用户名</th>
+            <th>Email</th>
+            <th>密码</th>
+            <th>所在部门</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -23,7 +23,7 @@
             <td>${user.email}</td>
             <td>${user.password}</td>
             <td>${user.department.name}</td>
-            <td> <a href="@{backyard.Backyard.edit_user(user.id)}">&{'common.basic.actions.edit'}</a> | <a href="@{backyard.Backyard.delete_user_confirm(user.id)}">&{'common.basic.actions.delete'}</a> </td>
+            <td> <a href="@{backyard.Backyard.edit_user(user.id)}">编辑</a> | <a href="@{backyard.Backyard.delete_user_confirm(user.id)}">删除</a> </td>
         </tr>
         #{/list}
     </tbody>

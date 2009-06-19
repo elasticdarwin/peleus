@@ -1,11 +1,14 @@
+#{extends 'main.html' /}
+#{set title:'Peleus Administration Backyard:show department profile' /}
 
 
-<h3>&{'backyard.department.profile.subject'}</h3>
+#{include 'backyard/DepartmentController/_departmentBreadcrumb.html' /}
+<h3>部门详细信息</h3>
 
-<label>&{'domain.department.name'}</label>${department.name}
-<label>&{'domain.department.description'}</label>${department.description}
+<label>部门名称</label>${department.name}
+<label>部门描述</label>${department.description}
 
 
-<a href="@{backyard.DepartmentController.edit(department.id)}">&{'common.basic.actions.edit'}</a>
+<a href="@{backyard.DepartmentController.edit(department.id)}">编辑</a>
 
 

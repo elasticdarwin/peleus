@@ -1,81 +1,43 @@
 #{extends 'main.html' /}
-#{set title:messages.get('dashboard.title.homepage') /}
+#{set title:messages.get("Peleus Platform::Dashboard::Homepage::首页") /}
 
-<div>
+<ul>
     #{if has_loggined}
-    <p>hello, ${user.name} !</p>
-
-    <a href="@{myspace.MySpace.index()}">Myspace</a> |
-    <a href="@{myspace.user.UserFacade.logout()}">logout</a>
-
+    <li>你好, ${user.name} ! </li>
+    <li><a href="@{myspace.MySpace.index()}">进入MySpace</a> | <a href="@{myspace.user.UserFacade.logout()}">登出系统</a></li>
     #{/if}
-
     #{else}
-    <a href="@{myspace.user.UserFacade.login()}">login</a>
-    | <a href="@{myspace.user.UserFacade.join()}">Not have an account yet?</a>
+    <li>
+        <a href="@{myspace.user.UserFacade.login()}">登录</a> | <a href="@{myspace.user.UserFacade.join()}">还没有帐号？快注册一个吧！</a>
+    </li>
     #{/else}
-</div>
+</ul>
 
-<h1>Share Session on coming ...</h1>
-
-<hr/>
-
+<strong>即将发生的分享活动(Share Session)...</strong> <br />
 
 #{list items:share_sessions, as:'share_session'}
 
-<div class="centerStyleForm">
-    <h2>${share_session.subject}</h2>
+<strong>${share_session.subject}</strong>
 
-    <p>Posted by: ${share_session.creator.name}</p>
-    
-    <p>Descrption: <br />
+<p>由${share_session.creator.name}发布</p>
 
-     ${share_session.description}</p>
+<p>学习活动详情<br />
 
+    ${share_session.description}</p>
 
-
-    <p>Host Department : ${share_session.department.name}</p>
-    <p>Contributors : <br />
-        #{list items:share_session.contributors, as:'contributor'}
-        ${contributor.name} <br />
+<p>组织部门: ${share_session.department.name}</p>
+<p>分享者 : <br />
+    #{list items:share_session.contributors, as:'contributor'}
+    ${contributor.name} <br />
     #{/list} </p>
 
-    <p>Audiences : ${share_session.audiences} </p>
-    <p>Audiences Limit : ${share_session.audiences_limit} </p>
-    <p>Date : from ${share_session.start} ~ ${share_session.end} </p>
-    <p>Address : ${share_session.address}</p>
+<p>面向听众 : ${share_session.audiences} </p>
+<p>参加人数限制 : ${share_session.audiences_limit} </p>
+<p>日期 : 从 ${share_session.start} ~ ${share_session.end} </p>
+<p>地点 : ${share_session.address}</p>
 
-</div>
 
 #{/list}
-
-<!--
-<table border="1">
-<thead>
-<tr>
-<th>ID</th>
-<th>&{'domain.user.name'}</th>
-<th>&{'domain.user.email'}</th>
-<th>&{'domain.user.password'}</th>
-<th>&{'domain.user.department'}</th>
-<th>&{'common.basic.actions.actions'}</th>
-</tr>
-</thead>
-<tbody>
-#{list items:all_users, as:'user'}
-<tr>
-<td>${user.id}</td>
-<td>${user.name}</td>
-<td>${user.email}</td>
-<td>${user.password}</td>
-<td>${user.department.name}</td>
-<td> <a href="@{backyard.Backyard.edit_user(user.id)}">&{'common.basic.actions.edit'}</a> | <a href="@{backyard.Backyard.delete_user_confirm(user.id)}">&{'common.basic.actions.delete'}</a> </td>
-</tr>
-#{/list}
-</tbody>
-</table>
-
--->
 
 
 

@@ -1,30 +1,4 @@
-## Common Layout Message Area
 
-common.layout.header.myname=Peleus System
-common.layout.footer.copyright=Copyright %s-%s , Powered by Peleus Virtual Team .
-
-## Common Action Message Area
-
-common.basic.actions.actions = Actions
-common.basic.actions.save = save
-common.basic.actions.edit = edit
-common.basic.actions.delete = delete
-common.basic.actions.not_selected_yet = Not selected yet!
-common.basic.actions.publish = publish
-common.basic.actions.close = close
-
-
-## Domain::User Message Area
-
-domain.user.name=Name
-domain.user.email=Email
-domain.user.password=Password
-domain.user.department=Department
-
-## Domain::Department Message Area
-
-domain.department.name=Name
-domain.department.description=Description
 
 
 ## Domain::VirtualTeam Message Area
@@ -33,12 +7,6 @@ domain.department.description=Description
 ## Domain::ShareSession Message Area
 domain.sharesession.subject=Subject
 domain.sharesession.description=Description
-
-
-
-
-## Dashboard Message Area
-dashboard.title.homepage = Dashboard :: Peleus Portal Homepage
 
 
 ## MySpace Function
@@ -110,18 +78,8 @@ validation.email.notexist=Not account associated with this email.
 
 validation.contributor.not.exists=You should specify at least one contributor.
 
-## Backyard Message Area
 
-backyard.breadcrumb.home=Admin Home
-backyard.breadcrumb.view_all_users=View All Users
-backyard.functions.index=Functions
 
-## Backyard::User Message Area
-
-backyard.functions.user.view_all_users = View All Users
-backyard.functions.user.edit = Edit User Profile
-backyard.functions.user.save = Save
-backyard.functions.user.delete_user_confirm = Are you sure to delete the User : "%s" (with Email "%s")?  <br />  Be caution, the operation cannot be recovered!!! <br />
 
 
 ## Backyard::Department Message Area

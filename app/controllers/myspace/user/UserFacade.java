@@ -48,7 +48,6 @@ public class UserFacade extends Application {
     }
 
     public static void login() {
-
         render();
     }
 

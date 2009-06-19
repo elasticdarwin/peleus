@@ -3,10 +3,11 @@
 
 <div class="peleusFlash">
     <div class="flashDialog">
-        &{'common.sharesession.delete_confirm',share_session.subject}
+           你确认要删除“${share_session.subject}”这个分享活动吗？<br />
+        注意，这个操作是无法恢复的!!! <br />
         <br />
 
-        <a href="@{myspace.ShareSessionController.delete(share_session.id)}">Yes</a>     <a href="@{myspace.ShareSessionController.index()}"> Cancel </a>
+        <a href="@{myspace.ShareSessionController.delete(share_session.id)}">确认</a>  ｜   <a href="@{myspace.ShareSessionController.index()}">取消</a>
 
     </div>
 </div>

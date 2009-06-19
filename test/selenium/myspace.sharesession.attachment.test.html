@@ -8,24 +8,24 @@ clearSession()
 
 // login successful
 open(@@{dashboard.Dashboard.index()})
-clickAndWait('link=login')
+clickAndWait('link=登录')
 type('login_form.email', 'a@b.cn')
 type('login_form.password', 'arthur')
-clickAndWait('//input[@value="Login Now"]')
+clickAndWait('//input[@value="登录系统"]')
 
 open(@@{myspace.ShareSessionController.index()})
-assertTextPresent('Subject')
+assertTextPresent('分享活动主题')
 assertTextPresent('Ruby Meta Programming')
 
 clickAndWait('link=Ruby Meta Programming')
 assertLocation(@@{myspace.ShareSessionController.show(2)})
 assertTextPresent('Ruby Meta Programming')
-assertTextPresent('Status: CREATED')
+assertTextPresent('状态: CREATED')
 
 
-assertTextPresent('Attachment List')
+assertTextPresent('附件列表')
 
-assertElementPresent('//input[@value="Upload"]')
+assertElementPresent('//input[@value="上传附件"]')
 
 
 

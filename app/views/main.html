@@ -10,49 +10,44 @@
     <body>
         <div id="wrapper" class="bhome">
 
-            <ul id="skiplinks">
-                <li><a href="#content">Skip to the Content</a></li>
-                <li><a href="#navigation">Skip to the Navigation</a></li>
-            </ul>
-
             <ul id="quicklinks">
+                #{if has_loggined}
+                <li id="manage"><a href="@{myspace.MySpace.index()}">访问MySpace</a></li>
+                #{/if}
+                #{else}
                 <li id="signup"><a href="@{myspace.user.UserFacade.join()}">注册帐号</a></li>
                 <li id="manage"><a href="@{myspace.MySpace.index()}">访问MySpace</a></li>
+                #{/else}
             </ul>
+
 
             <div id="header">
                 <div class="wrapper">
                     <h1><a href="/">Peleus</a></h1>
-                    <h2>分享-共学-提高</h2>
+                    <h2>分享-协作-追求共同卓越</h2>
                     <p>
 				Peleus是一个用于支持组织内部学习分享的平台。
-                                在Peleus学习平台上，你可以查看即将进行的分享活动(我们把它称为ShareSession),
-                                报名参加其中,或根据关键词,订阅ShareSession(我们把这称为Watch ShareSession)；
-                                你也可以下载已经进行的分享活动的文档；
-                                另外,当然你也可以创建一个分享活动,邀请大家参加!
+                        在Peleus学习平台上，你可以查看即将进行的分享活动(我们把它称为ShareSession),
+                        报名参加其中,或根据关键词,订阅ShareSession(我们把这称为Watch ShareSession)；
+                        你也可以下载已经进行的分享活动的文档；
+                        另外,当然你也可以创建一个分享活动,邀请大家参加!
                     </p>
                     <ul id="navigation">
                         <li id="home"><a href="/">Home</a></li>
                         <li id="ssession"><a href="@{dashboard.Dashboard.index()}">Share Session</a></li>
                         <li id="qanda"><a href="@{dashboard.Dashboard.under_construction()}">Question & Answer</a></li>
-                        <li id="docreq"><a href="/under_construction.html">Document Request</a></li>
-                        <li id="vteam"><a href="/under_construction.html">Virtual Team</a></li>
-                        <li id="tcloud"><a href="/under_construction.html">Skill Cloud</a></li>
+                        <li id="docreq"><a href="@{dashboard.Dashboard.under_construction()}">Document Request</a></li>
+                        <li id="vteam"><a href="@{dashboard.Dashboard.under_construction()}">Virtual Team</a></li>
+                        <li id="tcloud"><a href="@{dashboard.Dashboard.under_construction()}">Skill Cloud</a></li>
                     </ul>
                 </div>
             </div>
 
-
-
-            <div id="peleusHeader">
-
-                <h1>&{'common.layout.header.myname'}</h1>
-            </div>
-
             #{doLayout /}
 
-            <div id="peleusFooter">
-                &{'common.layout.footer.copyright', '2008' ,'2009'} <br />
+            <div id="footer">
+                Peleus Platform System. <br />
+                Powered by Peleus Virtual Team,2009-2010. <br />
             </div>
         </div>
     </body>

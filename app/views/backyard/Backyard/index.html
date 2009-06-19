@@ -2,17 +2,17 @@
 #{set title:'Peleus Administration Backyard' /}
 
 <div id="peleusBreadcrumb">
-    <a href="@{backyard.Backyard.index()}">&{'backyard.breadcrumb.home'}</a>
+    <a href="@{backyard.Backyard.index()}">系统管理控制台</a>
 </div>
 
 <div class="peleusFlash">
     <div class="flashMenu">
-        <h3> &{'backyard.functions.index'} </h3>
+        <h3>系统管理</h3>
         <ul>
-            <li><a href="@{backyard.Backyard.show_all_users()}">&{'backyard.functions.user.view_all_users'}</a></li>
-            <li><a href="@{backyard.DepartmentController.index()}">&{'backyard.functions.department.view_all'}</a></li>
+            <li><a href="@{backyard.Backyard.show_all_users()}">用户管理</a></li>
+            <li><a href="@{backyard.DepartmentController.index()}">部门管理</a></li>
 
-            <li><a href="@{backyard.ShareSessionController.index()}">&{'backyard.functions.sharesession.view_all'}</a></li>
+            <li><a href="@{backyard.ShareSessionController.index()}">分享活动管理</a></li>
             
         </ul>
     </div>

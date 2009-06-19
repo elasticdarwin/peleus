@@ -8,21 +8,21 @@
 
     // login successful
     open(@@{dashboard.Dashboard.index()})
-    clickAndWait('link=login')
+    clickAndWait('link=登录')
     type('login_form.email', 'a@b.cn')
     type('login_form.password', 'arthur')
-    clickAndWait('//input[@value="Login Now"]')
-    assertTextPresent('Logout')
-    clickAndWait('link=Logout')
-    assertTextPresent('You have just logged out from Peleus System!')
+    clickAndWait('//input[@value="登录系统"]')
+    assertTextPresent('登出系统')
+    clickAndWait('link=登出系统')
+    assertTextPresent('刚才你已经从Peleus系统中登出了！')
 
 
     // login failed
     open(@@{dashboard.Dashboard.index()})
-    clickAndWait('link=login')
+    clickAndWait('link=登录')
     type('login_form.email', 'a')
     type('login_form.password', 'arthur')
-    clickAndWait('//input[@value="Login Now"]')
+    clickAndWait('//input[@value="登录系统"]')
     assertTextPresent('Not account associated with this email.')
 
     type('login_form.email', 'a@b.cn')

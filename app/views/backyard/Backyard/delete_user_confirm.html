@@ -6,10 +6,11 @@
 
 <div class="peleusFlash">
     <div class="flashDialog">
-        &{'backyard.functions.user.delete_user_confirm',user.name,user.email}
+        你确认要删除这个用户(用户名是<strong>${user.name}</strong>,Email是<strong>${user.email}</strong>)吗？ <br />
+        注意，这个操作是无法恢复的!!! <br />
         <br />
         
-        <a href="@{backyard.Backyard.delete_user(user.id)}">Yes</a>     <a href="@{backyard.Backyard.show_all_users()}"> Cancel </a>
+        <a href="@{backyard.Backyard.delete_user(user.id)}">确认</a>     |    <a href="@{backyard.Backyard.show_all_users()}">取消</a>
 
     </div>
 </div>

@@ -2,6 +2,8 @@
 #{set title:'Peleus Administration Department:create department' /}
 
 
+#{include 'backyard/DepartmentController/_departmentBreadcrumb.html' /}
+
 <div id="peleusContent">
     <form class="centerStyleForm" action="@{backyard.DepartmentController.create()}" method="post">
         <h3>&{'backyard.department.create.subject'}</h3>

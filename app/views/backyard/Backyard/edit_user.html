@@ -5,14 +5,14 @@
 
 <div id="peleusContent">
     <form class="centerStyleForm" action="@{backyard.Backyard.update_user()}" method="post">
-        <h3>&{'backyard.functions.user.edit'}</h3>
-        <label>&{'domain.user.name'}</label>
+        <h3>编辑用户信息</h3>
+        <label>用户名</label>
 
         <input type="text"  name="user_form.name" value="${flash['user_form.name']}"/>
         <span class="flashError">#{error 'user_form.name' /}</span>
         <br />
 
-        <label>&{'domain.user.department'}</label>
+        <label>部门</label>
 
         <select name="user_form.department_id">
             #{list items:departments, as:'department'}
@@ -28,24 +28,24 @@
         <br />
 
 
-        <label>&{'domain.user.email'}</label>
+        <label>Email</label>
         <input type="text"  name="user_form.email" value="${flash['user_form.email']}"/>
         <span class="flashError">#{error 'user_form.email' /}</span>
         <br />
 
 
-        <label>&{'domain.user.password'}</label>
+        <label>密码</label>
         <input type="password" name="user_form.password" value="${flash['user_form.password']}"/>
         <span class="flashError">#{error 'user_form.password' /}</span>
         <br />
 
-        <label>&{'myspace.user.password.repeat'}</label>
+        <label>确认密码</label>
         <input type="password" name="user_form.repeat_password" value="${flash['user_form.repeat_password']}"/>
         <span class="flashError">#{error 'user_form.repeat_password' /}</span>
         <br />
 
         <input type="hidden" name="user_form.id" value="${flash['user_form.id']}"/>
 
-        <input type="submit" value="&{'backyard.functions.user.save'}"/>
+        <input type="submit" value="更新信息"/>
     </form>
 </div>

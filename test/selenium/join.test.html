@@ -8,13 +8,13 @@
     clearSession()
 
     open(@@{dashboard.Dashboard.index()})
-    clickAndWait('link=exact:Not have an account yet?')
+    clickAndWait('link=exact:还没有帐号？快注册一个吧！')
     type('user_form.name', 'newuser')
     select('user_form.department_id', 'label=cpc')
     type('user_form.email', 'new@users.com')
     type('user_form.password', '123456')
     type('user_form.repeat_password', '123456')
-    clickAndWait('//input[@value="Join Now"]')
-    assertTextPresent( 'Congratulations! You have registered successfully! ')
+    clickAndWait('//input[@value="创建我的帐号"]')
+    assertTextPresent( 'Congratulations! 你已经成功注册并创建了帐号!')
 
 #{/selenium}

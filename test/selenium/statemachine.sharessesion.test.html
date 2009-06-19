@@ -8,33 +8,33 @@
 clearSession()
 
 open(@@{backyard.ShareSessionController.index()})
-assertElementPresent('//tr[@class="session_1"]//input[@value="publish"]')
+assertElementPresent('//tr[@class="session_1"]//input[@value="发布"]')
 
 clickAndWait('//tr[@class="session_1"]/td/a[@class="show"]')
 assertTextPresent('Gof Design Patterns with Java')
-assertTextPresent('Status: CREATED')
+assertTextPresent('状态: CREATED')
 
 
-assertElementPresent('//input[@value="publish"]')
-clickAndWait('//input[@value="publish"]')
+assertElementPresent('//input[@value="发布"]')
+clickAndWait('//input[@value="发布"]')
 assertLocation(@@{backyard.ShareSessionController.show(1)})
 
-assertTextPresent('Status: PUBLISHED')
+assertTextPresent('状态: PUBLISHED')
 
-assertElementPresent('//input[@value="close"]')
-clickAndWait('//input[@value="close"]')
+assertElementPresent('//input[@value="关闭"]')
+clickAndWait('//input[@value="关闭"]')
 
 assertLocation(@@{backyard.ShareSessionController.show(1)})
 
-assertTextPresent('Status: CLOSED')
+assertTextPresent('状态: CLOSED')
 
-assertTextPresent('delete')
+assertTextPresent('删除')
 
-clickAndWait('link=delete')
-assertTextPresent('Yes')
-assertTextPresent('Cancel')
+clickAndWait('link=删除')
+assertTextPresent('确认')
+assertTextPresent('取消')
 
-clickAndWait('link=Cancel')
+clickAndWait('link=取消')
 
 assertLocation(@@{backyard.ShareSessionController.index()})
 
@@ -42,9 +42,9 @@ assertTextPresent('Gof Design Patterns with Java')
 
 
 clickAndWait('//tr[@class="session_1"]//a[@class="delete"]')
-assertTextPresent('Yes')
-assertTextPresent('Cancel')
-clickAndWait('link=Yes')
+assertTextPresent('确认')
+assertTextPresent('取消')
+clickAndWait('link=确认')
 assertTextNotPresent('Gof Design Patterns with Java')
 
 #{/selenium}

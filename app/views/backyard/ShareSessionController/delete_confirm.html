@@ -3,10 +3,11 @@
 
 <div class="peleusFlash">
     <div class="flashDialog">
-        &{'common.sharesession.delete_confirm',share_session.subject}
+         你确认要删除“${share_session.subject}”这个分享活动吗？<br />
+        注意，这个操作是无法恢复的!!! <br />}
         <br />
 
-        <a href="@{backyard.ShareSessionController.delete(share_session.id)}">Yes</a>     <a href="@{backyard.ShareSessionController.index()}"> Cancel </a>
+        <a href="@{backyard.ShareSessionController.delete(share_session.id)}" class="confirm">确认</a>     <a href="@{backyard.ShareSessionController.index()}" class="cancel">取消</a>
 
     </div>
 </div>

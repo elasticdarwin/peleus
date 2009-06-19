@@ -1,29 +1,23 @@
 #{extends 'main.html' /}
 #{set title:messages.get('dashboard.title.homepage') /}
 
-<div>
-    <p>hello, ${user.name} !</p>
+#{include 'myspace/ShareSessionController/_ssessionBreadcrumb.html' /}
 
-    <a href="@{dashboard.DashBoard.index()}">DashBoard</a> |
-    <a href="@{myspace.user.UserFacade.logout()}">logout</a>
+<br />
 
+管理我发布的分享活动 ,或者<a href="@{myspace.ShareSessionController.create_form()}">创建一个新的分享活动</a>
 
-</div>
-
-
-
-
-<h2>&{'myspace.sharesession.functions.view_all'} <a href="@{myspace.ShareSessionController.create_form()}"> or Create a new one?</a> </h2>
+<br />
 
 <table border="1">
     <thead>
         <tr>
             <th>ID</th>
-            <th>&{'domain.sharesession.subject'}</th>
+            <th>分享活动主题</th>
 
-            <th>&{'domain.sharesession.description'}</th>
+            <th>分享活动详情</th>
 
-            <th>&{'common.basic.actions.actions'}</th>
+            <th>Actions</th>
 
         </tr>
     </thead>

@@ -5,20 +5,20 @@
 
     <form class="centerStyleForm" action="@{myspace.user.UserFacade.login_validate()}" method="post">
 
-        <h3>&{'myspace.user.login.subject'}</h3>
+        <h3>登录系统</h3>
 
 
-        <label>&{'myspace.user.login.email'}</label>
+        <label>Email</label>
         <input type="text"  name="login_form.email" value="${flash['login_form.email']}"/>
         <span class="flashError">#{error 'login_form.email' /}</span><br />
 
-        <label>&{'myspace.user.login.password'}</label>
+        <label>密码</label>
         <input type="password" name="login_form.password" value="${flash['login_form.password']}"/>
         <span class="flashError">#{error 'login_form.password' /}</span><br />
 
-        <input type="submit" value="&{'myspace.user.login.submit'}"/>
+        <input type="submit" value="登录系统"/>
     </form>
 
     <br />
-    <a href="@{myspace.user.UserFacade.join()}">Not have an account yet?</a>
+    <a href="@{myspace.user.UserFacade.join()}">还没有帐号?</a>
 </div>

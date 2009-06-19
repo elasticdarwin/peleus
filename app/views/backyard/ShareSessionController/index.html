@@ -1,21 +1,21 @@
 #{extends 'main.html' /}
 #{set title:'Peleus Administration Backyard' /}
 
+#{include 'backyard/ShareSessionController/_ssessionBreadcrumb.html' /}
 
-<h2>&{'backyard.functions.sharesession.view_all'}</h2>
+<h2>分享活动管理</h2>
 
 <table border="1">
     <thead>
         <tr>
             <th>ID</th>
-            <th>&{'domain.sharesession.subject'}</th>
+            <th>分享活动主题</th>
 
-            <th>Posted by</th>
+            <th>发布</th>
 
-            <th>&{'domain.sharesession.description'}</th>
+            <th>分享内容详情</th>
 
-            <th>&{'common.basic.actions.actions'}</th>
-
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
