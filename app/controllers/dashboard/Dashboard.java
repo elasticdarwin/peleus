@@ -33,4 +33,8 @@ public class Dashboard extends Application {
 
         render(has_loggined, user, share_sessions);
     }
+
+    public static void under_construction(){
+        render();
+    }
 }
