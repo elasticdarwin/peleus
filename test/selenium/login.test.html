@@ -12,9 +12,9 @@
     type('login_form.email', 'a@b.cn')
     type('login_form.password', 'arthur')
     clickAndWait('//input[@value="登录系统"]')
-    assertTextPresent('登出系统')
-    clickAndWait('link=登出系统')
-    assertTextPresent('刚才你已经从Peleus系统中登出了！')
+    assertTextPresent('登出')
+    clickAndWait('link=登出')
+    assertTextPresent('你已从系统中登出了！')
 
 
     // login failed
@@ -23,11 +23,11 @@
     type('login_form.email', 'a')
     type('login_form.password', 'arthur')
     clickAndWait('//input[@value="登录系统"]')
-    assertTextPresent('Not account associated with this email.')
+    assertTextPresent('没有用户和此Email关联，或密码不匹配，请重试！')
 
     type('login_form.email', 'a@b.cn')
     type('login_form.password', 'darwin')
-    assertTextPresent('Not account associated with this email.')
+    assertTextPresent('没有用户和此Email关联，或密码不匹配，请重试！')
 
     assertLocation(@@{myspace.user.UserFacade.login()})
 #{/selenium}

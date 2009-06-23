@@ -1,56 +1,80 @@
 #{extends 'main.html' /}
 #{set title:'Welcome and Join the community!' /}
 
-<div id="peleusContent">
+<div id="content-top">
+    <div id="content-bottom">
+        <div id="content">
+            <div id="main">
+                <p>
+                    <a href="@{myspace.user.UserFacade.login()}">如果已经有帐号，可以点这里登录！</a> <br/>
+                </p>
 
+                <h3>创建帐号</h3>
 
-    <form class="centerStyleForm" action="@{myspace.user.UserFacade.register()}" method="post">
+                <div id="user">
+                    <form id="join_form" class="peleus_form" action="@{myspace.user.UserFacade.register()}"    method="post">
+                        <p><label>用户名</label>
+                            <input type="text"  size="30" name="user_form.name" value="${flash['user_form.name']}"/>
+                            <br />
+                            <span class="flashError">#{error 'user_form.name' /}</span>
+                        </p>
 
-        <h3>加入学习社群</h3>
+                        <p>
+                            <label>我的部门</label>
+                            <select name="user_form.department_id">
+                                #{list items:departments, as:'department'}
+                                #{if flash['user_form.department_id'] == department.id}
+                                <option value="${department.id}" selected="selected">${department.name}</option>
+                                #{/if}
+                                #{else}
+                                <option value="${department.id}">${department.name}</option>
+                                #{/else}
+                                #{/list}
+                            </select>
+                            <br />
+                            <span class="flashError">#{error 'user_form.department_id' /}</span>
+                        </p>
 
+                        <p>
+                            <label>Email</label>
+                            <input type="text" size="30" name="user_form.email" value="${flash['user_form.email']}"/>
+                            <br />
+                            <span class="flashError">#{error 'user_form.email' /}</span>
+                        </p>
 
-        <label>用户名</label>
-        <input type="text"  name="user_form.name" value="${flash['user_form.name']}"/>
-        <span class="flashError">#{error 'user_form.name' /}</span>
-        <br />
+                        <p>
+                            <label>设置密码</label>
+                            <input type="password" size="30" name="user_form.password" value="${flash['user_form.password']}"/>
+                            <br />
+                            <span class="flashError">#{error 'user_form.password' /}</span>
+                        </p>
 
-        <label>我的部门</label>
-        <select name="user_form.department_id">
-        #{list items:departments, as:'department'}
-            #{if flash['user_form.department_id'] == department.id}
-                <option value="${department.id}" selected="selected">${department.name}</option>
-            #{/if}
-            #{else}
-                <option value="${department.id}">${department.name}</option>
-            #{/else}
-        #{/list}
-        </select>
-        <span class="flashError">#{error 'user_form.department_id' /}</span>
-        <br />
+                        <p>
+                            <label>再输一遍密码</label>
+                            <input type="password" size="30" name="user_form.repeat_password" value="${flash['user_form.repeat_password']}"/>
+                            <br />
+                            <span class="flashError">#{error 'user_form.repeat_password' /}</span>
+                        </p>
 
+                        <p>
+                            <input type="submit" value="创建我的帐号"/>
+                    </form>
+                </div>
+            </div>
 
-        <label>Email</label>
-        <input type="text"  name="user_form.email" value="${flash['user_form.email']}"/>
-        <span class="flashError">#{error 'user_form.email' /}</span><br />
-
-        <label>设置密码</label>
-        <input type="password" name="user_form.password" value="${flash['user_form.password']}"/>
-        <span class="flashError">#{error 'user_form.password' /}</span><br />
-
-        <label>再输一遍密码</label>
-        <input type="password" name="user_form.repeat_password" value="${flash['user_form.repeat_password']}"/>
-        <span class="flashError">#{error 'user_form.repeat_password' /}</span><br />
-
-        <label>语言偏好</label>
-        <input id="user_form.prefered_lang.en.id" type="radio" name="user_form.prefered_lang" value="en" #{if flash['user_form.prefered_lang'] == "en" || flash['user_form.prefered_lang'] == null}checked="checked" #{/if} />
-               英语
-               <input id="user_form.prefered_lang.zh.id" type="radio" name="user_form.prefered_lang" value="zh" #{if flash['user_form.prefered_lang'] == "zh" }checked="checked" #{/if} />
-               简体中文
-               <span class="flashError">#{error 'user_form.prefered_lang' /}</span><br />
-
-        <input type="submit" value="创建我的帐号"/>
-    </form>
-
+            <div id="secondary">
+                <h4>创建帐号后，你可以...</h4>
+                <ul>
+                    <li>报名参加你感兴趣的分享活动</li>
+                    <li>在感兴趣的分享活动开始前收到通知</li>
+                    <li>查看下载你参加过的分享活动的文档</li>
+                    <li>发布你组织的分享活动</li>
+                    <li>.......</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 
-<a href="@{myspace.user.UserFacade.login()}">已经有帐号？那请点这里登录！</a>
+
+

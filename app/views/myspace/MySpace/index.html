@@ -1,31 +1,29 @@
 #{extends 'main.html' /}
 #{set title:'Welcome and hope you will find the peleus is helpful to you!!' /}
 
-
-<div id="peleusBreadcrumb">
-    <a href="@{dashboard.Dashboard.index()}">首页</a> | <a href="@{myspace.MySpace.index()}">MySpace首页</a>
-</div>
-
-
-<div class="flashMenu"><a href="@{myspace.user.UserFacade.logout()}">登出系统</a>
-</div>
-
-#{if is_new_user}
-<div class="peleusFlash">
-    <div class="flashSuccess">
-    Congratulations! 你已经成功注册并创建了帐号!
-    <div class="tip">你可以在下次使用email${user.email}和密码登录!</div>
+<div id="breadcrumb-top">
+    <div id="breadcrumb-bottom">
+        <div id="breadcrumb">
+            <div class="greeting">
+                #{if has_loggined}
+                你好, ${user.name}！
+                #{/if}
+            </div>
+            <a href="@{dashboard.Dashboard.index()}">首页</a> | <a href="@{myspace.MySpace.index()}">MySpace首页</a> |
+            <a href="@{myspace.user.UserFacade.logout()}">登出</a>
+        </div>
     </div>
 </div>
 
-#{/if}
-
-<div class="peleusFlash">
-    <div class="flashMenu">
-        <h3>MySpace 管理面板</h3>
-        <ul>
-            <li><a href="@{myspace.ShareSessionController.index()}">我的分享学习活动</a></li>
-        </ul>
+<div id="content-top">
+    <div id="content-bottom">
+        <div id="content">
+            <h3>MySpace</h3>
+            <br />
+            <div id="myspace_navibar">
+                <a href="@{myspace.ShareSessionController.index()}">我的分享学习活动</a>
+            </div>
+        </div>
     </div>
 </div>
 

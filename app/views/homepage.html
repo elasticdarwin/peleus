@@ -8,7 +8,8 @@
         <link rel="shortcut icon" type="image/png" href="/public/images/favicon.png" />
     </head>
     <body>
-        <div id="wrapper" class="bgene">
+        <div id="wrapper" class="bhome">
+
             <ul id="quicklinks">
                 #{if has_loggined}
                 <li id="manage"><a href="@{myspace.MySpace.index()}">访问MySpace</a></li>
@@ -18,10 +19,17 @@
                 <li id="manage"><a href="@{myspace.MySpace.index()}">访问MySpace</a></li>
                 #{/else}
             </ul>
+
             <div id="header">
                 <div class="wrapper">
-                    <h1><a href="http://www.slicehost.com/">Slicehost</a></h1>
-                    <h2>Built for Developers</h2>
+                    <h1><a href="/">Peleus</a></h1>
+                    <h2>分享-协作-追求共同卓越</h2>
+                    <p> Peleus是一个用于支持组织内部学习分享的平台。
+                        在Peleus学习平台上，你可以查看即将进行的分享活动(我们把它称为ShareSession),
+                        报名参加其中,订阅ShareSession(我们把这称为Watch ShareSession)；
+                        下载已经进行的分享活动的文档；
+                        另外,当然你也可以创建一个分享活动,邀请大家参加!
+                    </p>
                     <ul id="navigation">
                         <li id="home"><a href="/">Home</a></li>
                         <li id="ssession"><a href="@{dashboard.Dashboard.index()}">Share Session</a></li>
@@ -33,10 +41,30 @@
                 </div>
             </div>
 
-            
+            <div id="breadcrumb-top">
+                <div id="breadcrumb-bottom">
+                    <div id="breadcrumb">
+                        #{if has_loggined}
+                        <div class="greeting">你好, ${user.name} ! </div>
+                        <a href="@{myspace.MySpace.index()}">进入MySpace</a> | <a href="@{myspace.user.UserFacade.logout()}">登出系统</a>
+                        #{/if}
+                        #{else}
+                        <a href="@{myspace.user.UserFacade.login()}">登录</a> | <a href="@{myspace.user.UserFacade.join()}">还没有帐号？快注册一个吧！</a>
+                        #{/else}
+                    </div>
+                </div>
+            </div>
+
+            <div id="content-top">
+                <div id="content-bottom">
+                    <div id="content">
+
                         #{doLayout /}
 
-         
+                    </div>
+                </div>
+            </div>
+
             <div id="footer">
                 Peleus Platform System. <br />
                 Powered by Peleus Virtual Team,2009-2010. <br />

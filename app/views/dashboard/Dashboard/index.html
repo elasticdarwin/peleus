@@ -1,43 +1,34 @@
-#{extends 'main.html' /}
+#{extends 'homepage.html' /}
 #{set title:messages.get("Peleus Platform::Dashboard::Homepage::首页") /}
 
-<ul>
-    #{if has_loggined}
-    <li>你好, ${user.name} ! </li>
-    <li><a href="@{myspace.MySpace.index()}">进入MySpace</a> | <a href="@{myspace.user.UserFacade.logout()}">登出系统</a></li>
-    #{/if}
-    #{else}
-    <li>
-        <a href="@{myspace.user.UserFacade.login()}">登录</a> | <a href="@{myspace.user.UserFacade.join()}">还没有帐号？快注册一个吧！</a>
-    </li>
-    #{/else}
-</ul>
+<div id="main">
+    
+    <h4>即将发生的分享活动(Share Session)...</h4> <br />
 
-<strong>即将发生的分享活动(Share Session)...</strong> <br />
+    #{list items:share_sessions, as:'share_session'}
 
-#{list items:share_sessions, as:'share_session'}
+    <p id="subject">${share_session.subject}</p>
 
-<strong>${share_session.subject}</strong>
+    <p>由${share_session.creator.name}发布</p>
 
-<p>由${share_session.creator.name}发布</p>
+    <p>学习活动详情<br />
 
-<p>学习活动详情<br />
+        ${share_session.description}</p>
 
-    ${share_session.description}</p>
+    <p>组织部门: ${share_session.department.name}</p>
+    <p>分享者 : <br />
+        #{list items:share_session.contributors, as:'contributor'}
+        ${contributor.name} <br />
+        #{/list} </p>
 
-<p>组织部门: ${share_session.department.name}</p>
-<p>分享者 : <br />
-    #{list items:share_session.contributors, as:'contributor'}
-    ${contributor.name} <br />
-    #{/list} </p>
+    <p>面向听众 : ${share_session.audiences} </p>
+    <p>参加人数限制 : ${share_session.audiences_limit} </p>
+    <p>日期 : 从 ${share_session.start} ~ ${share_session.end} </p>
+    <p>地点 : ${share_session.address}</p>
 
-<p>面向听众 : ${share_session.audiences} </p>
-<p>参加人数限制 : ${share_session.audiences_limit} </p>
-<p>日期 : 从 ${share_session.start} ~ ${share_session.end} </p>
-<p>地点 : ${share_session.address}</p>
+    #{/list}
 
-
-#{/list}
+</div>
 
 
 

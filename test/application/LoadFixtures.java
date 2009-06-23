@@ -91,7 +91,6 @@ public class LoadFixtures extends FunctionalTest {
         arthurForm.email = "a@b.cn";
         arthurForm.password = "arthur";
         arthurForm.repeat_password = "arthur";
-        arthurForm.prefered_lang = "en";
         arthurForm.department_id = ((Department)Department.findOneBy("name", "cpm")).id;
 
 
@@ -100,7 +99,6 @@ public class LoadFixtures extends FunctionalTest {
         darwinForm.email = "d@a.cn";
         darwinForm.password = "darwin";
         darwinForm.repeat_password = "darwin";
-        darwinForm.prefered_lang = "en";
         darwinForm.department_id = ((Department)Department.findOneBy("name", "cpc")).id;
 
         User.create(arthurForm);

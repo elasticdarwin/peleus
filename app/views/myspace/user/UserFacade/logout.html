@@ -1,10 +1,14 @@
 #{extends 'main.html' /}
 #{set title:messages.get('myspace.user.logout.notification') /}
 
-<div class="peleusFlash">
-    <div class="flashSuccess">
-        刚才你已经从Peleus系统中登出了！
-        <br />
-        <a href="@{myspace.user.UserFacade.login()}">使用其他帐号登录.</a>
+<div id="content-top">
+    <div id="content-bottom">
+        <div id="content">
+            <div id="main">
+                <div class="info">你已从系统中登出了！</div>
+                <br />
+                <a href="@{myspace.user.UserFacade.login()}">点此重新登录</a>
+            </div>
+        </div>
     </div>
 </div>

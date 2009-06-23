@@ -3,37 +3,36 @@
 
 #{include 'myspace/ShareSessionController/_ssessionBreadcrumb.html' /}
 
-<br />
-
-管理我发布的分享活动 ,或者<a href="@{myspace.ShareSessionController.create_form()}">创建一个新的分享活动</a>
-
-<br />
-
-<table border="1">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>分享活动主题</th>
-
-            <th>分享活动详情</th>
-
-            <th>Actions</th>
-
-        </tr>
-    </thead>
-    <tbody>
-        #{list items:my_share_sessions, as:'share_session'}
-        <tr>
-            <td>${share_session.id}</td>
-            <td><a href="@{myspace.ShareSessionController.show(share_session.id)}">${share_session.subject}</a></td>
-            <td>${share_session.description}</td>
-            <td>
-                #{include 'myspace/ShareSessionController/_action_links.html' /}
-            </td>
-        </tr>
-        #{/list}
-    </tbody>
-</table>
+<div id="content-top">
+    <div id="content-bottom">
+        <div id="content">
+            <div class="title">
+            管理我发布的分享活动 ,或者<a href="@{myspace.ShareSessionController.create_form()}">创建一个新的分享活动</a>
+            </div>
+            
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>分享活动主题</th>
+                        <th width="400">分享活动详情</th>
+                        <th width="140">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    #{list items:my_share_sessions, as:'share_session'}
+                    <tr>
+                        <td><a href="@{myspace.ShareSessionController.show(share_session.id)}">${share_session.subject}</a></td>
+                        <td>${share_session.description}</td>
+                        <td>
+                            #{include 'myspace/ShareSessionController/_action_links.html' /}
+                        </td>
+                    </tr>
+                    #{/list}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 
 

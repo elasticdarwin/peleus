@@ -2,12 +2,22 @@
 #{set title:'You have created your account successfully! Welcome to Peleus System ! ' /}
 
 
-<div class="peleusFlash">
-    <div class="flashSuccess">Congratulations! 你已经成功注册并创建了帐号!
-        <div class="tip">你可以在下次使用你的注册Email：${user.email}，输入密码登录到系统中!</div>
+<div id="content-top">
+    <div id="content-bottom">
+        <div id="content">
+            <div id="main">
+                <div class="info">已成功创建帐号!</div>
+                <p>Congratulations! 你已经成功注册并创建了帐号。</p>
+                <p>
+                    下次可以使用注册Email:${user.email}  和密码登录到系统中。
+                </p>
+                <a href="@{myspace.MySpace.index()}">进入MySpace</a>
+            </div>
+            <br />
+        </div>
     </div>
 </div>
 
-<a href="@{myspace.MySpace.index()}">进入MySpace</a>
+
 
 

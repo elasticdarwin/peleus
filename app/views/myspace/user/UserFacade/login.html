@@ -1,24 +1,33 @@
 #{extends 'main.html' /}
 #{set title:'Login Into the Peleus System!' /}
 
-<div id="peleusContent">
+<div id="content-top">
+    <div id="content-bottom">
+        <div id="content">
+            <div id="main">
+                <h3>登录系统</h3>
 
-    <form class="centerStyleForm" action="@{myspace.user.UserFacade.login_validate()}" method="post">
+                <form id="login_form" class="peleus_form" action="@{myspace.user.UserFacade.login_validate()}" method="post">
+                    <p>
+                        <label>Email</label>
+                        <input type="text"  name="login_form.email" size="30" value="${flash['login_form.email']}"/>
+                    </p>
 
-        <h3>登录系统</h3>
+                    <p>
+                        <label>密码</label>
+                        <input type="password" name="login_form.password" size="30" value="${flash['login_form.password']}"/>
+                    </p>
+                    <span class="flashError">#{error 'login_form.email' /}</span> <br />
+                    <!--span class="flashError">#{error 'login_form.password' /}</span> <br /-->
+                    <br />
 
+                    <input type="submit" value="登录系统"/>
+                </form>
 
-        <label>Email</label>
-        <input type="text"  name="login_form.email" value="${flash['login_form.email']}"/>
-        <span class="flashError">#{error 'login_form.email' /}</span><br />
+                <br />
 
-        <label>密码</label>
-        <input type="password" name="login_form.password" value="${flash['login_form.password']}"/>
-        <span class="flashError">#{error 'login_form.password' /}</span><br />
-
-        <input type="submit" value="登录系统"/>
-    </form>
-
-    <br />
-    <a href="@{myspace.user.UserFacade.join()}">还没有帐号?</a>
+                <a href="@{myspace.user.UserFacade.join()}">还没有帐号?</a>
+            </div>
+        </div>
+    </div>
 </div>

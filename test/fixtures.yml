@@ -5,6 +5,13 @@ Department(cpm):
 Department(cpc):
   description: yourteam
   name: cpc
+Department(国际网站技术部－核心产品部－会员体系小组):
+  description: 2009-国际网站技术部－核心产品部－会员体系小组
+  name: 国际网站技术部－核心产品部－会员体系小组
+Department(国际网站技术部－核心产品部－社区小组):
+  description: 2009-国际网站技术部－核心产品部－社区小组
+  name: 国际网站技术部－核心产品部－社区小组
+
 
 
 User(Arthur):

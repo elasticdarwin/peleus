@@ -6,12 +6,12 @@
 
 <div id="peleusContent">
     <form class="centerStyleForm" action="@{backyard.DepartmentController.create()}" method="post">
-        <h3>&{'backyard.department.create.subject'}</h3>
-        <label>&{'domain.department.name'}</label>
+        <h3>增加一个新部门</h3>
+        <label>部门名称</label>
         <input type="text"  name="department_form.name" value="${flash['department_form.name']}"/>
         <span class="flashError">#{error 'department_form.name' /}</span><br />
 
-        <label>&{'domain.department.description'}</label>
+        <label>部门描述</label>
         <textarea name="department_form.description">${flash['department_form.description']}</textarea>
         
         <span class="flashError">#{error 'department_form.description' /}</span><br />

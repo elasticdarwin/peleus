@@ -74,7 +74,6 @@ validation.maxSize=<!--%s-->TThis field is too long, maximal size is %s
 validation.equals=This field is not equals to the field before
 validation.email.invalid=Email is invalid
 validation.email.occupied=Email already occupied!
-validation.email.notexist=Not account associated with this email.
 
 validation.contributor.not.exists=You should specify at least one contributor.
 
@@ -94,9 +93,4 @@ backyard.department.edit.subject=Edit Department
 backyard.department.create.submit=Create
 
 validation.backyard.department.name_existed=Name Existed!
-
-
-## Backyard::ShareSession Message Area
-
-backyard.functions.sharesession.view_all=View All Share Sessions
 

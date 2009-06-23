@@ -7,7 +7,6 @@ import javax.persistence.*;
 import org.apache.commons.lang.StringUtils;
 import play.data.validation.Validation;
 import play.db.jpa.JPAModel;
-import play.i18n.Messages;
 
 @Entity
 @Table(name = "users",
@@ -26,9 +25,7 @@ public class User extends JPAModel {
 
         user.validate(validation);
 
-
         if (validation.hasErrors()) {
-
             return null;
         }
         user.merge();
@@ -63,7 +60,6 @@ public class User extends JPAModel {
             if (validation.hasErrors()) {
                 return null;
             }
-
         }
 
         user.save();
@@ -76,7 +72,7 @@ public class User extends JPAModel {
 
         if (foundUsers.size() != 1 || !check_password(foundUsers.get(0), password)) {
 
-            validation.addError(LoginForm.EMAIL, Messages.get("validation.email.notexist"));
+            validation.addError(LoginForm.EMAIL,"没有用户和此Email关联，或密码不匹配，请重试！");
             return null;
         }
 
@@ -104,7 +100,7 @@ public class User extends JPAModel {
         }
 
         if (isCreateMode()) {
-            validation.addError(UserForm.EMAIL, Messages.get("validation.email.occupied"));
+            validation.addError(UserForm.EMAIL, "此Email已用于注册");
             return;
         }
 
@@ -112,7 +108,7 @@ public class User extends JPAModel {
             return;
         }
 
-        validation.addError(UserForm.EMAIL, Messages.get("validation.email.occupied"));
+        validation.addError(UserForm.EMAIL, "此Email已用于注册");
 
     }
 }

@@ -3,118 +3,120 @@
 
 #{include 'myspace/ShareSessionController/_ssessionBreadcrumb.html' /}
 
-<br />
+<div id="content-top">
+    <div id="content-bottom">
+        <div id="content">
 
-<div id="peleusContent">
-    <form class="centerStyleForm" action="@{myspace.ShareSessionController.create()}" method="post">
+            <form class="peleus_form" action="@{myspace.ShareSessionController.create()}" method="post">
+                <h3>创建一个分享活动</h3>
 
-        <h3>创建一个分享活动</h3>
+                <label>组织部门</label>
+                <select name="sharesession_form.department_id">
+                    <option value="0">请选择一个部门</option>
 
-        <label>组织部门</label>
-        <select name="sharesession_form.department_id">
-            <option value="0">请选择一个部门</option>
-
-            #{list items:departments, as:'department'}
-            #{if  flash['sharesession_form.department_id'] != null && flash['sharesession_form.department_id'].toLong() == department.id.toLong()}
-            <option value="${department.id}" selected="selected">${department.name}</option>
-            #{/if}
-            #{else}
-            <option value="${department.id}">${department.name}</option>
-            #{/else}
-            #{/list}
-        </select>
-        <span class="flashError">#{error 'sharesession_form.department_id' /}</span>
-        <br />
-
-
-        <label>分享活动专题</label>
-        <input type="text"  name="sharesession_form.subject" value="${flash['sharesession_form.subject']}"/>
-        <span class="flashError">#{error 'sharesession_form.subject' /}</span>
-        <br />
+                    #{list items:departments, as:'department'}
+                    #{if  flash['sharesession_form.department_id'] != null && flash['sharesession_form.department_id'].toLong() == department.id.toLong()}
+                    <option value="${department.id}" selected="selected">${department.name}</option>
+                    #{/if}
+                    #{else}
+                    <option value="${department.id}">${department.name}</option>
+                    #{/else}
+                    #{/list}
+                </select>
+                <span class="flashError">#{error 'sharesession_form.department_id' /}</span>
+                <br />
 
 
-        <label>目标听众</label>
-        <input type="text"  name="sharesession_form.audiences" value="${flash['sharesession_form.audiences']}"/>
-        <span class="flashError">#{error 'sharesession_form.audiences' /}</span><br />
+                <label>分享活动专题</label>
+                <input type="text"  name="sharesession_form.subject" value="${flash['sharesession_form.subject']}"/>
+                <span class="flashError">#{error 'sharesession_form.subject' /}</span>
+                <br />
 
 
-        <label>开始时间</label>
-        <input type="text"  name="sharesession_form.start_date" value="${flash['sharesession_form.start_date']}"/>
-        <span class="flashError">#{error 'sharesession_form.start_date' /}</span><br />
+                <label>目标听众</label>
+                <input type="text"  name="sharesession_form.audiences" value="${flash['sharesession_form.audiences']}"/>
+                <span class="flashError">#{error 'sharesession_form.audiences' /}</span><br />
 
 
-        <label>结束时间</label>
-        <input type="text"  name="sharesession_form.end_date" value="${flash['sharesession_form.end_date']}"/>
-        <span class="flashError">#{error 'sharesession_form.end_date' /}</span><br />
+                <label>开始时间</label>
+                <input type="text"  name="sharesession_form.start_date" value="${flash['sharesession_form.start_date']}"/>
+                <span class="flashError">#{error 'sharesession_form.start_date' /}</span><br />
 
 
-
-        <label>地点</label>
-        <input type="text"  name="sharesession_form.address" value="${flash['sharesession_form.address']}"/>
-        <span class="flashError">#{error 'sharesession_form.address' /}</span>
-        <br />
-
-
-        <label>听众人数限制</label>
-        <input type="text"  name="sharesession_form.audiences_limit" value="${flash['sharesession_form.audiences_limit']}"/>
-        <span class="flashError">#{error 'sharesession_form.audiences_limit' /}</span><br />
-
-        <label>分享活动详情</label>
-        <textarea name="sharesession_form.description">${flash['sharesession_form.description']}</textarea>
-        <span class="flashError">#{error 'sharesession_form.description' /}</span><br />
+                <label>结束时间</label>
+                <input type="text"  name="sharesession_form.end_date" value="${flash['sharesession_form.end_date']}"/>
+                <span class="flashError">#{error 'sharesession_form.end_date' /}</span><br />
 
 
 
-        <label>主分享者(*)</label>
-        <select name="sharesession_form.contributor_1_id">
-            <option value="0">请选择一个分享者</option>
+                <label>地点</label>
+                <input type="text"  name="sharesession_form.address" value="${flash['sharesession_form.address']}"/>
+                <span class="flashError">#{error 'sharesession_form.address' /}</span>
+                <br />
 
-            #{list items:users, as:'user'}
-            #{if flash['sharesession_form.contributor_1_id'] != null && flash['sharesession_form.contributor_1_id'].toLong() == user.id.toLong()}
-            <option value="${user.id}" selected="selected">${user.name}</option>
-            #{/if}
-            #{else}
-            <option value="${user.id}">${user.name}</option>
-            #{/else}
-            #{/list}
-        </select>
-        <span class="flashError">#{error 'sharesession_form.contributor_1_id' /}</span>
-        <br />
 
-        <label>第二分享者</label>
-        <select name="sharesession_form.contributor_2_id">
-            <option value="0">请选择一个分享者</option>
+                <label>听众人数限制</label>
+                <input type="text"  name="sharesession_form.audiences_limit" value="${flash['sharesession_form.audiences_limit']}"/>
+                <span class="flashError">#{error 'sharesession_form.audiences_limit' /}</span><br />
 
-            #{list items:users, as:'user'}
-            #{if flash['sharesession_form.contributor_2_id'] != null && flash['sharesession_form.contributor_2_id'].toLong() == user.id.toLong()}
-            <option value="${user.id}" selected="selected">${user.name}</option>
-            #{/if}
-            #{else}
-            <option value="${user.id}">${user.name}</option>
-            #{/else}
-            #{/list}
-        </select>
-        <span class="flashError">#{error 'sharesession_form.contributor_2_id' /}</span>
-        <br />
-
-        <label>第三分享者</label>
-        <select name="sharesession_form.contributor_3_id">
-            <option value="0">请选择一个分享者</option>
-
-            #{list items:users, as:'user'}
-            #{if flash['sharesession_form.contributor_3_id'] != null && flash['sharesession_form.contributor_3_id'].toLong() == user.id.toLong()}
-            <option value="${user.id}" selected="selected">${user.name}</option>
-            #{/if}
-            #{else}
-            <option value="${user.id}">${user.name}</option>
-            #{/else}
-            #{/list}
-        </select>
-        <span class="flashError">#{error 'sharesession_form.contributor_3_id' /}</span>
-        <br />
+                <label>分享活动详情</label>
+                <textarea name="sharesession_form.description">${flash['sharesession_form.description']}</textarea>
+                <span class="flashError">#{error 'sharesession_form.description' /}</span><br />
 
 
 
-        <input type="submit" value="创建"/>
-    </form>
+                <label>主分享者(*)</label>
+                <select name="sharesession_form.contributor_1_id">
+                    <option value="0">请选择一个分享者</option>
+
+                    #{list items:users, as:'user'}
+                    #{if flash['sharesession_form.contributor_1_id'] != null && flash['sharesession_form.contributor_1_id'].toLong() == user.id.toLong()}
+                    <option value="${user.id}" selected="selected">${user.name}</option>
+                    #{/if}
+                    #{else}
+                    <option value="${user.id}">${user.name}</option>
+                    #{/else}
+                    #{/list}
+                </select>
+                <span class="flashError">#{error 'sharesession_form.contributor_1_id' /}</span>
+                <br />
+
+                <label>第二分享者</label>
+                <select name="sharesession_form.contributor_2_id">
+                    <option value="0">请选择一个分享者</option>
+
+                    #{list items:users, as:'user'}
+                    #{if flash['sharesession_form.contributor_2_id'] != null && flash['sharesession_form.contributor_2_id'].toLong() == user.id.toLong()}
+                    <option value="${user.id}" selected="selected">${user.name}</option>
+                    #{/if}
+                    #{else}
+                    <option value="${user.id}">${user.name}</option>
+                    #{/else}
+                    #{/list}
+                </select>
+                <span class="flashError">#{error 'sharesession_form.contributor_2_id' /}</span>
+                <br />
+
+                <label>第三分享者</label>
+                <select name="sharesession_form.contributor_3_id">
+                    <option value="0">请选择一个分享者</option>
+
+                    #{list items:users, as:'user'}
+                    #{if flash['sharesession_form.contributor_3_id'] != null && flash['sharesession_form.contributor_3_id'].toLong() == user.id.toLong()}
+                    <option value="${user.id}" selected="selected">${user.name}</option>
+                    #{/if}
+                    #{else}
+                    <option value="${user.id}">${user.name}</option>
+                    #{/else}
+                    #{/list}
+                </select>
+                <span class="flashError">#{error 'sharesession_form.contributor_3_id' /}</span>
+                <br />
+
+
+
+                <input type="submit" value="创建"/>
+            </form>
+        </div>
+    </div>
 </div>
