@@ -1,11 +1,8 @@
 #{extends 'main.html' /}
 #{set title:'Welcome and Join the community!' /}
 
-#{include 'myspace/ShareSessionController/_ssessionBreadcrumb.html' /}
-
-<div id="content-top">
-    <div id="content-bottom">
-        <div id="content">
+#{include 'myspace/ShareSessionController/_sessionBreadcrumb.html' /}
+#{content}
             <div id="main">
                 <h3>编辑分享活动</h3>
                 <form class="peleus_form" action="@{myspace.ShareSessionController.update()}" method="post">
@@ -121,7 +118,4 @@
                     <input id="submit_button" type="submit" value="更新"/>
                 </form>
             </div>
-
-        </div>
-    </div>
-</div>
+#{/content}

@@ -1,59 +1,57 @@
 #{extends 'main.html' /}
 #{set title:'Peleus::MySpace:View ShareSession Detail' /}
 
-#{include 'myspace/ShareSessionController/_ssessionBreadcrumb.html' /}
+#{include 'myspace/ShareSessionController/_sessionBreadcrumb.html' /}
 
-<div id="content-top">
-    <div id="content-bottom">
-        <div id="content">
-            <div id="main">
-                <div class="centerStyleForm">
-                    <div style="float:right">
-                        <p>附件列表</p>
-                        <ul>
-                            #{list items:share_session.attachments, as:'attachment'}
-                            <li>
-                                <a href="${attachment.path}">${attachment.file_name}</a>
-                            </li>
-                            #{/list}
-                        </ul>
+#{content}
+<div id="main">
+    <div style="float:right">
+        <p>附件列表</p>
+        <ul>
+            #{list items:share_session.attachments, as:'attachment'}
+            <li>
+                <a href="${attachment.path}">${attachment.file_name}</a>
+                <form action="@{myspace.AttachmentController.delete}" method="post">
+                    <input type="hidden" name="id" value="${attachment.id}"></input>
+                    <input type="submit" value="Delete"></input>
+                </form>
+            </li>
+            #{/list}
+        </ul>
 
-                        #{if flash.get('attachment_error') }
-                        <span class="flashError">${flash.get('attachment_error')}</span>
-                        #{/if}
+        #{if flash.get('attachment_error') }
+        <span class="flashError">${flash.get('attachment_error')}</span>
+        #{/if}
 
-                        <form action="@{myspace.AttachmentController.upload}" method="post" enctype="multipart/form-data">
-                            <input type="file" name="attachment"></input>
-                            <input type="hidden" name="id" value="${share_session.id}"></input>
-                            <input type="submit" value="上传附件"></input>
-                        </form>
-                    </div>
-
-                    <h2>${share_session.subject}</h2>
-
-                    <p>状态:<strong> ${share_session.status}</strong></p>
-
-                    <p>发布者: ${share_session.creator.name}</p>
-
-                    <p>分享活动详情<br />
-
-                        ${share_session.description}</p>
-
-                    <p>组织部门: ${share_session.department.name}</p>
-                    <p>分享者: <br />
-                        #{list items:share_session.contributors, as:'contributor'}
-                        ${contributor.name} <br />
-                        #{/list} </p>
-
-                    <p>目标听众: ${share_session.audiences} </p>
-                    <p>听众人数限制: ${share_session.audiences_limit} </p>
-                    <p>时间: from ${share_session.start} ~ ${share_session.end} </p>
-                    <p>地点: ${share_session.address}</p>
-
-                    #{include 'myspace/ShareSessionController/_action_links.html' /}
-
-                </div>
-            </div>
-        </div>
+        <form action="@{myspace.AttachmentController.upload}" method="post" enctype="multipart/form-data">
+            <input type="file" name="attachment"></input>
+            <input type="hidden" name="id" value="${share_session.id}"></input>
+            <input type="submit" value="上传附件"></input>
+        </form>
     </div>
+
+    <h2>${share_session.subject}</h2>
+
+    <p>状态:<strong> ${share_session.status}</strong></p>
+
+    <p>发布者: ${share_session.creator.name}</p>
+
+    <p>分享活动详情<br />
+
+    ${share_session.description}</p>
+
+    <p>组织部门: ${share_session.department.name}</p>
+    <p>分享者: <br />
+        #{list items:share_session.contributors, as:'contributor'}
+        ${contributor.name} <br />
+    #{/list} </p>
+
+    <p>目标听众: ${share_session.audiences} </p>
+    <p>听众人数限制: ${share_session.audiences_limit} </p>
+    <p>时间: from ${share_session.start} ~ ${share_session.end} </p>
+    <p>地点: ${share_session.address}</p>
+
+    #{include 'myspace/ShareSessionController/_action_links.html' /}
+
 </div>
+#{/content}

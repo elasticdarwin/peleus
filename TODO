@@ -1,12 +1,26 @@
+## Stories Board
+
+* Refine Presentation of Homepage(0.5)(done)
+* Add User Profile Page (0.5)(done)
+* Attachment Deletion(0.5h)
+* Display Attachment on several ShareSession Detail(1h)
+* Enroll the ShareSession(1h)
+* 取消学习活动(0.5h)
+* 在学习活动详情页面上增加显示参加某次学习活动的人员列表(0.5h)
+
+* 提醒参加学习活动
+* Backyard Access Control
+* Pagination
+* Calendar Control
+* 
 
 ## Known bugs
-* State machine uninitialized, there are no response when "publish" button clicked.
-
 
 
 ## Has finished Items
 * User Register Password Validation;
 * User Register Email Uniqueness Validation ;
+* State machine uninitialized, there are no response when "publish" button clicked.
 
 
 ## To-Do Items List

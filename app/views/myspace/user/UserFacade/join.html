@@ -1,9 +1,7 @@
 #{extends 'main.html' /}
 #{set title:'Welcome and Join the community!' /}
 
-<div id="content-top">
-    <div id="content-bottom">
-        <div id="content">
+#{content}
             <div id="main">
                 <p>
                     <a href="@{myspace.user.UserFacade.login()}">如果已经有帐号，可以点这里登录！</a> <br/>
@@ -72,9 +70,6 @@
                     <li>.......</li>
                 </ul>
             </div>
-        </div>
-    </div>
-</div>
-
+ #{/content}
 
 

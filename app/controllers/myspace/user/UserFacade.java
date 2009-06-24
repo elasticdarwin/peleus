@@ -74,4 +74,13 @@ public class UserFacade extends Application {
     private static void record_session(User user) {
         session.put(MyConstants.LOGINED_USER_ID, user.getId());
     }
+
+    public static void show(Long id) {
+        
+        forbiddenIfNo(id);
+        User user = User.findById(id);
+        forbiddenIfNo(user);
+
+        render(user);
+    }
 }

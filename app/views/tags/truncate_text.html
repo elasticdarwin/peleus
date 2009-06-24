@@ -1,0 +1,7 @@
+
+#{if _text.length() > _length}
+${_text.substring(0, _text.lastIndexOf(' ', _length))}#{doBody /}
+#{/if}
+#{else}
+${_text}
+#{/else}

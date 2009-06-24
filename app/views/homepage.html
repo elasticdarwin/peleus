@@ -41,19 +41,15 @@
                 </div>
             </div>
 
-            <div id="breadcrumb-top">
-                <div id="breadcrumb-bottom">
-                    <div id="breadcrumb">
-                        #{if has_loggined}
-                        <div class="greeting">你好, ${user.name} ! </div>
-                        <a href="@{myspace.MySpace.index()}">进入MySpace</a> | <a href="@{myspace.user.UserFacade.logout()}">登出系统</a>
-                        #{/if}
-                        #{else}
-                        <a href="@{myspace.user.UserFacade.login()}">登录</a> | <a href="@{myspace.user.UserFacade.join()}">还没有帐号？快注册一个吧！</a>
-                        #{/else}
-                    </div>
-                </div>
-            </div>
+            #{breadcrumb}
+            #{if has_loggined}
+            <div class="greeting">你好, ${user.name} ! </div>
+            <a href="@{myspace.MySpace.index()}">进入MySpace</a> | <a href="@{myspace.user.UserFacade.logout()}">登出系统</a>
+            #{/if}
+            #{else}
+            <a href="@{myspace.user.UserFacade.login()}">登录</a> | <a href="@{myspace.user.UserFacade.join()}">还没有帐号？快注册一个吧！</a>
+            #{/else}
+            #{/breadcrumb}
 
             <div id="content-top">
                 <div id="content-bottom">

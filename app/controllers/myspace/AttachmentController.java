@@ -7,7 +7,6 @@ import models.Attachment;
 import models.ShareSession;
 import org.apache.commons.io.FileUtils;
 import play.Play;
-import play.data.validation.Required;
 import play.libs.Codec;
 
 public class AttachmentController extends Application {
@@ -17,14 +16,12 @@ public class AttachmentController extends Application {
         forbiddenIfNo(id);
 
         if (attachment == null) {
-
             flash.put("attachment_error", "Attachment file can not be empty!");
             ShareSessionController.show(id);
         }
 
         ShareSession host = ShareSession.findById(id);
         forbiddenIfNo(host);
-
 
         File attachment_root = Play.getFile(new File("attachments").getPath());
 
@@ -35,9 +32,6 @@ public class AttachmentController extends Application {
 
         FileUtils.copyFile(attachment, dest);
 
-
-
-
         ShareSessionController.show(id);
     }
 
@@ -47,16 +41,33 @@ public class AttachmentController extends Application {
 
         File dest = new File(attachment_root, path);
 
-
         Attachment attachment = Attachment.findOneBy("path = ?", getRelativePath(dest));
 
-
-
-        //        response.contentType = "application/octet-stream";
-
-//        response.setHeader("Content-disposition", "attachment; filename=" + attachment.file_name + "");
-//        renderText("attachment; filename=" + attachment.file_name + "");
         renderBinary(dest, attachment.file_name);
+    }
+
+    public static void delete(Long id) {
+        forbiddenIfNo(id);
+        Attachment attachment =
+                Attachment.findById(id);
+        forbiddenIfNo(attachment);
+
+
+        File attachment_root = Play.getFile(new File("attachments").getPath());
+
+        String path = attachment.path;
+        String separator = System.getProperty("file.separator");
+        String real_file_name = path.substring(path.lastIndexOf(separator) + 1);
+
+        File attachment_file = new File(attachment_root, real_file_name);
+        attachment_file.delete();
+
+        Long share_session_id = attachment.share_session.id;
+        attachment.share_session.attachments.remove(attachment);
+
+        attachment.delete();
+
+        ShareSessionController.show(share_session_id);
     }
 
     private static String getRelativePath(File dest) {

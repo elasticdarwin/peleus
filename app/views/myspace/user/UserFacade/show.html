@@ -1,0 +1,27 @@
+#{extends 'main.html' /}
+#{set title:'Welcome and Join the community!' /}
+
+
+
+#{breadcrumb}
+<a href="@{dashboard.Dashboard.index()}"> Back to Homepage </a>
+#{/breadcrumb}
+
+#{content}
+<div id="main">
+
+    <h3>User Profile</h3>
+
+    <div id="user">
+        <p>用户名:  ${user.name}</p>
+       
+        <p>部门:  ${user.department.name}</p>
+        
+        <p>Email:  <a href="mailto:${user.email}">${user.email}</a></p>
+    </div>
+</div>
+
+#{/content}
+
+
+

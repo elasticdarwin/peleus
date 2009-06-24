@@ -20,7 +20,17 @@ public class Dashboard extends Application {
         render(has_loggined, user, share_sessions);
     }
 
-    public static void under_construction(){
+    public static void show(Long id) {
+        forbiddenIfNo(id);
+
+        ShareSession share_session = ShareSession.findById(id);
+
+        forbiddenIfNo(share_session);
+        
+        render(share_session);
+    }
+
+    public static void under_construction() {
         render();
     }
 }

@@ -1,0 +1,35 @@
+#{extends 'main.html' /}
+#{set title:messages.get("Peleus Platform::Dashboard::Homepage::首页") /}
+
+#{breadcrumb}
+<a href="@{dashboard.Dashboard.index()}">Back to首页</a>
+#{/breadcrumb}
+
+#{content}
+<div id="main">
+
+    <h4>${share_session.subject}</h4>
+
+    <p>由${share_session.creator.name}发布</p>
+
+    <p>学习活动详情<br />
+
+    ${share_session.description}</p>
+
+    <p>组织部门: ${share_session.department.name}</p>
+    <p>分享者 : <br />
+        #{list items:share_session.contributors, as:'contributor'}
+        ${contributor.name} <br />
+    #{/list} </p>
+
+    <p>面向听众 : ${share_session.audiences} </p>
+    <p>参加人数限制 : ${share_session.audiences_limit} </p>
+    <p>日期 : 从 ${share_session.humanReadableStartTime} 到 ${share_session.humanReadableEndTime} </p>
+    <p>地点 : ${share_session.address}</p>
+
+</div>
+
+#{/content}
+
+
+

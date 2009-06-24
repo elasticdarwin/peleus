@@ -1,6 +1,8 @@
 package models;
 
 import forms.myspace.ShareSessionForm;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -50,7 +52,7 @@ public class ShareSession extends JPAModel implements ShareSessionContext {
     @Enumerated(value = EnumType.STRING)
     @Column(length = 16)
     public ShareSessionStatus status;
-    @OneToMany(mappedBy="share_session")
+    @OneToMany(mappedBy = "share_session")
     public List<Attachment> attachments;
 
     public void setStatus(String string) {
@@ -206,5 +208,20 @@ public class ShareSession extends JPAModel implements ShareSessionContext {
             }
         }
         validation.addError(ShareSessionForm.CONTRIBUTOR, Messages.get("validation.contributor.not.exists"));
+    }
+
+    public String getHumanReadableStartTime() {
+        return renderHumanReadableTime(start);
+    }
+
+    public String getHumanReadableEndTime() {
+        return renderHumanReadableTime(end);
+    }
+
+    private String renderHumanReadableTime(Date time) {
+
+        SimpleDateFormat format =
+                new SimpleDateFormat("yyyy-MM-dd E HH:mm");
+        return format.format(time);
     }
 }

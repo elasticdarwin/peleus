@@ -2,33 +2,24 @@
 #{set title:messages.get("Peleus Platform::Dashboard::Homepage::首页") /}
 
 <div id="main">
-    
+
     <h4>即将发生的分享活动(Share Session)...</h4> <br />
 
     #{list items:share_sessions, as:'share_session'}
 
-    <p id="subject">${share_session.subject}</p>
+    <p id="subject"><a href="@{dashboard.DashBoard.show(share_session.id)}">${share_session.subject}</a></p>
 
-    <p>由${share_session.creator.name}发布</p>
-
-    <p>学习活动详情<br />
-
-        ${share_session.description}</p>
-
-    <p>组织部门: ${share_session.department.name}</p>
-    <p>分享者 : <br />
-        #{list items:share_session.contributors, as:'contributor'}
-        ${contributor.name} <br />
-        #{/list} </p>
-
-    <p>面向听众 : ${share_session.audiences} </p>
-    <p>参加人数限制 : ${share_session.audiences_limit} </p>
-    <p>日期 : 从 ${share_session.start} ~ ${share_session.end} </p>
-    <p>地点 : ${share_session.address}</p>
+    将由
+    #{list items:share_session.contributors, as:'contributor'}
+    <a href="@{myspace.user.UserFacade.show(contributor.id)}">${contributor.name}</a>
+    #{/list}
+    在${share_session.humanReadableStartTime}开始分享
+    <p>
+        #{truncate_text text:share_session.description, length:200 }
+        ...<a href="@{dashboard.DashBoard.show(share_session.id)}">more</a>
+        #{/truncate_text}
+    </p>
 
     #{/list}
 
 </div>
-
-
-
