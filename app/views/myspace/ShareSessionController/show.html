@@ -5,15 +5,41 @@
 
 #{content}
 <div id="main">
-    <div style="float:right">
+    <div id="profile">
+        <p id="subject"> ${share_session.subject}</p>
+        <p id="status"> <span>状态:</span>${share_session.status}</p>
+        <p><span>发布者:</span>
+            <a href="@{myspace.user.UserFacade.show(share_session.creator.id)}">
+                ${share_session.creator.name}
+            </a>
+        </p>
+        <p><span>分享活动详情:</span><br />
+            ${share_session.description}</p>
+        <p><span>组织部门:</span> ${share_session.department.name}</p>
+        <p><span>分享者:</span> <br />
+            #{list items:share_session.contributors, as:'contributor'}
+            ${contributor.name} <br />
+            #{/list} </p>
+        <p><span>目标听众:</span> ${share_session.audiences} </p>
+        <p><span>听众人数限制:</span> ${share_session.audiences_limit} </p>
+        <p><span>时间:</span> from ${share_session.start} ~ ${share_session.end} </p>
+        <p><span>地点:</span> ${share_session.address}</p>
+
+        #{include 'myspace/ShareSessionController/_action_links.html' /}
+
+    </div>
+
+    <br /> <br />
+
+    <div id="attachments">
         <p>附件列表</p>
         <ul>
             #{list items:share_session.attachments, as:'attachment'}
             <li>
                 <a href="${attachment.path}">${attachment.file_name}</a>
                 <form action="@{myspace.AttachmentController.delete}" method="post">
-                    <input type="hidden" name="id" value="${attachment.id}"></input>
-                    <input type="submit" value="Delete"></input>
+                    <input type="hidden" name="id" value="${attachment.id}"/>
+                    <input type="submit" value="删除"/>
                 </form>
             </li>
             #{/list}
@@ -29,29 +55,6 @@
             <input type="submit" value="上传附件"></input>
         </form>
     </div>
-
-    <h2>${share_session.subject}</h2>
-
-    <p>状态:<strong> ${share_session.status}</strong></p>
-
-    <p>发布者: ${share_session.creator.name}</p>
-
-    <p>分享活动详情<br />
-
-    ${share_session.description}</p>
-
-    <p>组织部门: ${share_session.department.name}</p>
-    <p>分享者: <br />
-        #{list items:share_session.contributors, as:'contributor'}
-        ${contributor.name} <br />
-    #{/list} </p>
-
-    <p>目标听众: ${share_session.audiences} </p>
-    <p>听众人数限制: ${share_session.audiences_limit} </p>
-    <p>时间: from ${share_session.start} ~ ${share_session.end} </p>
-    <p>地点: ${share_session.address}</p>
-
-    #{include 'myspace/ShareSessionController/_action_links.html' /}
 
 </div>
 #{/content}
