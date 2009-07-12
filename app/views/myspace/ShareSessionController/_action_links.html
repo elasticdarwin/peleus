@@ -1,30 +1,23 @@
-
 <form id="action_form" action="" method="post">
-    <input type="hidden" name="id" value="${share_session.id}"></input>
-
+    <input type="hidden" name="id" value="${share_session.id}">
     #{if (utils.statemachine.ShareSessionStateMachine.couldAccept(share_session, utils.statemachine.ShareSessionTransition.PUBLISH))}
-    <input type="button" onClick="javascript:doSubmit('@{myspace.ShareSessionController.publish(share_session.id)}');" class="publish" value="发布"></input>
+    <input type="button" onClick="javascript:doSubmit('@{myspace.ShareSessionController.publish(share_session.id)}');" class="publish" value="发布">
     |
     #{/if}
     #{elseif (utils.statemachine.ShareSessionStateMachine.couldAccept(share_session, utils.statemachine.ShareSessionTransition.CLOSE))}
-    <input type="button"  onClick="javascript:doSubmit('@{myspace.ShareSessionController.close(share_session.id)}');" class="close" value="关闭"></input>
+    <input type="button"  onClick="javascript:doSubmit('@{myspace.ShareSessionController.close(share_session.id)}');" class="close" value="关闭">
     |
     #{/elseif}
-
-<a href="@{myspace.ShareSessionController.edit(share_session.id)}" class="edit">编辑</a>
-#{if (utils.statemachine.ShareSessionStateMachine.couldAccept(share_session, utils.statemachine.ShareSessionTransition.DELETE))}
-| <a href="@{myspace.ShareSessionController.delete_confirm(share_session.id)}" class="delete">删除</a>
-#{/if}
-
+    <a href="@{myspace.ShareSessionController.edit(share_session.id)}" class="edit">编辑</a>
+    #{if (utils.statemachine.ShareSessionStateMachine.couldAccept(share_session, utils.statemachine.ShareSessionTransition.DELETE))}
+    | <a href="@{myspace.ShareSessionController.delete_confirm(share_session.id)}" class="delete">删除</a>
+    #{/if}
 </form>
 
 <script type="text/javascript">
-
     function doSubmit(action) {
         var form=document.getElementById("action_form");
-
         form.setAttribute("action", action);
-
         form.submit();
     }
 </script>

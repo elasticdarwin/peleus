@@ -50,9 +50,9 @@
         #{/if}
 
         <form action="@{myspace.AttachmentController.upload}" method="post" enctype="multipart/form-data">
-            <input type="file" name="attachment"></input>
-            <input type="hidden" name="id" value="${share_session.id}"></input>
-            <input type="submit" value="上传附件"></input>
+            <input type="file" name="attachment">
+            <input type="hidden" name="id" value="${share_session.id}">
+            <input type="submit" value="上传附件">
         </form>
     </div>
 
