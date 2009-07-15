@@ -4,32 +4,33 @@
 #{fixture delete:'all', load:'fixtures.yml' /}
 
 #{selenium 'MySpace##Test User Login & Logout'}
-	clearSession()
 
-    // login successful
-    open(@@{dashboard.Dashboard.index()})
-    clickAndWait('link=登录')
-    type('login_form.email', 'a@b.cn')
-    type('login_form.password', 'arthur')
-    clickAndWait('//input[@value="登录系统"]')
-    assertTextPresent('登出')
-    clickAndWait('link=登出')
-    assertTextPresent('你已从系统中登出了！')
+clearSession()
+
+// login successful
+open(@@{dashboard.Dashboard.index()})
+clickAndWait('link=登录')
+type('login_form.email', 'a@b.cn')
+type('login_form.password', 'arthur')
+clickAndWait('//input[@value="登录系统"]')
+assertTextPresent('登出')
+clickAndWait('link=登出')
+assertTextPresent('你已从系统中登出了！')
 
 
-    // login failed
-    open(@@{dashboard.Dashboard.index()})
-    clickAndWait('link=登录')
-    type('login_form.email', 'a')
-    type('login_form.password', 'arthur')
-    clickAndWait('//input[@value="登录系统"]')
-    assertTextPresent('没有用户和此Email关联，或密码不匹配，请重试！')
+// login failed
+open(@@{dashboard.Dashboard.index()})
+clickAndWait('link=登录')
+type('login_form.email', 'a')
+type('login_form.password', 'arthur')
+clickAndWait('//input[@value="登录系统"]')
+assertTextPresent('没有用户和此Email关联，或密码不匹配，请重试！')
 
-    type('login_form.email', 'a@b.cn')
-    type('login_form.password', 'darwin')
-    assertTextPresent('没有用户和此Email关联，或密码不匹配，请重试！')
+type('login_form.email', 'a@b.cn')
+type('login_form.password', 'darwin')
+assertTextPresent('没有用户和此Email关联，或密码不匹配，请重试！')
 
-    assertLocation(@@{myspace.user.UserFacade.login()})
+assertLocation(@@{myspace.user.UserFacade.login()})
 #{/selenium}
 
 #{selenium 'MySpace##Test User Join'}

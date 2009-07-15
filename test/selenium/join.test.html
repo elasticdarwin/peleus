@@ -9,8 +9,29 @@
 
     open(@@{dashboard.Dashboard.index()})
     clickAndWait('link=exact:还没有帐号？快注册一个吧！')
+
+    // test user name input : length validation
+    type('user_form.name','a')
+    clickAndWait('//input[@value="创建我的帐号"]')
+    assertTextPresent('用户名太短！至少要2个以上字符！')
+    type('user_form.name','abcdefghijklmnopqrstuvwxyz1234567')
+    clickAndWait('//input[@value="创建我的帐号"]')
+    assertTextPresent('用户名超出限定长度！')
+
+
+    // test user email input : length validation
+    type('user_form.email','')
+    clickAndWait('//input[@value="创建我的帐号"]')
+    assertTextPresent('请输入Email！')
+
+
+    // a successful scenario
+    
     type('user_form.name', 'newuser')
     select('user_form.department_id', 'label=cpc')
+    type('user_form.email', 'newusers.com')
+    clickAndWait('//input[@value="创建我的帐号"]')
+    assertTextPresent('不是正确的Email格式！')
     type('user_form.email', 'new@users.com')
     type('user_form.password', '123456')
     type('user_form.repeat_password', '123456')
