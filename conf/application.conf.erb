@@ -81,7 +81,7 @@ application.log=DEBUG
 #
 # If you need a full jdbc configuration use the following :
 #
-db.url=jdbc:mysql://localhost/peleus_development&useUnicode=true&characterEncoding=utf8
+db.url=jdbc:mysql://localhost/peleus_development?useUnicode=true&characterEncoding=utf8
 db.driver=com.mysql.jdbc.Driver
 db.user=<%= db_user %>
 db.pass=<%= db_pass %>
@@ -127,7 +127,7 @@ jpa.debugSQL=true
 # mail.smtp.channel=ssl
 
 %test.http.port=10000
-%test.db.url=jdbc:mysql://localhost/peleus_test
+%test.db.url=jdbc:mysql://localhost/peleus_test?useUnicode=true&characterEncoding=utf8
 %test.db.driver=com.mysql.jdbc.Driver
 %test.db.user=<%= db_user %>
 %test.db.pass=<%= db_pass %>
