@@ -11,7 +11,7 @@ import play.db.jpa.JPAModel;
 @Table(name = "attachments",
 uniqueConstraints = {@UniqueConstraint(columnNames = {"path"})})
 public class Attachment extends JPAModel {
-
+ 
     public String path;
     @ManyToOne
     @JoinColumn(name = "host_id")

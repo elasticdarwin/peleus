@@ -1,16 +1,16 @@
 package unit;
 
-import java.io.File;
 import java.util.List;
+
 import models.Attachment;
 import models.ShareSession;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import play.Play;
-import play.libs.Codec;
+
 import play.test.Fixtures;
-import play.test.UnitTest;
+import play.test.UnitTest; 
 
 public class AttachmentTest extends UnitTest {
 
