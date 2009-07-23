@@ -1,0 +1,38 @@
+#{extends 'main.html' /}
+#{set title:'Welcome and Join the community!' /}
+
+
+
+#{breadcrumb}
+<div class="greeting">
+    #{if has_loggined}
+    你好, ${user.name}！
+    #{/if}
+</div>
+<a href="@{myspace.MySpace.index()}">MySpace首页</a> |
+<a href="@{myspace.user.UserFacade.my_profile()}">MyProfile</a>
+#{/breadcrumb}
+
+#{content}
+<div id="main">
+
+    <h3>My Profile</h3>
+
+    <div id="user">
+        <p>用户名:  ${current_user.name}</p>
+
+        <p>部门:  ${current_user.department.name}</p>
+
+        <p>Email:  <a href="mailto:${current_user.email}">${current_user.email}</a></p>
+    </div>
+
+     <a href="@{myspace.user.UserFacade.edit_profile()}">编辑我的信息</a>
+</div>
+
+
+ 
+#{/content}
+
+
+
+

@@ -20,32 +20,7 @@ public class User extends JPAModel {
     @JoinColumn(name = "department_id")
     public Department department;
 
-    public static User update_user(UserForm user_form, Validation validation) {
-        User user = build(user_form);
-
-        user.validate(validation);
-
-        if (validation.hasErrors()) {
-            return null;
-        }
-        user.merge();
-        return user;
-    }
-
     public User() {
-    }
-
-    public static User build(UserForm userForm) {
-        User user = new User();
-        user.id = userForm.id;
-
-        user.name = userForm.name;
-        user.email = userForm.email;
-        user.password = userForm.password;
-
-        user.department = Department.findById(userForm.department_id);
-
-        return user;
     }
 
     public static User create(UserForm userForm) {
@@ -72,7 +47,7 @@ public class User extends JPAModel {
 
         if (foundUsers.size() != 1 || !check_password(foundUsers.get(0), password)) {
 
-            validation.addError(LoginForm.EMAIL,"没有用户和此Email关联，或密码不匹配，请重试！");
+            validation.addError(LoginForm.EMAIL, "没有用户和此Email关联，或密码不匹配，请重试！");
             return null;
         }
 
@@ -111,4 +86,61 @@ public class User extends JPAModel {
         validation.addError(UserForm.EMAIL, "此Email已用于注册");
 
     }
+
+    public static User update_user(UserForm user_form, User fetch_user_or_redirect_to_login, Validation validation) {
+
+        User user = User.findById(user_form.id);
+
+        user = build(user, user_form);
+
+        if (validation != null) {
+            user.validate(validation);
+            if (validation.hasErrors()) {
+                return user;
+            }
+        }
+
+        user.save();
+
+        return user;
+    }
+
+    private static User build(User user, UserForm user_form) {
+
+        user.department = Department.findById(user_form.department_id);
+        user.email = user_form.email;
+        user.name = user_form.name;
+        user.password = user_form.password;
+
+        return user;
+    }
+
+    /** used by backyard , to-be refactored **/
+    public static User update_user(UserForm user_form, Validation validation) {
+        User user = build(user_form);
+
+        user.validate(validation);
+
+        if (validation.hasErrors()) {
+            return null;
+        }
+        user.merge();
+
+        return user;
+
+    }
+
+    private static User build(UserForm userForm) {
+        User user = new User();
+        user.id = userForm.id;
+
+        user.name = userForm.name;
+        user.email = userForm.email;
+        user.password = userForm.password;
+
+        user.department = Department.findById(userForm.department_id);
+
+        return user;
+    }
+    /***********************************************/
 }

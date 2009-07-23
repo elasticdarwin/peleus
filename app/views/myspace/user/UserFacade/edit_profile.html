@@ -1,0 +1,67 @@
+#{extends 'main.html' /}
+#{set title:'Peleus MySpace:edit my profile' /}
+
+#{breadcrumb}
+<div class="greeting">
+    #{if has_loggined}
+    你好, ${user.name}！
+    #{/if}
+</div>
+<a href="@{myspace.MySpace.index()}">MySpace首页</a> |
+<a href="@{myspace.user.UserFacade.my_profile()}">MyProfile</a>
+#{/breadcrumb}
+
+#{content}
+
+<div id="main">
+
+    <h3>编辑我的信息</h3>
+    <div id="user">
+        <form class="peleus_form" action="@{myspace.user.UserFacade.update_profile()}" method="post">
+            <label>用户名</label>
+
+            <input type="text"  name="user_form.name" value="${flash['user_form.name']}"/>
+            <span class="flashError">#{error 'user_form.name' /}</span>
+            <br />
+
+            <label>部门</label>
+
+            <select name="user_form.department_id">
+                #{list items:departments, as:'department'}
+                #{if flash['user_form.department_id'].toLong() == department.id.toLong()}
+                <option value="${department.id}" selected="selected">${department.name}</option>
+                #{/if}
+                #{else}
+                <option value="${department.id}">${department.name}</option>
+                #{/else}
+                #{/list}
+            </select>
+            <span class="flashError">#{error 'user_form.department_id' /}</span>
+            <br />
+
+
+            <label>Email</label>
+            <input type="text"  name="user_form.email" value="${flash['user_form.email']}"/>
+            <span class="flashError">#{error 'user_form.email' /}</span>
+            <br />
+
+
+            <label>密码</label>
+            <input type="password" name="user_form.password" value="${flash['user_form.password']}"/>
+            <span class="flashError">#{error 'user_form.password' /}</span>
+            <br />
+
+            <label>确认密码</label>
+            <input type="password" name="user_form.repeat_password" value="${flash['user_form.repeat_password']}"/>
+            <span class="flashError">#{error 'user_form.repeat_password' /}</span>
+            <br />
+
+            <input type="hidden" name="user_form.id" value="${flash['user_form.id']}"/>
+
+            <input type="submit" value="更新信息"/>
+        </form>
+    </div>
+
+</div>
+
+#{/content}

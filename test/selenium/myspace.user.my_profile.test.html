@@ -1,0 +1,76 @@
+
+
+
+#{fixture delete:'all', load:'fixtures.yml' /}
+
+#{selenium 'MySpace##Test MyProfile'}
+
+clearSession()
+
+// login successful
+open(@@{dashboard.Dashboard.index()})
+clickAndWait('link=登录')
+type('login_form.email', 'a@b.cn')
+type('login_form.password', 'arthur')
+clickAndWait('//input[@value="登录系统"]')
+
+// verify has been at MySpace page and has the entrance to MyProfile
+assertTextPresent('MySpace')
+assertTextPresent('我的分享学习活动')
+assertTextPresent('MyProfile')
+clickAndWait('link=MyProfile')
+
+// verify has been at MyProfile page and has the entrance to EditProfile
+assertTextPresent('My Profile')
+assertTextPresent('用户名: Arthur')
+
+assertTextPresent('编辑我的信息')
+clickAndWait('link=编辑我的信息')
+
+// display the MyProfile form
+
+assertLocation(@@{myspace.user.UserFacade.edit_profile()}
+assertTextPresent('编辑我的信息')
+assertElementPresent('//input[@value="Arthur"]')
+assertElementPresent('//input[@value="a@b.cn"]')
+assertElementPresent('//input[@value="更新信息"]')
+
+// test email validation
+
+type('user_form.email','')
+clickAndWait('//input[@value="更新信息"]')
+assertTextPresent('请输入Email！')
+
+type('user_form.email', 'd@a.cn')
+clickAndWait('//input[@value="更新信息"]')
+assertTextPresent('此Email已用于注册')
+
+// test change password
+
+type('user_form.password','123456')
+type('user_form.repeat_password','1234566')
+clickAndWait('//input[@value="更新信息"]')
+assertTextPresent('两次输入的密码不一致！请重输!')
+
+
+// a succeful scenario
+
+type('user_form.name', 'arthur.zhang')
+type('user_form.email', 'cc@cc.cn')
+type('user_form.password','123456')
+type('user_form.repeat_password','123456')
+
+assertElementPresent('//input[@value="更新信息"]')
+clickAndWait('//input[@value="更新信息"]')
+assertLocation(@@{myspace.user.UserFacade.my_profile()}
+
+assertTextPresent('My Profile')
+assertTextPresent('用户名: arthur.zhang')
+assertTextPresent('Email: cc@cc.cn')
+
+
+#{/selenium}
+
+
+
+

@@ -25,6 +25,8 @@ POST         /myspace/user/register         myspace.user.UserFacade.register
 
 POST        /myspace/user/login_validate    myspace.user.UserFacade.login_validate
 
+POST        /myspace/user/update_profile    myspace.user.UserFacade.update_profile
+
 
 # MySpace ShareSession Route Configuration
 

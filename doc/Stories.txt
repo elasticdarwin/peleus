@@ -1,0 +1,60 @@
+Product Stories
+
+=======================================================
+
+Portal
+
+* View Homepage (done)
+* View ShareSession Coming List (done)
+* View ShareSession Detail (done)
+* View UserProfile (done)
+
+MySpace-User
+
+* User Join (done)
+* User Login (done)
+* User Logout (done)
+* Edit UserProfile
+* Change Password
+* Forget Password
+
+MySpace-ShareSession
+
+* Post a ShareSession (done)
+* View My ShareSessions (done)
+* Delete ShareSession (done)
+* Publish ShareSession (done)
+* Edit ShareSession (done)
+* Close ShareSession (done)
+* Add Attachments (done)
+
+
+Backyard-User
+
+* View Users (done)
+* Edit User (done)
+* Delete User (done)
+
+
+Backyard-VirtualTeam
+
+* View VirtualTeams
+* Edit VirtualTeam
+* Delete VirtualTeam
+
+Backyard-Department
+
+* View Departments (done)
+* Edit Department (done)
+* Delete Department (done)
+
+Backyard-ShareSession
+
+* View ShareSessions (done)
+* View Sharesession Detail (done)
+* Edit ShareSession (done)
+* Publish ShareSession (done)
+* Delete ShareSession (done)
+* Close ShareSession (done)
+
+

@@ -8,6 +8,7 @@ import forms.myspace.user.UserForm;
 import java.util.List;
 import models.Department;
 import models.User;
+import play.Logger;
 import play.data.validation.Valid;
 
 public class UserFacade extends Application {
@@ -82,5 +83,41 @@ public class UserFacade extends Application {
         forbiddenIfNo(user);
 
         render(user);
+    }
+
+    public static void my_profile(){
+        User current_user = fetch_user_or_redirect_to_login();
+
+        render(current_user);
+    }
+
+    public static void edit_profile(){
+        User user = fetch_user_or_redirect_to_login();
+        List<Department> departments = Department.findAll();
+
+        flash.put("user_form.id", user.id);
+        flash.put("user_form.name", user.name);
+        flash.put("user_form.email", user.email);
+        flash.put("user_form.password", user.password);
+        flash.put("user_form.repeat_password", user.password);
+        flash.put("user_form.department_id", user.department.id);
+
+        render(departments);
+    }
+
+    public static void update_profile(@Valid UserForm user_form){
+
+        User user = User.update_user(user_form,fetch_user_or_redirect_to_login(),validation);
+
+        forbiddenIfNo(user);
+
+       if (validation.hasErrors()) {
+            params.flash();
+            validation.keep();
+            edit_profile();
+        }
+
+        my_profile();
+
     }
 }

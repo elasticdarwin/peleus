@@ -17,7 +17,10 @@
             <h3>MySpace</h3>
             <br />
             <div id="myspace_navibar">
-                <a href="@{myspace.ShareSessionController.index()}">我的分享学习活动</a>
+                <ul>
+                    <li><a href="@{myspace.ShareSessionController.index()}">我的分享学习活动</a></li>
+                    <li><a href="@{myspace.user.UserFacade.my_profile()}">MyProfile</a></li>
+                </ul>
             </div>
         </div>
     </div>
