@@ -3,15 +3,18 @@
 #{fixture delete:'all', load:'fixtures.yml' /}
 
 
-#{selenium 'Test The Whole Main Share Session Actions Scenario'}
+#{selenium '测试ShareSession活动完整的主成功场景'}
+
 clearSession()
 
+// 打开ShareSession管理列表
 open(@@{backyard.ShareSessionController.index()})
 
 assertTextPresent('分享活动管理')
 assertTextPresent('分享活动主题')
 assertTextPresent('Gof Design Patterns with Java')
 
+// 查看一个ShareSession的详情
 clickAndWait('link=Gof Design Patterns with Java')
 
 assertTextPresent('Gof Design Patterns with Java')
@@ -27,6 +30,7 @@ assertTextPresent('2009-08-01 07:30:00.0')
 assertTextPresent('2009-08-01 09:30:00.0')
 assertTextPresent('T2-T3')
 
+// 编辑
 clickAndWait('//a[@class="edit"]')
 
 select('sharesession_form.department_id', 'label=cpc')
@@ -42,6 +46,7 @@ select('sharesession_form.contributor_1_id', 'label=Darwin')
 select('sharesession_form.contributor_2_id', 'label=请选择一名分享者')
 clickAndWait('//input[@class="update"]')
 
+// 验证编辑结果
 assertTextPresent('Advanced Gof Design Patterns with Java')
 
 clickAndWait('link=Advanced Gof Design Patterns with Java')

@@ -4,42 +4,39 @@
 #{fixture delete:'all', load:'fixtures.yml' /}
 
 
-#{selenium 'Test shareSession StateMachine'}
+#{selenium 'ShareSession 状态机测试'}
 clearSession()
 
+// 打开ShareSession的管理界面
 open(@@{backyard.ShareSessionController.index()})
+
+// 验证处于已创建状态可发布(CREATED)
 assertElementPresent('//tr[@class="session_1"]//input[@value="发布"]')
 
 clickAndWait('//tr[@class="session_1"]/td/a[@class="show"]')
 assertTextPresent('Gof Design Patterns with Java')
 assertTextPresent('状态: CREATED')
 
-
+// 验证已处于发布状态(PUBLISHED)
 assertElementPresent('//input[@value="发布"]')
 clickAndWait('//input[@value="发布"]')
 assertLocation(@@{backyard.ShareSessionController.show(1)})
-
 assertTextPresent('状态: PUBLISHED')
 
+// 验证关闭状态(CLOSED)
 assertElementPresent('//input[@value="关闭"]')
 clickAndWait('//input[@value="关闭"]')
-
 assertLocation(@@{backyard.ShareSessionController.show(1)})
-
 assertTextPresent('状态: CLOSED')
 
+// 验证删除
 assertTextPresent('删除')
-
 clickAndWait('link=删除')
 assertTextPresent('确认')
 assertTextPresent('取消')
-
 clickAndWait('link=取消')
-
 assertLocation(@@{backyard.ShareSessionController.index()})
-
 assertTextPresent('Gof Design Patterns with Java')
-
 
 clickAndWait('//tr[@class="session_1"]//a[@class="delete"]')
 assertTextPresent('确认')

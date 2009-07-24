@@ -1,14 +1,15 @@
 
+
 #{fixture delete:'all', load:'fixtures.yml' /}
 
 
-#{selenium 'Test Publish Share Session at Backyard'}
+#{selenium '测试在Backyard中管理ShareSession的发布和关闭'}
 
-*{
-TODO find out the meaning of clickAndWait and verify***
-}*
 
 clearSession()
+
+
+// 验证"发布ShareSession"
 
 open(@@{dashboard.Dashboard.index()})
 assertTextNotPresent('Gof Design Patterns with Java')
@@ -20,13 +21,13 @@ assertTextPresent('分享活动主题')
 assertTextPresent('Gof Design Patterns with Java')
 
 clickAndWait('//tr[@class="session_1"]//input[@value="发布"]')
-
 assertLocation(@@{backyard.ShareSessionController.index()})
-
 assertElementPresent('//tr[@class="session_1"]//input[@value="关闭"]')
 
 open(@@{dashboard.Dashboard.index()})
 assertTextPresent('Gof Design Patterns with Java')
+
+// 验证"关闭已经发布的ShareSession"
 
 open(@@{backyard.ShareSessionController.index()})
 clickAndWait('//tr[@class="session_1"]//input[@class="close"]')
