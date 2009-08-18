@@ -51,3 +51,7 @@ ShareSession(107):
   subject: Ruby Meta Programming
   contributors: [Darwin,Darwin]
 
+Attachment(peleus.css):
+  file_name: peleus.css
+  share_session: 107
+  path: /public/stylesheets/peleus.css

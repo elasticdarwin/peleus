@@ -24,8 +24,25 @@ assertTextPresent('状态: CREATED')
 
 
 assertTextPresent('附件列表')
-
 assertElementPresent('//input[@value="上传附件"]')
+
+assertTextPresent('peleus.css')
+assertElementPresent('//input[@value="删除"]')
+clickAndWait('link=peleus.css')
+assertTextPresent('peleus')
+
+open(@@{myspace.ShareSessionController.show(2)})
+assertTextPresent('Ruby Meta Programming')
+assertTextPresent('peleus.css')
+
+clickAndWait('//input[@value="删除"]')
+assertLocation(@@{myspace.ShareSessionController.show(2)})
+assertTextNotPresent('peleus.css')
+
+
+
+
+
 
 
 

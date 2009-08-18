@@ -4,7 +4,7 @@ require 'yaml'
 require 'rubygems'
 require 'active_record'
 
-ActiveRecord::Base.establish_connection(:adapter => 'mysql', :database => 'peleus_development', :username => 'root', :password => '123456')
+ActiveRecord::Base.establish_connection(:adapter => 'mysql', :database => 'peleus_test', :username => 'root', :password => '123456')
 
 def generate_fixture(class_name,key)
     result = Kernel.const_get(class_name).find(:all).map(&:attributes).inject({}) do |result, attributes |
@@ -16,9 +16,10 @@ def generate_fixture(class_name,key)
     puts YAML.dump(result)
 end 
 
-MODELS = {:User => 'name',
+MODELS = {User: 'name',
           ShareSession: 'id',
-          Department: 'name'}
+          Department: 'name',
+          Attachment: 'file_name'}
 
 MODELS.each do |class_name, key|
 

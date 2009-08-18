@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import play.test.Fixtures;
-import play.test.UnitTest; 
+import play.test.UnitTest;
 
 public class AttachmentTest extends UnitTest {
 
@@ -24,11 +24,13 @@ public class AttachmentTest extends UnitTest {
     @Test
     public void testSaveAttachment() {
 
-        ShareSession session = ShareSession.findById(2L);
+        ShareSession session = ShareSession.findOneBy("subject", "Gof Design Patterns with Java");
 
         assertNotNull(session);
-        final String path1 = "/public/attachments/hello.rb";
-        final String path2 = "/public/attachments/world.rb";
+        int original_attachment_count = session.attachments.size();
+
+        final String path1 = "/attachments/hello.rb";
+        final String path2 = "/attachments/world.rb";
         Attachment attachment1 = new Attachment(session, path1, "hello.rb");
         Attachment attachment2 = new Attachment(session, path2, "world.rb");
 
@@ -45,13 +47,13 @@ public class AttachmentTest extends UnitTest {
 
         List<Attachment> attachments_loaded = session.attachments;
         assertFalse(attachments_loaded.isEmpty());
-        assertEquals(attachments_loaded.size(), 2);
+        assertEquals(original_attachment_count + 2, attachments_loaded.size());
 
 
-        assertEquals(path1, session.attachments.get(0).path);
-        assertEquals(path2, session.attachments.get(1).path);
-        assertEquals("hello.rb", session.attachments.get(0).file_name);
-        assertEquals("world.rb", session.attachments.get(1).file_name);
+        assertEquals(path1, session.attachments.get(original_attachment_count + 0).path);
+        assertEquals(path2, session.attachments.get(original_attachment_count + 1).path);
+        assertEquals("hello.rb", session.attachments.get(original_attachment_count).file_name);
+        assertEquals("world.rb", session.attachments.get(original_attachment_count + 1).file_name);
 
     }
 }
