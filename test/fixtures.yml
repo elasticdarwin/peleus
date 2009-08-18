@@ -51,7 +51,7 @@ ShareSession(107):
   subject: Ruby Meta Programming
   contributors: [Darwin,Darwin]
 
-Attachment(peleus.css):
-  file_name: peleus.css
+Attachment(fake_attachment_file.css):
+  file_name: fake_attachment_file.css
   share_session: 107
-  path: /public/stylesheets/peleus.css
+  path: /attachments/fake_attachment_file.css

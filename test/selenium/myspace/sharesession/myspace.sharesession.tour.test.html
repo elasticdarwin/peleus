@@ -4,6 +4,13 @@
 
 #{selenium 'Test Attachemnt Manage for ShareSession at MySpace'}
 
+%{
+io = new java.io.OutputStreamWriter(new java.io.FileOutputStream(new java.io.File(play.Play.applicationPath, "attachments/fake_attachment_file.css")))
+io.write("hello")
+io.close()
+
+}%
+
 clearSession()
 
 // login successful
@@ -26,18 +33,19 @@ assertTextPresent('状态: CREATED')
 assertTextPresent('附件列表')
 assertElementPresent('//input[@value="上传附件"]')
 
-assertTextPresent('peleus.css')
+assertTextPresent('fake_attachment_file.css')
 assertElementPresent('//input[@value="删除"]')
-clickAndWait('link=peleus.css')
-assertTextPresent('peleus')
 
-open(@@{myspace.ShareSessionController.show(2)})
-assertTextPresent('Ruby Meta Programming')
-assertTextPresent('peleus.css')
+%% clickAndWait('link=fake_attachment_file.css')
+%% assertTextPresent('hello')
+
+%% open(@@{myspace.ShareSessionController.show(2)})
+%% assertTextPresent('Ruby Meta Programming')
+%% assertTextPresent('fake_attachment_file.css')
 
 clickAndWait('//input[@value="删除"]')
 assertLocation(@@{myspace.ShareSessionController.show(2)})
-assertTextNotPresent('peleus.css')
+assertTextNotPresent('fake_attachment_file.css')
 
 
 

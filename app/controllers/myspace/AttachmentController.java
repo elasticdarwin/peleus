@@ -52,9 +52,14 @@ public class AttachmentController extends Application {
                 Attachment.findById(id);
         forbiddenIfNo(attachment);
 
-        String path = attachment.path;
 
-        File attachment_file = new File(Play.applicationPath, path);
+        File attachment_root = Play.getFile(new File("attachments").getPath());
+
+        String path = attachment.path;
+        String separator = System.getProperty("file.separator");
+        String real_file_name = path.substring(path.lastIndexOf(separator) + 1);
+
+        File attachment_file = new File(attachment_root, real_file_name);
         attachment_file.delete();
 
         Long share_session_id = attachment.share_session.id;
