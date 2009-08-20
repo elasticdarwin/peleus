@@ -6,12 +6,12 @@ import java.util.List;
 import javax.persistence.*;
 import org.apache.commons.lang.StringUtils;
 import play.data.validation.Validation;
-import play.db.jpa.JPAModel;
+import play.db.jpa.Model;
 
 @Entity
 @Table(name = "users",
 uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
-public class User extends JPAModel {
+public class User extends Model {
 
     public String name;
     public String email;
