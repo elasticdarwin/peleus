@@ -138,13 +138,7 @@ public class ShareSession extends Model implements ShareSessionContext {
         return status;
     }
 
-    public static int deleteAllWithDenpendencies() {
-        List<ShareSession> share_sessions = ShareSession.findAll();
-        for (ShareSession share_session : share_sessions) {
-            share_session.delete();
-        }
-        return share_sessions.size();
-    }
+
 
     private static ShareSession build(ShareSessionForm share_session_form, User creator) {
 

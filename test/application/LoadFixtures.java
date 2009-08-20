@@ -4,6 +4,7 @@ import forms.myspace.ShareSessionForm;
 import forms.myspace.user.UserForm;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import models.Contribution;
 import models.Department;
 import models.ShareSession;
 import models.User;
@@ -16,7 +17,9 @@ public class LoadFixtures extends FunctionalTest {
     @Before
     public void cleanup() {
 
-        ShareSession.deleteAllWithDenpendencies();
+        Contribution.deleteAll();
+
+        ShareSession.deleteAll();
 
         Department.deleteAll();
 
