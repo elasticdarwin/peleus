@@ -16,3 +16,4 @@ File.open(File.join(File.dirname(__FILE__), '..', '/conf/application.conf'), 'w'
     file.write(ERB.new(config).result(binding))
 end
 
+#CREATE DATABASE peleus_test CHARACTER SET utf8 COLLATE utf8_bin;
