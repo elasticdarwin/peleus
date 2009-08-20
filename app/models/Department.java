@@ -6,13 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import play.data.validation.Validation;
-import play.db.jpa.JPAModel;
+import play.db.jpa.Model;
 import play.i18n.Messages;
 
 @Entity
 @Table(name = "departments",
 uniqueConstraints = {@UniqueConstraint(columnNames = {"description"})})
-public class Department extends JPAModel {
+public class Department extends Model {
 
     public String name;
     public String description;

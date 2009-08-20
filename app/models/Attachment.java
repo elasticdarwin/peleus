@@ -5,12 +5,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import play.db.jpa.JPAModel;
+import play.db.jpa.Model;
 
 @Entity
 @Table(name = "attachments",
 uniqueConstraints = {@UniqueConstraint(columnNames = {"path"})})
-public class Attachment extends JPAModel {
+public class Attachment extends Model {
  
     public String path;
     @ManyToOne

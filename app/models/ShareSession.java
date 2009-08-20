@@ -1,7 +1,6 @@
 package models;
 
 import forms.myspace.ShareSessionForm;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -17,7 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import play.data.validation.Validation;
-import play.db.jpa.JPAModel;
+import play.db.jpa.Model;
 import play.i18n.Messages;
 import utils.statemachine.ShareSessionContext;
 import utils.statemachine.ShareSessionStateMachine;
@@ -26,7 +25,7 @@ import utils.statemachine.ShareSessionTransition;
 
 @Entity
 @Table(name = "share_sessions")
-public class ShareSession extends JPAModel implements ShareSessionContext {
+public class ShareSession extends Model implements ShareSessionContext {
 
     @ManyToOne
     @JoinColumn(name = "department_id")
