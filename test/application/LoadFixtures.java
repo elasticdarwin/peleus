@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import models.Contribution;
 import models.Department;
 import models.ShareSession;
+import models.Attachment;
 import models.User;
 import org.junit.*;
 import play.test.FunctionalTest;
@@ -19,11 +20,13 @@ public class LoadFixtures extends FunctionalTest {
 
         Contribution.deleteAll();
 
+        Attachment.deleteAll();
+
         ShareSession.deleteAll();
 
-        Department.deleteAll();
-
         User.deleteAll();
+
+        Department.deleteAll();
 
     }
 
